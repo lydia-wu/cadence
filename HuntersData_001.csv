@@ -1,0 +1,2 @@
+DeviceID,DeviceStatus,Timestamp
+"['10001', 'strongConnection', datetime.datetime(2022, 1, 1, 10, 1)]","['12345', 'strongConnection', datetime.datetime(2022, 1, 1, 10, 8)]","['12345', 'weakConnection', datetime.datetime(2022, 1, 1, 11, 55)]","['12345', 'strongConnection', datetime.datetime(2022, 1, 1, 12, 34)]","['12345', 'strongConnection', datetime.datetime(2022, 1, 1, 12, 35)]","['10001', 'noConnection', datetime.datetime(2022, 1, 1, 12, 48)]"
