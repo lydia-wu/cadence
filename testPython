@@ -1,13 +1,23 @@
 import csv 
 
+import time
+import datetime
+
+# Function to convert string to datetime
+def convert(date_time):
+    format = '%b %d %Y %I:%M%p' # The format
+    datetime_str = datetime.datetime.strptime(date_time, format)
+   
+    return datetime_str
+
 header = ['DeviceID', 'DeviceStatus', 'Timestamp']
 data = [
-             ['10001', 'strongConnection', timestamp(2021-07-03 16:21:12.357246)],
-             ['12345', 'strongConnection', timestamp(2021-07-03 16:22:13.246)],
-             ['12345', 'weakConnection', timestamp(2021-07-03 19:22:13.246)],
-             ['12345', 'strongConnection', timestamp(2021-07-03 19:45:13.246)],
-             ['12345', 'strongConnection', timestamp(2021-07-03 20:22:13.246)],
-             ['10001', 'noConnection', timestamp(2021-07-03 23:21:12.357246)]
+             ['10001', 'strongConnection', convert('Jan 1 2022 10:01AM')],
+             ['12345', 'strongConnection', convert('Jan 1 2022 10:08AM')],
+             ['12345', 'weakConnection',   convert('Jan 1 2022 11:55AM')],
+             ['12345', 'strongConnection', convert('Jan 1 2022 12:34PM')],
+             ['12345', 'strongConnection', convert('Jan 1 2022 12:35PM')],
+             ['10001', 'noConnection',     convert('Jan 1 2022 12:48PM')]
             ]
 
 with open('HuntersData.csv', 'w', encoding='UTF8') as f:
@@ -18,3 +28,4 @@ with open('HuntersData.csv', 'w', encoding='UTF8') as f:
 
     # write the data
     writer.writerow(data)
+
