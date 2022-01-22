@@ -1,0 +1,20 @@
+import csv 
+
+header = ['DeviceID', 'DeviceStatus', 'Timestamp']
+data = [
+             ['10001', 'strongConnection', timestamp(2021-07-03 16:21:12.357246)],
+             ['12345', 'strongConnection', timestamp(2021-07-03 16:22:13.246)],
+             ['12345', 'weakConnection', timestamp(2021-07-03 19:22:13.246)],
+             ['12345', 'strongConnection', timestamp(2021-07-03 19:45:13.246)],
+             ['12345', 'strongConnection', timestamp(2021-07-03 20:22:13.246)],
+             ['10001', 'noConnection', timestamp(2021-07-03 23:21:12.357246)]
+            ]
+
+with open('HuntersData.csv', 'w', encoding='UTF8') as f:
+    writer = csv.writer(f)
+
+    # write the header
+    writer.writerow(header)
+
+    # write the data
+    writer.writerow(data)
