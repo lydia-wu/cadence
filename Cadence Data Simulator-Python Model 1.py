@@ -15,7 +15,7 @@ import time
 print("\nGMT: "+time.strftime("%b %I %Y:%M:%S %p %Z", time.gmtime()))
 
 import csv
-with open('/Users/Hunter/Documents/Liberty University/Fourth Year/Classes/Spring 2022/ENGR 482/Visual Studios/Cadence Documentation/CSV/data_simulator.csv', 'x', newline = '') as file:
+with open('/Users/Hunter/Documents/Liberty University/Fourth Year/Classes/Spring 2022/ENGR 482/Visual Studios/Cadence Documentation/CSV/data_simulator.csv', 'w', newline = '') as file:
     writer = csv.writer(file)
     writer.writerow(["Time", 1111111111, "A000001", "Connected", "0-bytes"])
     writer.writerow(["Time", 2222222222, "A000002", "Connected", "0-bytes"])
