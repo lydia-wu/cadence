@@ -4,7 +4,10 @@ import time
 import random
 import threading 
 import csv
+import sys
 from time import sleep
+Redirect = sys.stdout
+sys.stdout = open("/Users/baseb/Downloads/Source 1.txt", "w+")
 
 NODEID = ('A0001', 'A0002', 'A0003', 'A0004', 'A0005', 'A0006', 'A0007', 'A0008', 'A0009', 'B0001', 'B0002', 'B0003', 'B0004', 'B0005')
 NodeID = random.choice(NODEID)
@@ -17,7 +20,7 @@ while SIMID <= 5000000000:
     print ("SIM ID: ", SIMID)
     time.sleep(0.5)
     SIMID += 100000000
-#change
+
 
 from datetime import date
 today = date.today()
@@ -44,10 +47,14 @@ t3 = threading.Thread(target=print_Connection_twenty_times)
 time.sleep(5)
 t3.start()
 
-with open('/Users/Hunter/Downloads/count_loop.csv', 'w', newline = '') as file:
-    fieldnames = ['Time', 'ICCID (SIM ID)', 'Node ID', 'Connection', 'Bytes Used']
-    write = csv.DictWriter(file, fieldnames = fieldnames)
+# with open('/Users/Hunter/Downloads/count_loop.csv', 'w', newline = '') as file:
+#   fieldnames = ['Time', 'ICCID (SIM ID)', 'Node ID', 'Connection', 'Bytes Used']
+#    write = csv.DictWriter(file, fieldnames = fieldnames)
 
-    write.writeheader()
-    for i in range(0, 100):
-        write.writerow({'Time': '4-Oclock', 'ICCID (SIM ID)' : '1000000000', 'Node ID' : 'A00001', 'Connection' : 'Connected', 'Bytes Used' : '1000-bytes'})
+#   write.writeheader()
+#    for i in range(0, 100):
+#        write.writerow({'Time': '4-Oclock', 'ICCID (SIM ID)' : '1000000000', 'Node ID' : 'A00001', 'Connection' : 'Connected', 'Bytes Used' : '1000-bytes'})
+
+        
+sys.stdout.close()
+sys.stdout = Redirect
