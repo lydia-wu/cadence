@@ -1,70 +1,35 @@
-"
-GMT: Wed, 02 Feb 2022 05:15:22 PM Eastern Standard Time",A000001,Received File from HelloWorld
-"
-GMT: Wed, 02 Feb 2022 05:15:22 PM Eastern Standard Time",A000002,Received File from HelloWorld
-"
-GMT: Wed, 02 Feb 2022 05:15:22 PM Eastern Standard Time",A000001,Received File from HelloWorld
-"
-GMT: Wed, 02 Feb 2022 05:15:22 PM Eastern Standard Time",A000001,Received File from HelloWorld
-"
-GMT: Wed, 02 Feb 2022 05:15:22 PM Eastern Standard Time",A000001,Received File from HelloWorld
-"
-GMT: Wed, 02 Feb 2022 05:15:22 PM Eastern Standard Time",A000001,Received File from HelloWorld
-"
-GMT: Wed, 02 Feb 2022 05:15:22 PM Eastern Standard Time",A000001,Received File from HelloWorld
-"
-GMT: Wed, 02 Feb 2022 05:15:22 PM Eastern Standard Time",A000001,Received File from HelloWorld
-"
-GMT: Wed, 02 Feb 2022 05:15:22 PM Eastern Standard Time",A000001,Received File from HelloWorld
-"
-GMT: Wed, 02 Feb 2022 05:15:22 PM Eastern Standard Time",A000001,Received File from HelloWorld
-"
-GMT: Wed, 02 Feb 2022 05:15:22 PM Eastern Standard Time",A000001,Received File from HelloWorld
-"
-GMT: Wed, 02 Feb 2022 05:15:22 PM Eastern Standard Time",A000001,Received File from HelloWorld
-"
-GMT: Wed, 02 Feb 2022 05:15:22 PM Eastern Standard Time",A000001,Received File from HelloWorld
-"
-GMT: Wed, 02 Feb 2022 05:15:22 PM Eastern Standard Time",A000001,Received File from HelloWorld
-"
-GMT: Wed, 02 Feb 2022 05:15:22 PM Eastern Standard Time",A000001,Received File from HelloWorld
-"
-GMT: Wed, 02 Feb 2022 05:15:22 PM Eastern Standard Time",A000001,Received File from HelloWorld
-"
-GMT: Wed, 02 Feb 2022 05:15:22 PM Eastern Standard Time",A000001,Received File from HelloWorld
-"
-GMT: Wed, 02 Feb 2022 05:15:22 PM Eastern Standard Time",A000001,Received File from HelloWorld
-"
-GMT: Wed, 02 Feb 2022 05:15:22 PM Eastern Standard Time",A000001,Received File from HelloWorld
-"
-GMT: Wed, 02 Feb 2022 05:15:22 PM Eastern Standard Time",A000001,Received File from HelloWorld
-"
-GMT: Wed, 02 Feb 2022 05:15:22 PM Eastern Standard Time",A000001,Received File from HelloWorld
-"
-GMT: Wed, 02 Feb 2022 05:15:22 PM Eastern Standard Time",A000001,Received File from HelloWorld
-"
-GMT: Wed, 02 Feb 2022 05:15:22 PM Eastern Standard Time",A000001,Received File from HelloWorld
-"
-GMT: Wed, 02 Feb 2022 05:15:22 PM Eastern Standard Time",A000001,Received File from HelloWorld
-"
-GMT: Wed, 02 Feb 2022 05:15:22 PM Eastern Standard Time",A000001,Received File from HelloWorld
-"
-GMT: Wed, 02 Feb 2022 05:15:22 PM Eastern Standard Time",A000001,Received File from HelloWorld
-"
-GMT: Wed, 02 Feb 2022 05:15:22 PM Eastern Standard Time",A000001,Received File from HelloWorld
-"
-GMT: Wed, 02 Feb 2022 05:15:22 PM Eastern Standard Time",A000001,Received File from HelloWorld
-"
-GMT: Wed, 02 Feb 2022 05:15:22 PM Eastern Standard Time",A000001,Received File from HelloWorld
-"
-GMT: Wed, 02 Feb 2022 05:15:22 PM Eastern Standard Time",A000001,Received File from HelloWorld
-"
-GMT: Wed, 02 Feb 2022 05:15:22 PM Eastern Standard Time",A000001,Received File from HelloWorld
-"
-GMT: Wed, 02 Feb 2022 05:15:22 PM Eastern Standard Time",A000001,Received File from HelloWorld
-"
-GMT: Wed, 02 Feb 2022 05:15:22 PM Eastern Standard Time",A000001,Received File from HelloWorld
-"
-GMT: Wed, 02 Feb 2022 05:15:22 PM Eastern Standard Time",A000001,Received File from HelloWorld
-"
-GMT: Wed, 02 Feb 2022 05:15:22 PM Eastern Standard Time",A000001,Received File from HelloWorld
+NodeID,Time,Input from Device
+A000002,tomorrow2,Received File from HelloWorld
+A000001,tomorrow3,Received File from HelloWorld
+A000001,tomorrow4,Received File from HelloWorld
+A000001,tomorrow5,Received File from HelloWorld
+A000001,tomorrow6,Received File from HelloWorld
+A000001,tomorrow7,Received File from HelloWorld
+A000001,tomorrow8,Received File from HelloWorld
+A000001,tomorrow9,Received File from HelloWorld
+A000001,tomorrow10,Received File from HelloWorld
+A000001,tomorrow11,Received File from HelloWorld
+A000001,tomorrow12,Received File from HelloWorld
+A000001,tomorrow13,Received File from HelloWorld
+A000001,tomorrow14,Received File from HelloWorld
+A000001,tomorrow15,Received File from HelloWorld
+A000001,tomorrow16,Received File from HelloWorld
+A000001,tomorrow17,Received File from HelloWorld
+A000001,tomorrow18,Received File from HelloWorld
+A000001,tomorrow19,Received File from HelloWorld
+A000001,tomorrow20,Received File from HelloWorld
+A000001,tomorrow21,Received File from HelloWorld
+A000001,tomorrow22,Received File from HelloWorld
+A000001,tomorrow23,Received File from HelloWorld
+A000001,tomorrow24,Received File from HelloWorld
+A000001,tomorrow25,Received File from HelloWorld
+A000001,tomorrow26,Received File from HelloWorld
+A000001,tomorrow27,Received File from HelloWorld
+A000001,tomorrow28,Received File from HelloWorld
+A000001,tomorrow29,Received File from HelloWorld
+A000001,tomorrow30,Received File from HelloWorld
+A000001,tomorrow31,Received File from HelloWorld
+A000001,tomorrow32,Received File from HelloWorld
+A000001,tomorrow33,Received File from HelloWorld
+A000001,tomorrow34,Received File from HelloWorld
+A000001,tomorrow35,Received File from HelloWorld
