@@ -16,55 +16,55 @@ print ("Hello World")
 import random
 import csv
 import pandas
+import time
 byte = random.randint(2000, 3000)
 Node = random.randint(0,2)
 
+NODEID = ('A0001', 'A0002', 'A0003', 'A0004', 'A0005', 'A0006', 'A0007', 'A0008', 'A0009', 'B0001', 'B0002', 'B0003', 'B0004', 'B0005')
+NodeID = random.choice(NODEID)
 
+from datetime import date
+CurrentTime = (time.strftime("%a %d %b %Y %I:%M:%S %p", time.gmtime()))
+# today = date.today()
 
-with open('/Users/baseb/Downloads/Source 2.csv', 'w+', newline = '') as file:
-    writer = csv.writer(file)
-    writer.writerow(["Time", 1111111111, "A000001", "Connected", byte+1])
-    writer.writerow(["Time", 2222222222, "A000002", "Connected", byte+2])
-    writer.writerow(["Time", 1111111111, "A000001", "Disconnected", byte+3])
-    writer.writerow(["Time", 2222222222, "A000001", "Disconnected", byte+4])
-    writer.writerow(["Time", 1111111111, "A000001", "Connected", byte+5])
-    writer.writerow(["Time", 1111111111, "A000001", "Connected", byte+6])
-    writer.writerow(["Time", 1111111111, "A000001", "Connected", byte+7])
-    writer.writerow(["Time", 1111111111, "A000001", "Connected", byte+8])
-    writer.writerow(["Time", 1111111111, "A000001", "Connected", byte+9])
-    writer.writerow(["Time", 1111111111, "A000001", "Connected", byte+10])
-    writer.writerow(["Time", 1111111111, "A000001", "Connected", byte+11])
-    writer.writerow(["Time", 1111111111, "A000001", "Connected", byte+12])
-    writer.writerow(["Time", 1111111111, "A000001", "Connected", byte+13])
-    writer.writerow(["Time", 1111111111, "A000001", "Connected",byte+14])
-    writer.writerow(["Time", 1111111111, "A000001", "Connected",byte+15])
-    writer.writerow(["Time", 1111111111, "A000001", "Connected",byte+16])
-    writer.writerow(["Time", 1111111111, "A000001", "Connected",byte+17])
-    writer.writerow(["Time", 1111111111, "A000001", "Connected",byte+18])
-    writer.writerow(["Time", 1111111111, "A000001", "Connected",byte+19])
-    writer.writerow(["Time", 1111111111, "A000001", "Connected",byte+20])
-    writer.writerow(["Time", 1111111111, "A000001", "Connected",byte+21])
-    writer.writerow(["Time", 1111111111, "A000001", "Connected",byte+22])
-    writer.writerow(["Time", 1111111111, "A000001", "Connected",byte+23])
-    writer.writerow(["Time", 1111111111, "A000001", "Connected",byte+24])
-    writer.writerow(["Time", 1111111111, "A000001", "Connected",byte+25])
-    writer.writerow(["Time", 1111111111, "A000001", "Connected",byte+26])
-    writer.writerow(["Time", 1111111111, "A000001", "Connected",byte+27])
-    writer.writerow(["Time", 1111111111, "A000001", "Connected",byte+28])
-    writer.writerow(["Time", 1111111111, "A000001", "Connected",byte+29])
-    writer.writerow(["Time", 1111111111, "A000001", "Connected",byte+30])
-    writer.writerow(["Time", 1111111111, "A000001", "Connected",byte+31])
-    writer.writerow(["Time", 1111111111, "A000001", "Connected",byte+32])
-    writer.writerow(["Time", 1111111111, "A000001", "Connected",byte+33])
-    writer.writerow(["Time", 1111111111, "A000001", "Connected",byte+34])
-    writer.writerow(["Time", 1111111111, "A000001", "Connected",byte+35])
-    # to be removed following the integration of Cadence Data SimulatorModel2
+#   Do “count” 10 times:
+#   Write file 1:  actual time:  xyz, sending Hello World <count>
+#	Wait 1 sec (simulate the delay of connecting the modem)
+#   Write file 2:  actual time, 1111111111, xyz, connect, 0
+#	Wait 1 sec (simulate the delay of communication)
+#	Write file 3:  actual time, A00001, xyz, received Hello World <count>
+#	Wait 1 sec (simulate the delay of the device timeout for disconnecting after transmission)
+#	Write file 2:  actual time, 1111111111, xyz, disconnect, 0
+#	Wait 10 sec (simulate the 1 minute delay between hello world messages)
+#	Count++
 
-df = pandas.read_csv("/Users/baseb/Downloads/Source 2.csv",
-index_col='NodeID', 
-header=0,
-names=['Time', 'ICCID(SIM ID)', 'NodeID', 'Connection', 'Bytes Used'])
-df.to_csv('/Users/baseb/Downloads/Source 2.csv')
+with open('/Users/Hunter/Downloads/DeviceLog.log', 'w+', newline = '') as file1:
+    with open('/Users/Hunter/Downloads/NetworkReport.csv', 'w+', newline = '') as file2:
+        with open('/Users/Hunter/Downloads/AppReport.csv', 'w+', newline = '') as file3:
+            DeviceLog = csv.writer(file1)
+            DeviceLog.writerow(['Beginning of Log'])
+            NetworkReport = csv.writer(file2)
+            NetworkReport.writerow(['Time', 'ICCID(SIM ID)', 'NodeID', 'Connection', 'Bytes Used'])
+            AppReport = csv.writer(file3)
+            AppReport.writerow(['Time', 'NodeID', 'Random', 'Message From Device'])
+
+            count = 0
+            while count < 10:
+                count = count+1
+                DeviceLog.writerow([(time.strftime("%d %b %Y %I:%M:%S %p:", time.gmtime())), "Device NodeID A000001 Sending Hello World " + str(count)])
+                time.sleep(1)
+                NetworkReport.writerow([(time.strftime("%d %b %Y %I:%M:%S %p", time.gmtime())), 1111111111, "xyz", "Network SIM Connected", 0])
+                time.sleep(1)
+                AppReport.writerow([(time.strftime("%d %b %Y %I:%M:%S %p", time.gmtime())), "A000001", "Cloud App Received Hello World " + str(count)])
+                time.sleep(1)
+                NetworkReport.writerow([(time.strftime("%d %b %Y %I:%M:%S %p", time.gmtime())), 1111111111, "xyz", "Network SIM Disconnected", 2000])
+                time.sleep(5)
+    
+#df = pandas.read_csv("/Users/Hunter/Downloads/Source 2.csv",
+#index_col='NodeID', 
+#header=0,
+#names=['Time', 'ICCID(SIM ID)', 'NodeID', 'Connection', 'Bytes Used'])
+#df.to_csv('/Users/Hunter/Downloads/Source 2.csv')
 
 
 # for x in ("/Users/Hunter/Documents/Liberty University/Fourth Year/Classes/Spring 2022/ENGR 482/Visual Studios/Cadence Documentation/CSV/simulator.csv"):
