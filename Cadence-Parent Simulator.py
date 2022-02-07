@@ -38,9 +38,9 @@ with open('/Users/Hunter/Downloads/DeviceLogA1.log', 'w+', newline = '') as file
                 DeviceLogA1 = csv.writer(file1)
                 DeviceLogA1.writerow(['Beginning of Log'])
                 NetworkReport = csv.writer(file2)
-                NetworkReport.writerow(['Time', 'ICCID(SIM ID)', 'Connection Event', 'Bytes Used'])
+                NetworkReport.writerow(['Time', 'ICCID(SIM ID)', "Arbitrary Column",'Connection Event', 'Bytes Used'])
                 AppReport = csv.writer(file3)
-                AppReport.writerow(['Time', 'NodeID', 'Random', 'Message From Device'])
+                AppReport.writerow(['Time', 'NodeID', 'Message'])
                 DeviceLogA2 = csv.writer(file4)
                 DeviceLogA2.writerow(['Begininng of Log'])
                 
@@ -60,9 +60,9 @@ with open('/Users/Hunter/Downloads/DeviceLogA1.log', 'w+', newline = '') as file
                     time.sleep(1)
                     
                     #Create Network Logs for Connection
-                    NetworkReport.writerow([(time.strftime("%d %b %Y %I:%M:%S %p", time.gmtime())), 1111111111, "Connected", 0])
+                    NetworkReport.writerow([(time.strftime("%d %b %Y %I:%M:%S %p", time.gmtime())), 1111111111, "xyz", "Connected", 0])
                     if count != 5:
-                        NetworkReport.writerow([(time.strftime("%d %b %Y %I:%M:%S %p", time.gmtime())), 2222222222, "Connected", 0])
+                        NetworkReport.writerow([(time.strftime("%d %b %Y %I:%M:%S %p", time.gmtime())), 2222222222, "xyz", "Connected", 0])
                     time.sleep(1)
                     
                     #Create App Logs
@@ -72,9 +72,9 @@ with open('/Users/Hunter/Downloads/DeviceLogA1.log', 'w+', newline = '') as file
                     time.sleep(1)
                     
                     #Create Network Logs for Disconnection
-                    NetworkReport.writerow([(time.strftime("%d %b %Y %I:%M:%S %p", time.gmtime())), 1111111111, "Disconnected", 2000])
+                    NetworkReport.writerow([(time.strftime("%d %b %Y %I:%M:%S %p", time.gmtime())), 1111111111, "xyz", "Disconnected", 2000])
                     if count != 5:
-                        NetworkReport.writerow([(time.strftime("%d %b %Y %I:%M:%S %p", time.gmtime())), 2222222222, "Disconnected", 2000])
+                        NetworkReport.writerow([(time.strftime("%d %b %Y %I:%M:%S %p", time.gmtime())), 2222222222, "xyz", "Disconnected", 2000])
                     time.sleep(5)
 
                 
