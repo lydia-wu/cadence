@@ -4,7 +4,7 @@
 
 # Note-Run the following in command prompt if running this code for the first time: "pip install pandas --user"
 # test
-print ("Hello World")
+print ("Generating Simulated Data")
 # try: 
 #    f = open("airlines.csv", encoding = 'utf-8')
     #perform file operations
@@ -17,14 +17,7 @@ import random
 import csv
 import pandas
 import time
-
-
-
-NODEID = ('A0001', 'A0002', 'A0003', 'A0004', 'A0005', 'A0006', 'A0007', 'A0008', 'A0009', 'B0001', 'B0002', 'B0003', 'B0004', 'B0005')
-NodeID = random.choice(NODEID)
-
 from datetime import date
-CurrentTime = (time.strftime("%a %d %b %Y %I:%M:%S %p", time.gmtime()))
 # today = date.today()
 
 #   Do “count” 10 times:
@@ -38,32 +31,54 @@ CurrentTime = (time.strftime("%a %d %b %Y %I:%M:%S %p", time.gmtime()))
 #	Wait 10 sec (simulate the 1 minute delay between hello world messages)
 #	Count++
 
-with open('/Users/Hunter/Downloads/DeviceLog.log', 'w+', newline = '') as file1:
+with open('/Users/Hunter/Downloads/DeviceLogA1.log', 'w+', newline = '') as file1:
     with open('/Users/Hunter/Downloads/NetworkReport.csv', 'w+', newline = '') as file2:
         with open('/Users/Hunter/Downloads/AppReport.csv', 'w+', newline = '') as file3:
-            DeviceLog = csv.writer(file1)
-            DeviceLog.writerow(['Beginning of Log'])
-            NetworkReport = csv.writer(file2)
-            NetworkReport.writerow(['Time', 'ICCID(SIM ID)', 'NodeID', 'Connection', 'Bytes Used'])
-            AppReport = csv.writer(file3)
-            AppReport.writerow(['Time', 'NodeID', 'Random', 'Message From Device'])
-
-            count = 0
-            while count < 10:
-                count = count+1
-                SIMID = 1111111111
-                DeviceLog.writerow([(time.strftime("%d %b %Y %I:%M:%S %p:", time.gmtime())), "Device NodeID A000001 Sending Hello World " + str(count)])
-                time.sleep(1)
-                NetworkReport.writerow([(time.strftime("%d %b %Y %I:%M:%S %p", time.gmtime())), 1111111111, "The Device ICCID is: " +str(SIMID), "Network SIM Connected", 0])
-                time.sleep(1)
-                AppReport.writerow([(time.strftime("%d %b %Y %I:%M:%S %p", time.gmtime())), "A00001", "Cloud App Received Hello World " + str(count)])
-                time.sleep(1)
-                NetworkReport.writerow([(time.strftime("%d %b %Y %I:%M:%S %p", time.gmtime())), 1111111111, "The Device ICCID is: " + str(SIMID), "Network SIM Disconnected", random.randint(1000,2000)])
-                time.sleep(1)
-
+            with open('/Users/Hunter/Downloads/DeviceLogA2.log', 'w+', newline = '') as file4:
+                DeviceLogA1 = csv.writer(file1)
+                DeviceLogA1.writerow(['Beginning of Log'])
+                NetworkReport = csv.writer(file2)
+                NetworkReport.writerow(['Time', 'ICCID(SIM ID)', 'Connection Event', 'Bytes Used'])
+                AppReport = csv.writer(file3)
+                AppReport.writerow(['Time', 'NodeID', 'Random', 'Message From Device'])
+                DeviceLogA2 = csv.writer(file4)
+                DeviceLogA2.writerow(['Begininng of Log'])
                 
 
-            
+
+                count = 0
+                while count < 10:
+                    count = count+1
+                    SIMID = 1111111111
+                    
+                    # Create Device Logs
+                    DeviceLogA1.writerow([(time.strftime("%d %b %Y %I:%M:%S %p:", time.gmtime())), "Device NodeID A000001 Sending Hello World " + str(count)])
+                    if count != 5:
+                        DeviceLogA2.writerow([(time.strftime("%d %b %Y %I:%M:%S %p:", time.gmtime())), "Device NodeID A000002 Sending Hello World " + str(count)])
+                    DeviceLogA1.writerow(['This is some arbitrary log data'])
+                    DeviceLogA2.writerow(['This is some arbitrary log data'])
+                    time.sleep(1)
+                    
+                    #Create Network Logs for Connection
+                    NetworkReport.writerow([(time.strftime("%d %b %Y %I:%M:%S %p", time.gmtime())), 1111111111, "Connected", 0])
+                    if count != 5:
+                        NetworkReport.writerow([(time.strftime("%d %b %Y %I:%M:%S %p", time.gmtime())), 2222222222, "Connected", 0])
+                    time.sleep(1)
+                    
+                    #Create App Logs
+                    AppReport.writerow([(time.strftime("%d %b %Y %I:%M:%S %p", time.gmtime())), "A000001", "Cloud App Received Hello World " + str(count)])
+                    if count != 5:
+                        AppReport.writerow([(time.strftime("%d %b %Y %I:%M:%S %p", time.gmtime())), "A000002", "Cloud App Received Hello World " + str(count)])
+                    time.sleep(1)
+                    
+                    #Create Network Logs for Disconnection
+                    NetworkReport.writerow([(time.strftime("%d %b %Y %I:%M:%S %p", time.gmtime())), 1111111111, "Disconnected", 2000])
+                    if count != 5:
+                        NetworkReport.writerow([(time.strftime("%d %b %Y %I:%M:%S %p", time.gmtime())), 2222222222, "Disconnected", 2000])
+                    time.sleep(5)
+
+                
+print("Completed Program Run") 
     
 #df = pandas.read_csv("/Users/Hunter/Downloads/Source 2.csv",
 #index_col='NodeID', 
