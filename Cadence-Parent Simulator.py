@@ -17,8 +17,8 @@ import random
 import csv
 import pandas
 import time
-byte = random.randint(2000, 3000)
-Node = random.randint(0,2)
+
+
 
 NODEID = ('A0001', 'A0002', 'A0003', 'A0004', 'A0005', 'A0006', 'A0007', 'A0008', 'A0009', 'B0001', 'B0002', 'B0003', 'B0004', 'B0005')
 NodeID = random.choice(NODEID)
@@ -51,14 +51,19 @@ with open('/Users/Hunter/Downloads/DeviceLog.log', 'w+', newline = '') as file1:
             count = 0
             while count < 10:
                 count = count+1
+                SIMID = 1111111111
                 DeviceLog.writerow([(time.strftime("%d %b %Y %I:%M:%S %p:", time.gmtime())), "Device NodeID A000001 Sending Hello World " + str(count)])
                 time.sleep(1)
-                NetworkReport.writerow([(time.strftime("%d %b %Y %I:%M:%S %p", time.gmtime())), 1111111111, "xyz", "Network SIM Connected", 0])
+                NetworkReport.writerow([(time.strftime("%d %b %Y %I:%M:%S %p", time.gmtime())), 1111111111, "The Device ICCID is: " +str(SIMID), "Network SIM Connected", 0])
                 time.sleep(1)
-                AppReport.writerow([(time.strftime("%d %b %Y %I:%M:%S %p", time.gmtime())), "A000001", "Cloud App Received Hello World " + str(count)])
+                AppReport.writerow([(time.strftime("%d %b %Y %I:%M:%S %p", time.gmtime())), "A00001", "Cloud App Received Hello World " + str(count)])
                 time.sleep(1)
-                NetworkReport.writerow([(time.strftime("%d %b %Y %I:%M:%S %p", time.gmtime())), 1111111111, "xyz", "Network SIM Disconnected", 2000])
-                time.sleep(5)
+                NetworkReport.writerow([(time.strftime("%d %b %Y %I:%M:%S %p", time.gmtime())), 1111111111, "The Device ICCID is: " + str(SIMID), "Network SIM Disconnected", random.randint(1000,2000)])
+                time.sleep(1)
+
+                
+
+            
     
 #df = pandas.read_csv("/Users/Hunter/Downloads/Source 2.csv",
 #index_col='NodeID', 
