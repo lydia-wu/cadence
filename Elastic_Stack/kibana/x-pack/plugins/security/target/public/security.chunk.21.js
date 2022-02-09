@@ -1,0 +1,3 @@
+/*! Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one or more contributor license agreements. 
+ * Licensed under the Elastic License 2.0; you may not use this file except in compliance with the Elastic License 2.0. */
+(window.security_bundle_jsonpfunction=window.security_bundle_jsonpfunction||[]).push([[21],{300:function(i,t,e){"use strict";e.r(t),e.d(t,"PrivilegesAPIClient",(function(){return PrivilegesAPIClient}));class PrivilegesAPIClient{constructor(i){this.http=i}async getAll({includeActions:i}){return await this.http.get("/api/security/privileges",{query:{includeActions:i}})}async getBuiltIn(){return await this.http.get("/internal/security/esPrivileges/builtin")}}}}]);

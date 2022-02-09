@@ -1,0 +1,12 @@
+{
+  "id": "code",
+  "owner": {
+    "name": "Kibana Operations",
+    "githubTeam": "kibana-operations"
+  },
+  "version": "8.0.0",
+  "kibanaVersion": "kibana",
+  "configPath": ["xpack", "code"],
+  "server": true,
+  "ui": false
+}

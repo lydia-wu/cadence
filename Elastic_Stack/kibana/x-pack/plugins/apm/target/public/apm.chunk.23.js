@@ -1,0 +1,3 @@
+/*! Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one or more contributor license agreements. 
+ * Licensed under the Elastic License 2.0; you may not use this file except in compliance with the Elastic License 2.0. */
+(window.apm_bundle_jsonpfunction=window.apm_bundle_jsonpfunction||[]).push([[23],{1023:function(n,t,a){"use strict";a.r(t),a.d(t,"hasFleetApmIntegrations",(function(){return i}));var e=a(60);async function i(){try{const{hasData:n=!1}=await Object(e.callApmApi)({endpoint:"GET /internal/apm/fleet/has_data",signal:null});return n}catch(n){return console.error("Something went wrong while fetching apm fleet data",n),!1}}}}]);
