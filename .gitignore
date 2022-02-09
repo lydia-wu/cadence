@@ -30,3 +30,5 @@
 #*.exe
 #*.out
 #*.app
+Elastic_Stack/kibana/x-pack/plugins/reporting/chromium/chrome-win/interactive_ui_tests.exe
+Elastic_Stack/kibana/x-pack/plugins/reporting/chromium/chrome-win/chrome.dll
