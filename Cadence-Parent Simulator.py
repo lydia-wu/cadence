@@ -13,7 +13,6 @@ print ("Generating Simulated Data")
 # from time import gmtime, strftime
 # import time 
 # print("\nGMT: "+time.strftime("%b %I %Y:%M:%S %p %Z", time.gmtime()))
-import random
 import csv
 import pandas
 import time
@@ -35,21 +34,25 @@ with open('/Users/Hunter/Downloads/DeviceLogA1.log', 'w+', newline = '') as file
     with open('/Users/Hunter/Downloads/NetworkReport.csv', 'w+', newline = '') as file2:
         with open('/Users/Hunter/Downloads/AppReport.csv', 'w+', newline = '') as file3:
             with open('/Users/Hunter/Downloads/DeviceLogA2.log', 'w+', newline = '') as file4:
-                DeviceLogA1 = csv.writer(file1)
-                DeviceLogA1.writerow(['Beginning of Log'])
-                NetworkReport = csv.writer(file2)
-                NetworkReport.writerow(['Time', 'ICCID(SIM ID)', "Arbitrary Column",'Connection Event', 'Bytes Used'])
-                AppReport = csv.writer(file3)
-                AppReport.writerow(['Time', 'NodeID', 'Message'])
-                DeviceLogA2 = csv.writer(file4)
-                DeviceLogA2.writerow(['Begininng of Log'])
+                with open('/Users/Hunter/Downloads/DeviceLogA2.log', 'w+', newline = '') as file5:
+                    DeviceLogA1 = csv.writer(file1)
+                    DeviceLogA1.writerow(['Beginning of Log'])
+                    NetworkReport = csv.writer(file2)
+                    NetworkReport.writerow(['Time', 'ICCID(SIM ID)', "Arbitrary Column",'Connection Event', 'Bytes Used'])
+                    AppReport = csv.writer(file3)
+                    AppReport.writerow(['Time', 'NodeID', 'Message'])
+                    DeviceLogA2 = csv.writer(file4)
+                    DeviceLogA2.writerow(['Begininng of Log'])
+                    DeviceLogA3 = csv.writer(file5)
+                    DeviceLogA3.writerow(['Beginning of NewLog'])
                 
 
 
                 count = 0
-                while count < 10:
+                while count < 100:
                     count = count+1
-                    SIMID = 1111111111
+
+                    # SIMID = 1111111111
                     
                     # Create Device Logs
                     DeviceLogA1.writerow([(time.strftime("%d %b %Y %I:%M:%S %p:", time.gmtime())), "Device NodeID A000001 Sending Hello World " + str(count)])
@@ -59,6 +62,7 @@ with open('/Users/Hunter/Downloads/DeviceLogA1.log', 'w+', newline = '') as file
                     DeviceLogA2.writerow(['This is some arbitrary log data'])
                     time.sleep(1)
                     
+
                     #Create Network Logs for Connection
                     NetworkReport.writerow([(time.strftime("%d %b %Y %I:%M:%S %p", time.gmtime())), 1111111111, "xyz", "Connected", 0])
                     if count != 5:
