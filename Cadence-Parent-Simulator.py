@@ -31,13 +31,13 @@ import random
 #	Wait 10 sec (simulate the 1 minute delay between hello world messages)
 #	Count++
 
-with open('/Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator/DeviceLogA1.log', 'w+', newline = '') as file1:
-    with open('/Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator/NetworkReport.csv', 'w+', newline = '') as file2:
-        with open('/Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator/AppReport.csv', 'w+', newline = '') as file3:
-            with open('/Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator/DeviceLogA2.log', 'w+', newline = '') as file4:
-                with open('/Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator/DeviceLogA3.log', 'w+', newline = '') as file5:
-                    with open('/Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator/DeviceLogA4.log', 'w+', newline = '') as file6:
-                        with open('/Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator/DeviceLogA5.log', 'w+', newline = '') as file7:
+with open('/Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator/DeviceLogA1_'+ format(time.strftime('%Y%m%d%H%M%S')) + '.log', 'w+', newline = '') as file1:
+    with open('/Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator/NetworkReport_'+ format(time.strftime('%Y%m%d%H%M%S')) + '.csv', 'w+', newline = '') as file2:
+        with open('/Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator/AppReport_.'+ format(time.strftime('%Y%m%d%H%M%S')) + '.csv', 'w+', newline = '') as file3:
+            with open('/Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator/DeviceLogA2_'+ format(time.strftime('%Y%m%d%H%M%S')) + '.log', 'w+', newline = '') as file4:
+                with open('/Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator/DeviceLogA3_'+ format(time.strftime('%Y%m%d%H%M%S')) + '.log', 'w+', newline = '') as file5:
+                    with open('/Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator/DeviceLogA4_'+ format(time.strftime('%Y%m%d%H%M%S')) + '.log', 'w+', newline = '') as file6:
+                        with open('/Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator/DeviceLogA5_'+ format(time.strftime('%Y%m%d%H%M%S')) + '.log', 'w+', newline = '') as file7:
                             DeviceLogA1 = csv.writer(file1)
                             DeviceLogA1.writerow(['Beginning of Device 1 Log'])
                             NetworkReport = csv.writer(file2)
