@@ -130,10 +130,10 @@ while runs < 10:
                                         NetworkReport.writerow([datetime.now() + timedelta(seconds=x), 5555555555, "xyz", "Disconnected", 2000])
                                     # time.sleep(5)
 
-                            time.sleep(5)
+                            time.sleep(300)
 
-                    
-    print("Completed Program Run") 
+    print("Runs Pending")              
+print("Completed Program Run") 
     
 #df = pandas.read_csv("/Users/Hunter/Downloads/Source 2.csv",
 #index_col='NodeID', 
