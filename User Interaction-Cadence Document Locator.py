@@ -11,5 +11,4 @@ if Response == "Yes":
     os.system('/Users/Hunter/Downloads/BatchDelete.py')
     sleep(2)
 else:
-
     print("Sorry")

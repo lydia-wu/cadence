@@ -2,7 +2,9 @@ print ("Generating Simulated Data")
 
 import csv
 import time
+# from time import time, sleep
 from datetime import datetime, timedelta
+
 # index = 
 # for i in range(10):
 #     with open('DeviceLog{}.log', 'w+', newline = '' ) as file:
@@ -15,8 +17,12 @@ from datetime import datetime, timedelta
 # DeviceLogA1 = csv.writer(file1)
 # DeviceLogA1.writerow(['Beginning of Device 1 Log'])
 
-with open('/Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator/DeviceLogA1'+ format(time.strftime('%Y%m%d%H%M%S')) + '.log', 'w+', newline = '') as file1:
-    DeviceLogA1 = csv.writer(file1)
-    DeviceLogA1.writerow(['Beginning of Device 1 Log'])
+count = 0
+while count < 10:
+    count = count + 1
+    with open('/Users/tsuru/OneDrive/Documents/DeviceLogA1_'+ format(time.strftime('%Y%m%d%H%M%S')) + '.log', 'w+', newline = '') as file1:
+        DeviceLogA1 = csv.writer(file1)
+        DeviceLogA1.writerow(['Beginning of Device 1 Log'])
+        time.sleep(5)
 
 print("Complete")
