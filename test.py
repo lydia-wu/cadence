@@ -2,6 +2,7 @@ print ("Generating Simulated Data")
 
 import csv
 import time
+import os
 # from time import time, sleep
 from datetime import datetime, timedelta
 
@@ -20,7 +21,7 @@ from datetime import datetime, timedelta
 count = 0
 while count < 10:
     count = count + 1
-    with open('/Users/tsuru/OneDrive/Documents/DeviceLogA1_'+ format(time.strftime('%Y%m%d%H%M%S')) + '.log', 'w+', newline = '') as file1:
+    with open('/Users/tsuru/OneDrive/Documents/DeviceLogA1_'+ datetime.now().strftime("%Y-%m-%d_%H%M%S") + '.log', 'w+', newline = '') as file1:
         DeviceLogA1 = csv.writer(file1)
         DeviceLogA1.writerow(['Beginning of Device 1 Log'])
         time.sleep(5)

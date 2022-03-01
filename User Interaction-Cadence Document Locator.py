@@ -4,7 +4,7 @@ import os
 name = input("Hello, what is your name? ")
 print ("Hello",name,", thank you for choosing the Cadence Data Visualization tool.")
 sleep(2)
-Response = input("Would you like to import the full list of log data today? Yes/No ")
+Response = input("Would you like to import the full list of log data today? Y/N ")
 if Response == "Yes":
     print("Retreiving Data for you,", name)
     sleep(2)
