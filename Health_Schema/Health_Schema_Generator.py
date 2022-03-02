@@ -1,7 +1,7 @@
 # Python program to write JSON to a file
 import json
 
-#input variables
+# Input variables
 regularTagline = "regular"
 irregularTagline = "irregular"
 appRegular = 9
