@@ -95,7 +95,7 @@ while runs < 10:
                                             DeviceLogA3.writerow(['The Hufflepuff Jigglypuff fluff'])
                                             DeviceLogA4.writerow(['The worst fluff you can find'])
                                             DeviceLogA5.writerow(['Please end the fluff before the fluff gets you'])
-                                        time.sleep(0.001)
+                                        time.sleep(1)
                             
 
                                         #Create Network Logs for Connection
@@ -108,7 +108,7 @@ while runs < 10:
                                         if count != random.randint(51,101):
                                             NetworkReport.writerow([datetime.now(), 4444444444, "xyz", "Connected", 0])
                                             NetworkReport.writerow([datetime.now(), 5555555555, "xyz", "Connected", 0])
-                                        time.sleep(0.001)
+                                        time.sleep(1)
                             
                                         #Create App Logs
                                         AppReport.writerow([datetime.now(), "A000001", "Cloud App Received Hello World " + str(count)])
@@ -120,7 +120,7 @@ while runs < 10:
                                         if count != random.randint(51,101):
                                             AppReport.writerow([datetime.now(), "A000004", "Cloud App Received Hello World " + str(count)])
                                             AppReport.writerow([datetime.now(), "A000005", "Cloud App Received Hello World " + str(count)])
-                                        time.sleep(0.001)
+                                        time.sleep(1)
                             
                                         #Create Network Logs for Disconnection
                                         NetworkReport.writerow([datetime.now(), 1111111111, "xyz", "Disconnected", 2000])
@@ -132,7 +132,7 @@ while runs < 10:
                                         if count != random.randint(51,101):
                                             NetworkReport.writerow([datetime.now(), 4444444444, "xyz", "Disconnected", 2000])
                                             NetworkReport.writerow([datetime.now(), 5555555555, "xyz", "Disconnected", 2000])
-                                        time.sleep(0.001)
+                                        time.sleep(5)
 
                                 else:
                                     logs = count + 100
@@ -164,7 +164,7 @@ while runs < 10:
                                             DeviceLogA3.writerow(['The Hufflepuff Jigglypuff fluff'])
                                             DeviceLogA4.writerow(['The worst fluff you can find'])
                                             DeviceLogA5.writerow(['Please end the fluff before the fluff gets you'])
-                                        time.sleep(0.001)
+                                        time.sleep(1)
                             
 
                                         #Create Network Logs for Connection
@@ -177,7 +177,7 @@ while runs < 10:
                                         if count != random.randint(51,101):
                                             NetworkReport.writerow([datetime.now(), 4444444444, "xyz", "Connected", 0])
                                             NetworkReport.writerow([datetime.now(), 5555555555, "xyz", "Connected", 0])
-                                        time.sleep(0.001)
+                                        time.sleep(1)
 
                             
                                         #Create App Logs
@@ -190,7 +190,7 @@ while runs < 10:
                                         if count != random.randint(51,101):
                                             AppReport.writerow([datetime.now(), "A000004", "Cloud App Received Hello World " + str(count)])
                                             AppReport.writerow([datetime.now(), "A000005", "Cloud App Received Hello World " + str(count)])
-                                        time.sleep(0.001)
+                                        time.sleep(1)
 
                             
                                         #Create Network Logs for Disconnection
@@ -203,11 +203,10 @@ while runs < 10:
                                         if count != random.randint(51,101):
                                             NetworkReport.writerow([datetime.now(), 4444444444, "xyz", "Disconnected", 2000])
                                             NetworkReport.writerow([datetime.now(), 5555555555, "xyz", "Disconnected", 2000])
-                                        time.sleep(0.001)
+                                        time.sleep(5)
 
                             
-                                print("Commencing 5 Minute Wait")  
-                                time.sleep(300)
+                                print("Generating Next Run")  
      
 print("Completed Program Run") 
     
