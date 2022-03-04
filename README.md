@@ -2,8 +2,18 @@
 Liberty University CADENCE Capstone Team Fall 2021 - Spring 2022
 
 # PowerBI Version Control
-Current Version: V2.1
+Current Version: V2.3
 Last Updated: 2022-03-02, 11:30 AM ET
+
+## V2.3
+Author: L. Wu
+Last Updated: 2022-03-02, 11:30 AM ET
+Functionality: Pulls all files in current Cadence sharepoint folder
+
+## V2.2
+Author: L. Wu
+Last Updated: 2022-03-02, 11:30 AM ET
+Functionality: Considers excel Health Schema; integrates fillable form
 
 ## V2.1
 Author: L. Wu
