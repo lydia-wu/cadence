@@ -46,7 +46,7 @@ with open(path + '/GeneratorHeartbeat_'+ datetime.now().strftime("%Y-%m-%d_%H%M%
     # Function to generate a heartbeat every 10 minutes
     def heartbeat():
              GeneratorHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "Working", int(filecount)])
-    schedule.every(5).seconds.do(heartbeat)
+    schedule.every(10).minutes.do(heartbeat)
     
 
     # runs = 0
