@@ -1,0 +1,5 @@
+Time,ICCID (SIM ID),NodeID,Connection Event,Bytes Used
+<module 'time' (built-in)>,1111111111,A000001,Connect,0-bytes
+Timestamp in GMT,2222222222,A000002,Connect,0-bytes
+Timestamp in GMT,1111111111,A000001,Disconnect,2000-bytes
+Timestamp in GMT,2222222222,A000002,Disconnect,2000-bytes
