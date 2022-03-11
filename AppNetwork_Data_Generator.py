@@ -16,25 +16,6 @@ print("Generating App and Network Files Now")
 runs = 0
 filecount = 0
 
-# Establishes lookup table
-df = pd.read_csv(path + '/NodeID_SIM_LookUpTable.csv')
-node = df['Title']
-sim = df['SIM ID']
-lookupSIM = {}
-lookupNode = {}
-
-# Lookup SIMID from given NodeID
-for x in range(node.size):
-    lookupSIM[node[x]] = sim[x]
-def findSIM(node):
-    return lookupSIM[node]
-
-# Lookup NodeID from given SIMID
-for x in range(sim.size):
-    lookupNode[sim[x]] = node[x]
-def findNode(sim):
-    return lookupNode[sim]
-
 # Creates Heartbeat for the App/Network Data Generation 
 with open(path + '/AppNetworkGeneratorHeartbeat_'+ datetime.now().strftime("%Y-%m-%d_%H%M%S") + '.csv', 'w+', newline = '') as file1:
     AppNetworkHeartbeat = csv.writer(file1)
@@ -54,9 +35,9 @@ with open(path + '/AppNetworkGeneratorHeartbeat_'+ datetime.now().strftime("%Y-%
             with open(path + '/NetworkReport_'+ datetime.now().strftime("%Y-%m-%d_%H%M%S") + '.csv', 'w+', newline = '') as file2:
                 with open(path + '/AppReport_.'+ datetime.now().strftime("%Y-%m-%d_%H%M%S") + '.csv', 'w+', newline = '') as file3:
                     NetworkReport = csv.writer(file2)
-                    NetworkReport.writerow(['Time', 'ICCID(SIM ID)', "Arbitrary Column",'Connection Event', 'Bytes Used', 'NodeID'])
+                    NetworkReport.writerow(['Time', 'ICCID(SIM ID)', "Arbitrary Column",'Connection Event', 'Bytes Used'])
                     AppReport = csv.writer(file3)
-                    AppReport.writerow(['Time', 'NodeID', 'Message', 'SIM ID'])
+                    AppReport.writerow(['Time', 'NodeID', 'Message'])
 
                     # First Run (for the sake of starting count at zero)
                     if runs == 1:
@@ -66,41 +47,41 @@ with open(path + '/AppNetworkGeneratorHeartbeat_'+ datetime.now().strftime("%Y-%
                             schedule.run_pending()
 
                             #Create Network Logs for Connection
-                            NetworkReport.writerow([datetime.now(), 1111111111, "xyz", "Connected", 0, findNode(1111111111)])
-                            NetworkReport.writerow([datetime.now(), 2222222222, "xyz", "Connected", 0, findNode(2222222222)])
-                            NetworkReport.writerow([datetime.now(), 3333333333, "xyz", "Connected", 0, findNode(3333333333)])
+                            NetworkReport.writerow([datetime.now(), 1111111111, "xyz", "Connected", 0])
+                            NetworkReport.writerow([datetime.now(), 2222222222, "xyz", "Connected", 0])
+                            NetworkReport.writerow([datetime.now(), 3333333333, "xyz", "Connected", 0])
                             if count == random.randint:
-                                NetworkReport.writerow([datetime.now(), 2222222222, "xyz", "Connected", 0, findNode(2222222222)])
-                                NetworkReport.writerow([datetime.now(), 3333333333, "xyz", "Connected", 0, findNode(3333333333)])
+                                NetworkReport.writerow([datetime.now(), 2222222222, "xyz", "Connected", 0])
+                                NetworkReport.writerow([datetime.now(), 3333333333, "xyz", "Connected", 0])
                             if count != random.randint:
-                                NetworkReport.writerow([datetime.now(), 4444444444, "xyz", "Connected", 0, findNode(4444444444)])
-                                NetworkReport.writerow([datetime.now(), 5555555555, "xyz", "Connected", 0, findNode(5555555555)])
+                                NetworkReport.writerow([datetime.now(), 4444444444, "xyz", "Connected", 0])
+                                NetworkReport.writerow([datetime.now(), 5555555555, "xyz", "Connected", 0])
                             schedule.run_pending()
                             time.sleep(1)
 
                             #Create App Logs
-                            AppReport.writerow([datetime.now(), "A000001", "Cloud App Received Hello World " + str(count), findSIM('A000001')])
-                            AppReport.writerow([datetime.now(), "A000002", "Cloud App Received Hello World " + str(count), findSIM('A000002')])
-                            AppReport.writerow([datetime.now(), "A000003", "Cloud App Received Hello World " + str(count), findSIM('A000003')])
+                            AppReport.writerow([datetime.now(), "A000001", "Cloud App Received Hello World " + str(count)])
+                            AppReport.writerow([datetime.now(), "A000002", "Cloud App Received Hello World " + str(count)])
+                            AppReport.writerow([datetime.now(), "A000003", "Cloud App Received Hello World " + str(count)])
                             if count == random.randint:
-                                AppReport.writerow([datetime.now(), "A000002", "Cloud App Received Hello World " + str(count), findSIM('A000002')])
-                                AppReport.writerow([datetime.now(), "A000003", "Cloud App Received Hello World " + str(count), findSIM('A000003')])
+                                AppReport.writerow([datetime.now(), "A000002", "Cloud App Received Hello World " + str(count)])
+                                AppReport.writerow([datetime.now(), "A000003", "Cloud App Received Hello World " + str(count)])
                             if count != random.randint:
-                                AppReport.writerow([datetime.now(), "A000004", "Cloud App Received Hello World " + str(count), findSIM('A000004')])
-                                AppReport.writerow([datetime.now(), "A000005", "Cloud App Received Hello World " + str(count), findSIM('A000005')])
+                                AppReport.writerow([datetime.now(), "A000004", "Cloud App Received Hello World " + str(count)])
+                                AppReport.writerow([datetime.now(), "A000005", "Cloud App Received Hello World " + str(count)])
                             schedule.run_pending()
                             time.sleep(1)
 
                             #Create Network Logs for Disconnection
-                            NetworkReport.writerow([datetime.now(), 1111111111, "xyz", "Disconnected", 2000, findNode(1111111111)])
-                            NetworkReport.writerow([datetime.now(), 2222222222, "xyz", "Disconnected", 2000, findNode(2222222222)])
-                            NetworkReport.writerow([datetime.now(), 3333333333, "xyz", "Disconnected", 2000, findNode(3333333333)])
+                            NetworkReport.writerow([datetime.now(), 1111111111, "xyz", "Disconnected", 2000])
+                            NetworkReport.writerow([datetime.now(), 2222222222, "xyz", "Disconnected", 2000])
+                            NetworkReport.writerow([datetime.now(), 3333333333, "xyz", "Disconnected", 2000])
                             if count == random.randint:
-                                NetworkReport.writerow([datetime.now(), 2222222222, "xyz", "Disconnected", 2000, findNode(2222222222)])
-                                NetworkReport.writerow([datetime.now(), 3333333333, "xyz", "Disconnected", 2000, findNode(3333333333)])
+                                NetworkReport.writerow([datetime.now(), 2222222222, "xyz", "Disconnected", 2000])
+                                NetworkReport.writerow([datetime.now(), 3333333333, "xyz", "Disconnected", 2000])
                             if count != random.randint:
-                                NetworkReport.writerow([datetime.now(), 4444444444, "xyz", "Disconnected", 2000, findNode(4444444444)])
-                                NetworkReport.writerow([datetime.now(), 5555555555, "xyz", "Disconnected", 2000, findNode(5555555555)])
+                                NetworkReport.writerow([datetime.now(), 4444444444, "xyz", "Disconnected", 2000])
+                                NetworkReport.writerow([datetime.now(), 5555555555, "xyz", "Disconnected", 2000])
                             schedule.run_pending()
                             time.sleep(5)
                             schedule.run_pending()
@@ -112,41 +93,41 @@ with open(path + '/AppNetworkGeneratorHeartbeat_'+ datetime.now().strftime("%Y-%
                             schedule.run_pending()
 
                             #Create Network Logs for Connection
-                            NetworkReport.writerow([datetime.now(), 1111111111, "xyz", "Connected", 0, findNode(1111111111)])
-                            NetworkReport.writerow([datetime.now(), 2222222222, "xyz", "Connected", 0, findNode(2222222222)])
-                            NetworkReport.writerow([datetime.now(), 3333333333, "xyz", "Connected", 0, findNode(3333333333)])
+                            NetworkReport.writerow([datetime.now(), 1111111111, "xyz", "Connected", 0])
+                            NetworkReport.writerow([datetime.now(), 2222222222, "xyz", "Connected", 0])
+                            NetworkReport.writerow([datetime.now(), 3333333333, "xyz", "Connected", 0])
                             if count == random.randint:
-                                NetworkReport.writerow([datetime.now(), 2222222222, "xyz", "Connected", 0, findNode(2222222222)])
-                                NetworkReport.writerow([datetime.now(), 3333333333, "xyz", "Connected", 0, findNode(3333333333)])
+                                NetworkReport.writerow([datetime.now(), 2222222222, "xyz", "Connected", 0])
+                                NetworkReport.writerow([datetime.now(), 3333333333, "xyz", "Connected", 0])
                             if count != random.randint:
-                                NetworkReport.writerow([datetime.now(), 4444444444, "xyz", "Connected", 0, findNode(4444444444)])
-                                NetworkReport.writerow([datetime.now(), 5555555555, "xyz", "Connected", 0, findNode(5555555555)])
+                                NetworkReport.writerow([datetime.now(), 4444444444, "xyz", "Connected", 0])
+                                NetworkReport.writerow([datetime.now(), 5555555555, "xyz", "Connected", 0])
                             schedule.run_pending()
                             time.sleep(1)
 
                             #Create App Logs
-                            AppReport.writerow([datetime.now(), "A000001", "Cloud App Received Hello World " + str(count), findSIM('A000001')])
-                            AppReport.writerow([datetime.now(), "A000002", "Cloud App Received Hello World " + str(count), findSIM('A000002')])
-                            AppReport.writerow([datetime.now(), "A000003", "Cloud App Received Hello World " + str(count), findSIM('A000003')])
+                            AppReport.writerow([datetime.now(), "A000001", "Cloud App Received Hello World " + str(count)])
+                            AppReport.writerow([datetime.now(), "A000002", "Cloud App Received Hello World " + str(count)])
+                            AppReport.writerow([datetime.now(), "A000003", "Cloud App Received Hello World " + str(count)])
                             if count == random.randint:
-                                AppReport.writerow([datetime.now(), "A000002", "Cloud App Received Hello World " + str(count), findSIM('A000002')])
-                                AppReport.writerow([datetime.now(), "A000003", "Cloud App Received Hello World " + str(count), findSIM('A000003')])
+                                AppReport.writerow([datetime.now(), "A000002", "Cloud App Received Hello World " + str(count)])
+                                AppReport.writerow([datetime.now(), "A000003", "Cloud App Received Hello World " + str(count)])
                             if count != random.randint:
-                                AppReport.writerow([datetime.now(), "A000004", "Cloud App Received Hello World " + str(count), findSIM('A000004')])
-                                AppReport.writerow([datetime.now(), "A000005", "Cloud App Received Hello World " + str(count), findSIM('A000005')])
+                                AppReport.writerow([datetime.now(), "A000004", "Cloud App Received Hello World " + str(count)])
+                                AppReport.writerow([datetime.now(), "A000005", "Cloud App Received Hello World " + str(count)])
                             schedule.run_pending()
                             time.sleep(1)
 
                             #Create Network Logs for Disconnection
-                            NetworkReport.writerow([datetime.now(), 1111111111, "xyz", "Disconnected", 2000, findNode(1111111111)])
-                            NetworkReport.writerow([datetime.now(), 2222222222, "xyz", "Disconnected", 2000, findNode(2222222222)])
-                            NetworkReport.writerow([datetime.now(), 3333333333, "xyz", "Disconnected", 2000, findNode(3333333333)])
+                            NetworkReport.writerow([datetime.now(), 1111111111, "xyz", "Disconnected", 2000])
+                            NetworkReport.writerow([datetime.now(), 2222222222, "xyz", "Disconnected", 2000])
+                            NetworkReport.writerow([datetime.now(), 3333333333, "xyz", "Disconnected", 2000])
                             if count == random.randint:
-                                NetworkReport.writerow([datetime.now(), 2222222222, "xyz", "Disconnected", 2000, findNode(2222222222)])
-                                NetworkReport.writerow([datetime.now(), 3333333333, "xyz", "Disconnected", 2000, findNode(3333333333)])
+                                NetworkReport.writerow([datetime.now(), 2222222222, "xyz", "Disconnected", 2000])
+                                NetworkReport.writerow([datetime.now(), 3333333333, "xyz", "Disconnected", 2000])
                             if count != random.randint:
-                                NetworkReport.writerow([datetime.now(), 4444444444, "xyz", "Disconnected", 2000, findNode(4444444444)])
-                                NetworkReport.writerow([datetime.now(), 5555555555, "xyz", "Disconnected", 2000, findNode(5555555555)])
+                                NetworkReport.writerow([datetime.now(), 4444444444, "xyz", "Disconnected", 2000])
+                                NetworkReport.writerow([datetime.now(), 5555555555, "xyz", "Disconnected", 2000])
                             schedule.run_pending()
                             time.sleep(5)
                             schedule.run_pending()
