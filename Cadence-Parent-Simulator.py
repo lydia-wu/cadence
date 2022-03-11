@@ -18,6 +18,7 @@ import csv
 import pandas as pd
 import schedule
 import time
+from Data_Ingestion.server import *
 from datetime import datetime
 import random
 # today = date.today()
@@ -34,7 +35,7 @@ import random
 #	Count++
 
 path = input("Hello, thank you for using Cadence. Please provide the filepath where you would like the generated logs to reside? For reference, insert a response similar to this filepath structure /Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator: ")
-print("Generating Log Files Now")
+print("Generating App and Network Files Now")
 
 runs = 0
 filecount = 0
@@ -134,8 +135,8 @@ with open(path + '/GeneratorHeartbeat_'+ datetime.now().strftime("%Y-%m-%d_%H%M%
                                                     DeviceLogA4.writerow(['The worst fluff you can find'])
                                                     DeviceLogA5.writerow(['Please end the fluff before the fluff gets you'])
                                                 schedule.run_pending()
-                                                time.sleep(0.01)
-                                                # time.sleep(1)
+                                                # time.sleep(0.01)
+                                                time.sleep(1)
                                     
 
                                                 #Create Network Logs for Connection
@@ -149,8 +150,8 @@ with open(path + '/GeneratorHeartbeat_'+ datetime.now().strftime("%Y-%m-%d_%H%M%
                                                     NetworkReport.writerow([datetime.now(), 4444444444, "xyz", "Connected", 0, findNode(4444444444)])
                                                     NetworkReport.writerow([datetime.now(), 5555555555, "xyz", "Connected", 0, findNode(5555555555)])
                                                 schedule.run_pending()
-                                                time.sleep(0.01)
-                                                # time.sleep(1)
+                                                # time.sleep(0.01)
+                                                time.sleep(1)
                                     
                                                 #Create App Logs
                                                 AppReport.writerow([datetime.now(), "A000001", "Cloud App Received Hello World " + str(count), findSIM('A000001')])
@@ -163,8 +164,8 @@ with open(path + '/GeneratorHeartbeat_'+ datetime.now().strftime("%Y-%m-%d_%H%M%
                                                     AppReport.writerow([datetime.now(), "A000004", "Cloud App Received Hello World " + str(count), findSIM('A000004')])
                                                     AppReport.writerow([datetime.now(), "A000005", "Cloud App Received Hello World " + str(count), findSIM('A000005')])
                                                 schedule.run_pending()
-                                                time.sleep(0.01)
-                                                # time.sleep(1)
+                                                # time.sleep(0.01)
+                                                time.sleep(1)
                                     
                                                 #Create Network Logs for Disconnection
                                                 NetworkReport.writerow([datetime.now(), 1111111111, "xyz", "Disconnected", 2000, findNode(1111111111)])
@@ -177,8 +178,8 @@ with open(path + '/GeneratorHeartbeat_'+ datetime.now().strftime("%Y-%m-%d_%H%M%
                                                     NetworkReport.writerow([datetime.now(), 4444444444, "xyz", "Disconnected", 2000, findNode(4444444444)])
                                                     NetworkReport.writerow([datetime.now(), 5555555555, "xyz", "Disconnected", 2000, findNode(5555555555)])
                                                 schedule.run_pending()
-                                                time.sleep(0.1)
-                                                # time.sleep(5)
+                                                # time.sleep(0.1)
+                                                time.sleep(5)
                                                 schedule.run_pending()
 
                                         else:
@@ -191,13 +192,13 @@ with open(path + '/GeneratorHeartbeat_'+ datetime.now().strftime("%Y-%m-%d_%H%M%
                                                 DeviceLogA1.writerow([datetime.now(), "Device NodeID A000001 Sending Hello World " + str(count)])
                                                 DeviceLogA3.writerow([datetime.now(), "Device NodeID A000003 Sending Hello World " + str(count)])
                                                 DeviceLogA5.writerow([datetime.now(), "Device NodeID A000005 Sending Hello World " + str(count)])
-                                                if count == random.randint:
+                                                if count == random.randint(1,10):
                                                     DeviceLogA1.writerow([datetime.now(), "Device NodeID A000001 Sending Hello World " + str(count)])
                                                     time.sleep(random.randint(2,10))
-                                                if count == random.randint:
+                                                if count == random.randint(11,50):
                                                     DeviceLogA3.writerow([datetime.now(), "Device NodeID A000003 Sending Hello World " + str(count)])
                                                     DeviceLogA5.writerow([datetime.now(), "Device NodeID A000005 Sending Hello World " + str(count)])
-                                                if count != random.randint:
+                                                if count != random.randint(51,101):
                                                     DeviceLogA2.writerow([datetime.now(), "Device NodeID A000002 Sending Hello World " + str(count)])
                                                     DeviceLogA4.writerow([datetime.now(), "Device NodeID A000004 Sending Hello World " + str(count)])
                                                 DeviceLogA1.writerow(['This is some arbitrary log data'])
@@ -205,15 +206,15 @@ with open(path + '/GeneratorHeartbeat_'+ datetime.now().strftime("%Y-%m-%d_%H%M%
                                                 DeviceLogA3.writerow(['This is some arbitrary log data'])
                                                 DeviceLogA4.writerow(['This is some arbitrary log data'])
                                                 DeviceLogA5.writerow(['This is some arbitrary log data'])
-                                                if count == random.randint:
+                                                if count == random.randint(10,20) or count == random.randint(30,45) or count == random.randint(50,70) or count == random.randint(75,90):
                                                     DeviceLogA1.writerow(['This is some fluff'])
                                                     DeviceLogA2.writerow(['Fell for the fluff once more'])
                                                     DeviceLogA3.writerow(['The Hufflepuff Jigglypuff fluff'])
                                                     DeviceLogA4.writerow(['The worst fluff you can find'])
                                                     DeviceLogA5.writerow(['Please end the fluff before the fluff gets you'])
                                                 schedule.run_pending()
-                                                time.sleep(0.01)
-                                                # time.sleep(1)
+                                                # time.sleep(0.01)
+                                                time.sleep(1)
                                     
 
                                                 #Create Network Logs for Connection
@@ -227,8 +228,8 @@ with open(path + '/GeneratorHeartbeat_'+ datetime.now().strftime("%Y-%m-%d_%H%M%
                                                     NetworkReport.writerow([datetime.now(), 4444444444, "xyz", "Connected", 0, findNode(4444444444)])
                                                     NetworkReport.writerow([datetime.now(), 5555555555, "xyz", "Connected", 0, findNode(5555555555)])
                                                 schedule.run_pending()
-                                                time.sleep(0.01)
-                                                # time.sleep(1)
+                                                # time.sleep(0.01)
+                                                time.sleep(1)
 
                                     
                                                 #Create App Logs
@@ -242,8 +243,8 @@ with open(path + '/GeneratorHeartbeat_'+ datetime.now().strftime("%Y-%m-%d_%H%M%
                                                     AppReport.writerow([datetime.now(), "A000004", "Cloud App Received Hello World " + str(count), findSIM('A000004')])
                                                     AppReport.writerow([datetime.now(), "A000005", "Cloud App Received Hello World " + str(count), findSIM('A000005')])
                                                 schedule.run_pending()
-                                                time.sleep(0.01)
-                                                # time.sleep(1)
+                                                # time.sleep(0.01)
+                                                time.sleep(1)
 
                                     
                                                 #Create Network Logs for Disconnection
@@ -257,14 +258,15 @@ with open(path + '/GeneratorHeartbeat_'+ datetime.now().strftime("%Y-%m-%d_%H%M%
                                                     NetworkReport.writerow([datetime.now(), 4444444444, "xyz", "Disconnected", 2000, findNode(4444444444)])
                                                     NetworkReport.writerow([datetime.now(), 5555555555, "xyz", "Disconnected", 2000, findNode(5555555555)])
                                                 schedule.run_pending()
-                                                time.sleep(0.1)
-                                                # time.sleep(5)
+                                                # time.sleep(0.1)
+                                                time.sleep(5)
                                                 schedule.run_pending()
 
                                     
                                         print("Generating Next Run")  
     except KeyboardInterrupt:                                 
-        GeneratorHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "End Run", filecount])   
+        GeneratorHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "End Run", filecount]) 
+        s.stop_server()  
         print("Completed Program Run") 
 
     
