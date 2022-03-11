@@ -15,24 +15,26 @@ import schedule
 
 # ------- Heartbeat Code ------
 
-with open('/ClientHeartbeat_'+ datetime.now().strftime("%Y-%m-%d_%H%M%S") + '.csv', 'w+', newline = '') as file1:
-    ClientHeartbeat = csv.writer(file1)
-    ClientHeartbeat.writerow(['Time', 'Status', 'Files Processed'])
-    ClientHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "Begin Run", 0])
+# with open('ClientHeartbeat_' + datetime.now().strftime("%Y-%m-%d_%H%M%S") + '.csv', 'w+', newline = '') as file1:
+#     ClientHeartbeat = csv.writer(file1)
+#     ClientHeartbeat.writerow(['Time', 'Status', 'Files Processed'])
+#     ClientHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "Begin Run", 0])
 
-    # Function to generate a heartbeat every 10 minutes
-    def heartbeat():
-             ClientHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "Working", int(filecount)])
-    #schedule.every(10).minutes.do(heartbeat)
-    schedule.every(10).seconds.do(heartbeat)
+#     # Function to generate a heartbeat every 10 minutes
+#     def heartbeat():
+#              ClientHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "Working", int(filecount)])
+#     #schedule.every(10).minutes.do(heartbeat)
+#     schedule.every(10).seconds.do(heartbeat)
+   
 
 # ------ Receive Data Code -----
 
 def receive_data(port):
+#port = 5601
     global filecount
     filecount = 0
     while True:
-        #schedule.run_pending()
+        schedule.run_pending()
         start_time = time.time()
         seconds = 5
         elapsed_time = 0
@@ -41,6 +43,7 @@ def receive_data(port):
         filename = 'logs/DeviceLog_' + timestamp #datetime.now().strftime("%Y-%m-%d_%H%M%S")
         with open(filename + '.log','w+') as file:
             while elapsed_time < seconds:
+                schedule.run_pending()
                 current_time = time.time()
                 elapsed_time = current_time - start_time
 
@@ -58,8 +61,8 @@ def receive_data(port):
 
                 print ("Closing socket")
                 s.close()
+                schedule.run_pending()
                 time.sleep(1)
-                #break
         filecount = filecount + 1
         with ZipFile(filename + '.zip', 'w') as zipObj: #need to change filename so that the log file isn't created in the zip 
             zipObj.write(filename + '.log')
