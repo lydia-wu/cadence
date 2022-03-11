@@ -3,37 +3,47 @@
 #read everything from port for a configured amount of time before dropping the next file-->
 #"I want to be able to tell it in the command line how long I want you to be reading for each file" (i.e., 10 minutes per file)
 #ZIP should happen for every file
-#run until manual termination
+#run until manual termination ********
 
 import socket
 import sys
 import time
 from zipfile import ZipFile
 from datetime import datetime
+import csv
 
 def receive_data(port):
-
     while True:
         start_time = time.time()
-        seconds = 30
-        current_time = time.time()
-        elapsed_time = current_time - start_time
-        # while elapsed_time < seconds:
-        s = socket.socket()
-        print("client socket created")
-        s.connect(('127.0.0.1', port)) # times out here if connection is not made
+        seconds = 5
+        elapsed_time = 0
 
-        data = s.recv(1024)
-        print (data.decode())
+        timestamp = datetime.now().strftime("%Y-%m-%d_%H%M%S")
+        filename = 'logs/DeviceLog_' + timestamp #datetime.now().strftime("%Y-%m-%d_%H%M%S")
+        with open(filename + '.log','w+') as file:
+            while elapsed_time < seconds:
+                current_time = time.time()
+                elapsed_time = current_time - start_time
 
-        with open('logs/DeviceLog_' + datetime.now().strftime("%Y-%m-%d_%H%M%S") + '.log','w+') as file:
-            file.write(data.decode())
-            #file.writelines(array) # can you dynamically add to an array? -> yes -> append
+                s = socket.socket()
+                print("client socket created")
+                s.connect(('127.0.0.1', port)) # times out here if connection is not made
 
-        print ("Closing socket")
-        s.close()
-        time.sleep(1)
-        #break
+                data = s.recv(1024)
+                print (data.decode())
+
+                DeviceLog = csv.writer(file)
+                #file.write(data.decode())
+                #file.writelines(array) # can you dynamically add to an array? -> yes -> append
+                DeviceLog.writerow([data.decode()]) # is this function causing the empty rows?
+
+                print ("Closing socket")
+                s.close()
+                time.sleep(1)
+                #break
+
+        with ZipFile(filename + '.zip', 'w') as zipObj: #need to change filename so that the log file isn't created in the zip 
+            zipObj.write(filename + '.log')
 
 receive_data(5601)
 
