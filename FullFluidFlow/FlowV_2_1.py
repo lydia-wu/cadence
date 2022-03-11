@@ -1,5 +1,5 @@
 #last edited by Hunter Alloway on 03/11/2022; 
-#lost edited by Lydia Wu @1209AM, 2022-03-11
+#last edited by Lydia Wu @1209AM, 2022-03-11
 print ("Generating Simulated Data")
 
 import csv
@@ -41,9 +41,9 @@ try:
 
         # load the directory into a local array
         filesim = []
-        for i in dir_list:
-            filesim.append(directory+"/"+i)
-            print("Grabbing: ", i)
+        for documentName in dir_list:
+            filesim.append(directory+"/"+documentName)
+            print("Grabbing: ", documentName)
 
         #print("filesim, all = ", filesim)
 
@@ -54,10 +54,9 @@ try:
             mail.Body = "Sending Attachments from Simulator Output"  
 
             # add attachment to mail message!
-            for i in filesim:
-                #print("entering test ", i)
-                mail.Attachments.Add(i)
-                print("Attaching: ", i)
+            for documentPath in filesim:
+                mail.Attachments.Add(documentPath)
+                print("Attaching: ", documentPath)
                 time.sleep(1)
 
             # send mail!
@@ -65,9 +64,9 @@ try:
             print("File has been sent successfully")
 
             # move attachment to "archive" folder!
-            for i in filesim:
-                print("now moving this file: ", i)
-                shutil.move(i, newdirectory)
+            for documentPath in filesim:
+                print("now moving this file: ", documentPath)
+                shutil.move(documentPath, newdirectory)
 
             print("Generating Next Run")
 
