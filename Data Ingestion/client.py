@@ -32,7 +32,7 @@ def receive_data(port):
     global filecount
     filecount = 0
     while True:
-        schedule.run_pending()
+        #schedule.run_pending()
         start_time = time.time()
         seconds = 5
         elapsed_time = 0
