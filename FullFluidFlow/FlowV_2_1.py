@@ -1,12 +1,12 @@
 #last edited by Hunter Alloway on 03/11/2022; 
-#lost edited by Lydia Wu @1209AM, 2022-03-11
+#last edited by Lydia Wu @1232PM, 2022-03-11
 print ("Generating Simulated Data")
 
 import csv
 import time
 from datetime import datetime
 import random
-from importlib_metadata import files
+#from importlib_metadata import files
 import win32com.client
 import schedule
 import time
@@ -16,7 +16,7 @@ import shutil
 
 # C:/Users/lydia/Downloads/cadence_demo_0311
 directory = input("Hello, thank you for using Cadence. Please provide the filepath where you would like the generated logs to reside? For reference, insert a response similar to this filepath structure /Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator: ")
-newdirectory = 'C:/Users/lydia/Downloads/transferred/'
+newdirectory = 'C:/Users/lydia/Downloads/transferred'
 
 
 print("Generating Log Files Now")
@@ -41,9 +41,9 @@ try:
 
         # load the directory into a local array
         filesim = []
-        for i in dir_list:
-            filesim.append(directory+"/"+i)
-            print("Grabbing: ", i)
+        for documentName in dir_list:
+            filesim.append(directory+"/"+documentName)
+            print("Grabbing: ", documentName)
 
         #print("filesim, all = ", filesim)
 
@@ -54,10 +54,9 @@ try:
             mail.Body = "Sending Attachments from Simulator Output"  
 
             # add attachment to mail message!
-            for i in filesim:
-                #print("entering test ", i)
-                mail.Attachments.Add(i)
-                print("Attaching: ", i)
+            for documentPath in filesim:
+                mail.Attachments.Add(documentPath)
+                print("Attaching: ", documentPath)
                 time.sleep(1)
 
             # send mail!
@@ -65,9 +64,9 @@ try:
             print("File has been sent successfully")
 
             # move attachment to "archive" folder!
-            for i in filesim:
-                print("now moving this file: ", i)
-                shutil.move(i, newdirectory)
+            for documentPath in filesim:
+                print("now moving this file: ", documentPath)
+                shutil.move(documentPath, newdirectory)
 
             print("Generating Next Run")
 
