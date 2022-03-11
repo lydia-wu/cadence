@@ -14,18 +14,18 @@ import csv
 import schedule
 
 # ------- Heartbeat Code ------
-
-with open('/ClientHeartbeat_'+ datetime.now().strftime("%Y-%m-%d_%H%M%S") + '.csv', 'w+', newline = '') as file1:
-    ClientHeartbeat = csv.writer(file1)
-    ClientHeartbeat.writerow(['Time', 'Status', 'Files Processed'])
-    ClientHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "Begin Run", 0])
-
-    # Function to generate a heartbeat every 10 minutes
-    def heartbeat():
-             ClientHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "Working", int(filecount)])
-    #schedule.every(10).minutes.do(heartbeat)
-    schedule.every(10).seconds.do(heartbeat)
-
+#
+#with open('/ClientHeartbeat_'+ datetime.now().strftime("%Y-%m-%d_%H%M%S") + '.csv', 'w+', newline = '') as file1:
+#    ClientHeartbeat = csv.writer(file1)
+#    ClientHeartbeat.writerow(['Time', 'Status', 'Files Processed'])
+#    ClientHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "Begin Run", 0])
+#
+#    # Function to generate a heartbeat every 10 minutes
+#    def heartbeat():
+#             ClientHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "Working", int(filecount)])
+#    #schedule.every(10).minutes.do(heartbeat)
+#    schedule.every(10).seconds.do(heartbeat)
+#
 # ------ Receive Data Code -----
 
 def receive_data(port):

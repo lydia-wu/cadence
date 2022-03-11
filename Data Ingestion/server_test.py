@@ -9,8 +9,8 @@ x.start_server()
 
 while count <= iterations:
     timeDate = datetime.now()
-    #x.send_data(f"data test {count}")
-    x.send_data(f"{timeDate} data test")
+    x.send_data(f"data test {count}")
+    #x.send_data(f"{timeDate} data test")
     count = count + 1
     time.sleep(1)
 x.stop_server()

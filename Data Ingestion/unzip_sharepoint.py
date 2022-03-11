@@ -1,6 +1,6 @@
 import os, zipfile
 
-dir_name = 'C:/Users/baseb/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Test Zips'
+dir_name = 'C:/Users/lydia/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Test Zips'
 extension = ".zip"
 
 os.chdir(dir_name) # change directory from working dir to dir with files
