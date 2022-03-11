@@ -1,16 +1,6 @@
-#string data
-#same exact process as simulator, but not a file
-#send the deviceLog data
-#retire our current deviceLog.log file
+# last edited by Michael Di Girolamo at 3/11 2:11 PM
 
 import socket
-import sys
-#from timer import Timer
-from datetime import datetime
-
-#t = Timer()
-#t.start()
-#t.stop()
 
 class server:
     def __init__(self, port):

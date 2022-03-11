@@ -266,7 +266,6 @@ with open(path + '/GeneratorHeartbeat_'+ datetime.now().strftime("%Y-%m-%d_%H%M%
                                         print("Generating Next Run")  
     except KeyboardInterrupt:                                 
         GeneratorHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "End Run", filecount]) 
-        s.stop_server()  
         print("Completed Program Run") 
 
     

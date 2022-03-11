@@ -1,12 +1,6 @@
-#log file type
-#file name should follow simulator convention
-#read everything from port for a configured amount of time before dropping the next file-->
-#"I want to be able to tell it in the command line how long I want you to be reading for each file" (i.e., 10 minutes per file)
-#ZIP should happen for every file
-#run until manual termination ********
+# last edited by Michael Di Girolamo at 3/11 2:18 PM
 
 import socket
-import sys
 import time
 from zipfile import ZipFile
 from datetime import datetime
@@ -15,32 +9,35 @@ import schedule
 
 # ------- Heartbeat Code ------
 
-# with open('ClientHeartbeat_' + datetime.now().strftime("%Y-%m-%d_%H%M%S") + '.csv', 'w+', newline = '') as file1:
-#     ClientHeartbeat = csv.writer(file1)
-#     ClientHeartbeat.writerow(['Time', 'Status', 'Files Processed'])
-#     ClientHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "Begin Run", 0])
+# do once
+heartbeat_time = datetime.now().strftime("%Y-%m-%d_%H%M%S")
+with open('ClientHeartbeat_' + heartbeat_time + '.csv', 'w+', newline = '') as file1:
+    ClientHeartbeat = csv.writer(file1)
+    ClientHeartbeat.writerow(['Time', 'Status', 'Files Processed'])
+    ClientHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "Begin Run", 0])
 
-#     # Function to generate a heartbeat every 10 minutes
-#     def heartbeat():
-#              ClientHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "Working", int(filecount)])
-#     #schedule.every(10).minutes.do(heartbeat)
-#     schedule.every(10).seconds.do(heartbeat)
+# Function to generate a heartbeat every 5 minutes
+def heartbeat():
+    with open('ClientHeartbeat_' + heartbeat_time + '.csv', 'a', newline = '') as file1:
+        ClientHeartbeat = csv.writer(file1)
+        ClientHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "Working", int(filecount)])
+
+schedule.every(10).seconds.do(heartbeat) # shortened time for testing purposes
+#schedule.every(5).minutes.do(heartbeat)
    
-
 # ------ Receive Data Code -----
 
 def receive_data(port):
-#port = 5601
     global filecount
     filecount = 0
     while True:
-        schedule.run_pending()
+        #schedule.run_pending()
         start_time = time.time()
-        seconds = 5
+        seconds = 5 # duration of writing for one device log file
         elapsed_time = 0
 
         timestamp = datetime.now().strftime("%Y-%m-%d_%H%M%S")
-        filename = 'logs/DeviceLog_' + timestamp #datetime.now().strftime("%Y-%m-%d_%H%M%S")
+        filename = 'logs/DeviceLog_' + timestamp
         with open(filename + '.log','w+') as file:
             while elapsed_time < seconds:
                 schedule.run_pending()
@@ -49,7 +46,13 @@ def receive_data(port):
 
                 s = socket.socket()
                 print("client socket created")
+
+                global is_running
+                is_running = False
+
                 s.connect(('127.0.0.1', port)) # times out here if connection is not made
+
+                is_running = True
 
                 data = s.recv(1024)
                 print (data.decode())
@@ -64,20 +67,10 @@ def receive_data(port):
                 schedule.run_pending()
                 time.sleep(1)
         filecount = filecount + 1
-        with ZipFile(filename + '.zip', 'w') as zipObj: #need to change filename so that the log file isn't created in the zip 
+
+        # Zip the file
+        with ZipFile(filename + '.zip', 'w') as zipObj: #change filename so that the log file isn't created in the zip?
             zipObj.write(filename + '.log')
 
+# Run the program
 receive_data(5601)
-
-
-# within the python script for the Stream Reader, there should be a feature that writes to a "heartbeat" data file every 5 minutes
-# to indicate that the "data cleaner" is up and working as planned.
-
-# It can be a CSV, excel, log--whatever file format you prefer.
-# There should be no dirty data.
-
-# The write should increment every 5 minutes relative to the actual time, not some internal clock in the script 
-# (i,e, if you run the script at 3:30, then you stop it at 3:42, then you start again at 3:46, 
-# it should have the times: 3:30/3:35/3:40/3:46/3:51/etc.)
-
-# The write should include timestamp, status ("working", for now), and how many files processed since script start (integer)
