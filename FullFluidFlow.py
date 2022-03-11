@@ -202,7 +202,7 @@ else:
 dir_list = os.listdir(directory)
 dir_list.sort()
 
-#print("you have this many: ", len(dir_list))
+print("you have this many: ", len(dir_list))
 #for i in dir_list :
 #    filesim(i) = directory +dir_list[i]
 
