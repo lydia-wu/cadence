@@ -1,12 +1,12 @@
 #last edited by Hunter Alloway on 03/11/2022; 
-#last edited by Lydia Wu @1209AM, 2022-03-11
+#last edited by Lydia Wu @1232PM, 2022-03-11
 print ("Generating Simulated Data")
 
 import csv
 import time
 from datetime import datetime
 import random
-from importlib_metadata import files
+#from importlib_metadata import files
 import win32com.client
 import schedule
 import time
@@ -16,7 +16,7 @@ import shutil
 
 # C:/Users/lydia/Downloads/cadence_demo_0311
 directory = input("Hello, thank you for using Cadence. Please provide the filepath where you would like the generated logs to reside? For reference, insert a response similar to this filepath structure /Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator: ")
-newdirectory = 'C:/Users/lydia/Downloads/transferred/'
+newdirectory = 'C:/Users/lydia/Downloads/transferred'
 
 
 print("Generating Log Files Now")
