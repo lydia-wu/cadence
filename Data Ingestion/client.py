@@ -11,9 +11,28 @@ import time
 from zipfile import ZipFile
 from datetime import datetime
 import csv
+import schedule
+
+# ------- Heartbeat Code ------
+
+with open('/ClientHeartbeat_'+ datetime.now().strftime("%Y-%m-%d_%H%M%S") + '.csv', 'w+', newline = '') as file1:
+    ClientHeartbeat = csv.writer(file1)
+    ClientHeartbeat.writerow(['Time', 'Status', 'Files Processed'])
+    ClientHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "Begin Run", 0])
+
+    # Function to generate a heartbeat every 10 minutes
+    def heartbeat():
+             ClientHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "Working", int(filecount)])
+    #schedule.every(10).minutes.do(heartbeat)
+    schedule.every(10).seconds.do(heartbeat)
+
+# ------ Receive Data Code -----
 
 def receive_data(port):
+    global filecount
+    filecount = 0
     while True:
+        schedule.run_pending()
         start_time = time.time()
         seconds = 5
         elapsed_time = 0
@@ -41,11 +60,12 @@ def receive_data(port):
                 s.close()
                 time.sleep(1)
                 #break
-
+        filecount = filecount + 1
         with ZipFile(filename + '.zip', 'w') as zipObj: #need to change filename so that the log file isn't created in the zip 
             zipObj.write(filename + '.log')
 
 receive_data(5601)
+
 
 # within the python script for the Stream Reader, there should be a feature that writes to a "heartbeat" data file every 5 minutes
 # to indicate that the "data cleaner" is up and working as planned.
