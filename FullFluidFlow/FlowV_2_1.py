@@ -1,10 +1,12 @@
-#last edited by Hunter Alloway on 03/11/2022; Lydia Wu @830AM, 2022-03-11
+#last edited by Hunter Alloway on 03/11/2022; 
+#lost edited by Lydia Wu @1209AM, 2022-03-11
 print ("Generating Simulated Data")
 
 import csv
 import time
 from datetime import datetime
 import random
+from importlib_metadata import files
 import win32com.client
 import schedule
 import time
@@ -40,17 +42,20 @@ try:
         # load the directory into a local array
         filesim = []
         for i in dir_list:
-            filesim.append(directory+i)
+            filesim.append(directory+"/"+i)
             print("Grabbing: ", i)
+
+        #print("filesim, all = ", filesim)
 
         if len(dir_list):
             mail.To = 'ljwu@liberty.edu'
-            mail.Subject = 'Cadence Draft 1'
+            mail.Subject = 'Cadence Draft 2.1'
             mail.HTMLBody = '<h3>This is HTML Body</h3>'
             mail.Body = "Sending Attachments from Simulator Output"  
 
             # add attachment to mail message!
             for i in filesim:
+                #print("entering test ", i)
                 mail.Attachments.Add(i)
                 print("Attaching: ", i)
                 time.sleep(1)
@@ -61,6 +66,7 @@ try:
 
             # move attachment to "archive" folder!
             for i in filesim:
+                print("now moving this file: ", i)
                 shutil.move(i, newdirectory)
 
             print("Generating Next Run")
