@@ -1,6 +1,7 @@
 print ("Generating Simulated Data")
 
 import csv
+from re import I
 import time
 from datetime import datetime
 import random
@@ -200,6 +201,11 @@ else:
 
 dir_list = os.listdir(directory)
 dir_list.sort()
+
+#print("you have this many: ", len(dir_list))
+#for i in dir_list :
+#    filesim(i) = directory +dir_list[i]
+
 filesim = [directory +dir_list[0], directory +dir_list[1], directory +dir_list[2], directory +dir_list[3], directory +dir_list[4], directory +dir_list[5], directory +dir_list[6]]
 
 def func():
@@ -220,7 +226,7 @@ def func():
     mail.Send()
     print("File has been sent successfully")
 
-schedule.every(5).minutes.do(func())
+schedule.every(5).minutes.do(func)
 time.sleep(5)
 
 while(True):
