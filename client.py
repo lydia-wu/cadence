@@ -8,17 +8,18 @@ import csv
 import schedule
 
 # ------- Heartbeat Code ------
+path = input("Hello, thank you for using Cadence. Please provide the filepath where you would like the generated logs to reside? For reference, insert a response similar to this filepath structure /Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator: ")
 
 # do once
 heartbeat_time = datetime.now().strftime("%Y-%m-%d_%H%M%S")
-with open('ClientHeartbeat_' + heartbeat_time + '.csv', 'w+', newline = '') as file1:
+with open(path + '/ClientHeartbeat_' + heartbeat_time + '.csv', 'w+', newline = '') as file1:
     ClientHeartbeat = csv.writer(file1)
     ClientHeartbeat.writerow(['Time', 'Status', 'Files Processed'])
     ClientHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "Begin Run", 0])
 
 # Function to generate a heartbeat every 5 minutes
 def heartbeat():
-    with open('ClientHeartbeat_' + heartbeat_time + '.csv', 'a', newline = '') as file1:
+    with open('ClientHEARTBEAT_' + heartbeat_time + '.csv', 'a', newline = '') as file1:
         ClientHeartbeat = csv.writer(file1)
         ClientHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "Working", int(filecount)])
 
@@ -37,7 +38,7 @@ def receive_data(port):
         elapsed_time = 0
 
         timestamp = datetime.now().strftime("%Y-%m-%d_%H%M%S")
-        filename = 'logs/DeviceLog_' + timestamp
+        filename = path + '/DeviceLog_' + timestamp
         with open(filename + '.log','w+') as file:
             while elapsed_time < seconds:
                 schedule.run_pending()
