@@ -39,16 +39,10 @@ def receive_data(port):
         elapsed_time = 0
 
         timestamp = datetime.now().strftime("%Y-%m-%d_%H%M%S")
-<<<<<<< HEAD:client.py
-        filename = path + '/DeviceLog_' + timestamp
-        with open(filename + '.log','w+') as file:
-            while elapsed_time < seconds:
-=======
         filename = 'DeviceLog_' + timestamp
 
         with open('logs/' + filename + '.log','w+') as file:
             while elapsed_time < file_seconds:
->>>>>>> daf7c20ec2a1d52b1fcbdb1723680f09369d3054:Data_Ingestion/client.py
                 schedule.run_pending()
                 current_time = time.time()
                 elapsed_time = current_time - start_time
