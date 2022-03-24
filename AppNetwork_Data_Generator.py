@@ -17,7 +17,7 @@ runs = 0
 filecount = 0
 
 # Creates Heartbeat for the App/Network Data Generation 
-with open(path + '/AppNetworkGeneratorHeartbeat_'+ datetime.now().strftime("%Y-%m-%d_%H%M%S") + '.csv', 'w+', newline = '') as file1:
+with open(path + '/AppNetworkGeneratorHEARTBEAT_'+ datetime.now().strftime("%Y-%m-%d_%H%M%S") + '.csv', 'w+', newline = '') as file1:
     AppNetworkHeartbeat = csv.writer(file1)
     AppNetworkHeartbeat.writerow(['Time', 'Status', 'Files Processed'])
     AppNetworkHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "Begin Run", 0])
@@ -33,7 +33,7 @@ with open(path + '/AppNetworkGeneratorHeartbeat_'+ datetime.now().strftime("%Y-%
             filecount = filecount + 2
             # Creates new App and Network Report Files
             with open(path + '/NetworkReport_'+ datetime.now().strftime("%Y-%m-%d_%H%M%S") + '.csv', 'w+', newline = '') as file2:
-                with open(path + '/AppReport_.'+ datetime.now().strftime("%Y-%m-%d_%H%M%S") + '.csv', 'w+', newline = '') as file3:
+                with open(path + '/AppReport_'+ datetime.now().strftime("%Y-%m-%d_%H%M%S") + '.csv', 'w+', newline = '') as file3:
                     NetworkReport = csv.writer(file2)
                     NetworkReport.writerow(['Time', 'ICCID(SIM ID)', "Arbitrary Column",'Connection Event', 'Bytes Used'])
                     AppReport = csv.writer(file3)
@@ -83,7 +83,7 @@ with open(path + '/AppNetworkGeneratorHeartbeat_'+ datetime.now().strftime("%Y-%
                                 NetworkReport.writerow([datetime.now(), 4444444444, "xyz", "Disconnected", 2000])
                                 NetworkReport.writerow([datetime.now(), 5555555555, "xyz", "Disconnected", 2000])
                             schedule.run_pending()
-                            time.sleep(5)
+                            time.sleep(0.5) #5
                             schedule.run_pending()
                     else:
                         # Runs after the first run (for the sake of count)
@@ -116,7 +116,7 @@ with open(path + '/AppNetworkGeneratorHeartbeat_'+ datetime.now().strftime("%Y-%
                                 AppReport.writerow([datetime.now(), "A000004", "Cloud App Received Hello World " + str(count)])
                                 AppReport.writerow([datetime.now(), "A000005", "Cloud App Received Hello World " + str(count)])
                             schedule.run_pending()
-                            time.sleep(1)
+                            time.sleep(1) 
 
                             #Create Network Logs for Disconnection
                             NetworkReport.writerow([datetime.now(), 1111111111, "xyz", "Disconnected", 2000])
@@ -129,7 +129,7 @@ with open(path + '/AppNetworkGeneratorHeartbeat_'+ datetime.now().strftime("%Y-%
                                 NetworkReport.writerow([datetime.now(), 4444444444, "xyz", "Disconnected", 2000])
                                 NetworkReport.writerow([datetime.now(), 5555555555, "xyz", "Disconnected", 2000])
                             schedule.run_pending()
-                            time.sleep(5)
+                            time.sleep(0.5) #5
                             schedule.run_pending()
                     
                     print("Generating Next Run")
