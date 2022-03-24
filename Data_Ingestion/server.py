@@ -14,7 +14,7 @@ class server:
         print ("socket binded to %s" %(self.port))
 
     def stop_server(self):
-        print(" Shutting down server")
+        print("Shutting down server")
         self.c.close()
 
     def send_data(self, message):

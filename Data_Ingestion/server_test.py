@@ -1,11 +1,9 @@
-# last edited by Michael Di Girolamo at 3/11 2:15 PM
+# last edited by Michael Di Girolamo at 3/23 7:15 PM
 
 import time
 from server import *
-import csv
-import schedule
 
-iterations = 31
+iterations = 11
 count = 1
 
 x = server(5601)
