@@ -1,4 +1,4 @@
-# last edited by Michael Di Girolamo at 3/11 2:18 PM
+# last edited by Michael Di Girolamo at 3/23 7:18 PM
 
 import socket
 import time
@@ -6,6 +6,8 @@ from zipfile import ZipFile
 from datetime import datetime
 import csv
 import schedule
+import shutil
+import os
 
 # ------- Heartbeat Code ------
 
@@ -25,37 +27,41 @@ def heartbeat():
 schedule.every(10).seconds.do(heartbeat) # shortened time for testing purposes
 #schedule.every(5).minutes.do(heartbeat)
    
-# ------ Receive Data Code -----
+# ------ Receive Data Code ------
 
 def receive_data(port):
     global filecount
     filecount = 0
     while True:
-        #schedule.run_pending()
         start_time = time.time()
-        seconds = 5 # duration of writing for one device log file
+        file_seconds = 5 # write duration for one log file
         elapsed_time = 0
 
         timestamp = datetime.now().strftime("%Y-%m-%d_%H%M%S")
-        filename = 'logs/DeviceLog_' + timestamp
-        with open(filename + '.log','w+') as file:
-            while elapsed_time < seconds:
+        filename = 'DeviceLog_' + timestamp
+
+        with open('logs/' + filename + '.log','w+') as file:
+            while elapsed_time < file_seconds:
                 schedule.run_pending()
                 current_time = time.time()
                 elapsed_time = current_time - start_time
 
                 s = socket.socket()
                 print("client socket created")
-
-                global is_running
-                is_running = False
-
-                s.connect(('127.0.0.1', port)) # times out here if connection is not made
-
-                is_running = True
-
-                data = s.recv(1024)
-                print (data.decode())
+                try:
+                    s.connect(('127.0.0.1', port)) # times out here if connection is not made
+                
+                    data = s.recv(1024) # throws exception here if server is closed
+                    print (data.decode())
+                except ConnectionResetError:
+                    print("Error: Connection was likely closed by the server")
+                    file.close()
+                    zip_logfile(filename)     # Zip the file
+                    archive_logfile(filename) # Archive the log file
+                    quit()
+                except:
+                    print("An unexpected error occured - Connection may have never been established")
+                    quit()
 
                 DeviceLog = csv.writer(file)
                 #file.write(data.decode())
@@ -68,9 +74,21 @@ def receive_data(port):
                 time.sleep(1)
         filecount = filecount + 1
 
-        # Zip the file
-        with ZipFile(filename + '.zip', 'w') as zipObj: #change filename so that the log file isn't created in the zip?
+        zip_logfile(filename)     # Zip the file
+        archive_logfile(filename) # Archive the log file
+
+# Zip Log File Function
+def zip_logfile(filename):
+    with ZipFile('logs/' + filename + '.zip', 'w') as zipObj:
+            os.chdir('logs/')   # changes directory so a 'logs' file is not included in the zip
             zipObj.write(filename + '.log')
+            os.chdir('..')      # reverts to parent directory
+
+# Archive Log File Function
+def archive_logfile(filename):
+    srcpath = 'logs/' + filename + '.log'
+    destpath = 'logs/archive/' + filename + '.log'
+    shutil.move(srcpath, destpath)
 
 # Run the program
 receive_data(5601)
