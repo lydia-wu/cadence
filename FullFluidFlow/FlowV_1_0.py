@@ -1,4 +1,4 @@
-Edited by Hunter Alloway on 03/10/2022
+# Edited by Hunter Alloway on 03/10/2022
 print ("Generating Simulated Data")
 
 import csv
