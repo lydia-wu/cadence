@@ -1,6 +1,13 @@
 # cadence
 Liberty University CADENCE Capstone Team Fall 2021 - Spring 2022
 
+# Relevant Files for top-level run, in order:
+[Data Simulator Python Script](https://github.com/lydia-wu/cadence/blob/e93ec003a91bfbb855342317513598ac01fbcc21/Data_Ingestion/Data_Generator.py)  # H. Yukihiro  
+[Client to pick up localhost Python Script](https://github.com/lydia-wu/cadence/blob/faed1efdd53e5e961484970c06b89c99e9a599d3/Data_Ingestion/client.py)           # M. DiGirolamo
+[Email Flow Python Script](https://github.com/lydia-wu/cadence/blob/648a9b54f374b98c5280d1ab147681ac6ed6d4a9/Email_Flow/FlowV_2_2.py) # H. Alloway
+Data_Ingestion\unzip_sharepoint.py # M. DiGirolamo  
+https://github.com/lydia-wu/cadence/blob/d9f62a3ed16b97f2a7f8c17093b6b8de28638c0d/cadence_pbi_v2_3.pbix              # L. Wu
+
 # PowerBI Version Control
 Current Version: V2.3
 Last Updated: 2022-03-02, 11:30 AM ET

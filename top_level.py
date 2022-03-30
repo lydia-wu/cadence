@@ -1,9 +1,9 @@
 #last edited by Lydia Wu @ 10:05P, 2022-03-27 (Sun)
 # x1 == columnKiller
 # x2 == Data Simulator
-print ("Commencing Top-Level Cadence")
+print ("Commencing Top-Level Cadence") 
 
-from columnKiller import main as colKill_main
+from preprocessing.columnKiller import main as colKill_main
 import threading
 import time
 

@@ -4,6 +4,8 @@
 # Last updated by: Hayley Yukhiro, 2022-03-10 21:41:00
 # Last updated by: Lydia Wu, 2022-03-30 12:23:00
 
+# NOTE (20220330 6:49P): retired bc this is an old file that does not include DeviceLog generation
+
 import csv
 import pandas as pd
 import schedule
