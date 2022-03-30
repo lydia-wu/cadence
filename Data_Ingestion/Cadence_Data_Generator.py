@@ -9,7 +9,8 @@ import pandas as pd
 import csv
 import schedule
 import time
-# from Data_Ingestion.server import *
+#from Data_Ingestion.server import *
+from server import *
 from datetime import datetime
 import random
 # today = date.today()
@@ -25,16 +26,17 @@ import random
 #	Wait 10 sec (simulate the 1 minute delay between hello world messages)
 #	Count++
 
-path = input("Hello, thank you for using Cadence. Please provide the filepath where you would like the generated logs to reside? For reference, insert a response similar to this filepath structure /Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator: ")
+#path = input("Hello, thank you for using Cadence. Please provide the filepath where you would like the generated logs to reside? For reference, insert a response similar to this filepath structure /Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator: ")
+path = '/Users/lydia/Downloads/cadence_2022_03_30'
 print("Generating App and Network Files Now")
 
 # Instantiates run count
 runs = 0
 filecount = 0
 
-# #Instantiate server
-# s = server(5601)
-# s.start_server()
+#Instantiate server
+s = server(5601)
+s.start_server()
 
 # Establishes lookup table
 df = pd.read_csv(path + '/NodeID_SIM_LookUpTable.csv')
