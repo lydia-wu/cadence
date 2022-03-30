@@ -1,6 +1,13 @@
 # cadence
 Liberty University CADENCE Capstone Team Fall 2021 - Spring 2022
 
+# Relevant Files for top-level run, in order:
+Data_Ingestion\Data_Generator.py   # H. Yukihiro
+Data_Ingestion\client.py           # M. DiGirolamo
+Email_Flow\FlowV_2_2.py            # H. Alloway
+Data_Ingestion\unzip_sharepoint.py # M. DiGirolamo
+cadence_pbi_v2_3.pbix              # L. Wu
+
 # PowerBI Version Control
 Current Version: V2.3
 Last Updated: 2022-03-02, 11:30 AM ET
