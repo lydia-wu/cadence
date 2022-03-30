@@ -1,4 +1,4 @@
-# last edited by Michael Di Girolamo at 3/30/22 2:30 PM
+# last edited by Michael Di Girolamo at 3/30/22 7:00 PM
 
 from logging import exception
 import socket
@@ -10,20 +10,25 @@ import schedule
 import shutil
 import os
 
+# ------- File Paths -----------
+
+zip_path = 'C:/Users/baseb/Downloads/'           # file path for the zipped log files (relative or absolute path)
+arch_path = zip_path + 'archive/'  # file path for archived original log files (relative or absolute path)
+hb_path = zip_path # path for the heartbeat file
+
 # ------- Heartbeat Code ------
 # path = input("Hello, thank you for using Cadence. Please provide the filepath where you would like the generated logs to reside? For reference, insert a response similar to this filepath structure /Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator: ")
-hb_path = 'D:/Users/baseb/Documents/GitHub/cadence/Data_Ingestion' # path for the heartbeat file
 
 # do once
 heartbeat_time = datetime.now().strftime("%Y-%m-%d_%H%M%S")
-with open(hb_path + '/ClientHeartbeat_' + heartbeat_time + '.csv', 'w+', newline = '') as file1:
+with open(hb_path + '/ClientHEARTBEAT_' + heartbeat_time + '.csv', 'w+', newline = '') as file1:
     ClientHeartbeat = csv.writer(file1)
     ClientHeartbeat.writerow(['Time', 'Status', 'Files Processed'])
     ClientHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "Begin Run", 0])
 
 # Function to generate a heartbeat every 5 minutes
 def heartbeat():
-    with open('ClientHEARTBEAT_' + heartbeat_time + '.csv', 'a', newline = '') as file1:
+    with open(hb_path + '/ClientHEARTBEAT_' + heartbeat_time + '.csv', 'a', newline = '') as file1:
         ClientHeartbeat = csv.writer(file1)
         ClientHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "Working", int(filecount)])
 
@@ -31,9 +36,6 @@ schedule.every(5).seconds.do(heartbeat) # shortened time for testing purposes
 #schedule.every(5).minutes.do(heartbeat)
    
 # ------ Receive Data Code ------
-
-zip_path = ''           # file path for the zipped log files (relative or absolute path)
-arch_path = 'archive/'  # file path for archived original log files (relative or absolute path)
 
 def receive_data(port):
     global filecount
@@ -101,7 +103,10 @@ def receive_data(port):
 # Zip Log File Function
 def zip_logfile(filename):
     with ZipFile(zip_path + filename + '.zip', 'w') as zipObj:
-            zipObj.write(filename + '.log')
+        os.chdir(zip_path)   # changes directory so a 'logs' file is not included in the zip
+        zipObj.write(filename + '.log')
+        #os.chdir('..')      # reverts to parent directory
+
 
 # Archive Log File Function
 def archive_logfile(filename):
@@ -110,4 +115,11 @@ def archive_logfile(filename):
     shutil.move(srcpath, destpath)
 
 # Run the program
+# CHECK FOR DIRECTORIES
+if os.path.isdir(arch_path) is True:
+    print("Existing processing directory is being written to.")
+else: 
+    os.makedirs(arch_path)
+    print("A new directory has been created and is being written to.")
+
 receive_data(5601)

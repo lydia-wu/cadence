@@ -90,9 +90,9 @@ def receive_data(port):
 # Zip Log File Function
 def zip_logfile(filename):
     with ZipFile('logs/' + filename + '.zip', 'w') as zipObj:
-            os.chdir('logs/')   # changes directory so a 'logs' file is not included in the zip
-            zipObj.write(filename + '.log')
-            os.chdir('..')      # reverts to parent directory
+        os.chdir('logs/')   # changes directory so a 'logs' file is not included in the zip
+        zipObj.write(filename + '.log')
+        os.chdir('..')      # reverts to parent directory
 
 # Archive Log File Function
 def archive_logfile(filename):

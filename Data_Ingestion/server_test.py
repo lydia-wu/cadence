@@ -3,7 +3,7 @@
 import time
 from server import *
 
-iterations = 33
+iterations = 23
 count = 1
 
 x = server(5601)    # parameter: port number
