@@ -12,16 +12,17 @@ import shutil            # to move files between locations
 from pathlib import Path # this is for checking to see if "archive" already exists
 import psutil            # this is for checking to see if a file is being actively written (pip install psutil)
 
-import sys # for passing in varables from the top level PYTHON
-import schedule 
+
 
 # VARIABLES TO SPECIFY:
-directory = '/Users/lydia/downloads/BookTest'   # the STARTING directory with the CSVs
-timeDelayMinutes = 30                           # "wait" time minutes before script runs again
-newFolder = 'clean'                             # the "column killed" file landing folder:
-newDirectory = directory + '/' + newFolder      # the LANDING directory for the cleaned CSVs
-keep_col = ['Column 1', 'Column 2', 'Column 3'] # column names to KEEP (all other columsn will be deleted
+#directory = '/Users/lydia/downloads/BookTest'   # the STARTING directory with the CSVs
+#timeDelayMinutes = 30                           # "wait" time minutes before script runs again
+#newFolder = 'clean'                             # the "column killed" file landing folder:
+#newDirectory = directory + '/' + newFolder      # the LANDING directory for the cleaned CSVs
+#keep_col = ['Column 1', 'Column 2', 'Column 3'] # column names to KEEP (all other columsn will be deleted
+#main(directory, timeDelayMinutes, newFolder, newDirectory, keep_col)
 
+#import sys # for passing in varables from the top level PYTHON
 #directory        = sys.argv[1]                 # the STARTING directory with the CSVs
 #timeDelayMinutes = sys.argv[2]                 # "wait" time minutes before script runs again
 #newFolder        = sys.argv[3]                 # the "column killed" file landing folder:
@@ -113,7 +114,3 @@ def main(directory, timeDelayMinutes, newFolder, newDirectory, keep_col):
 
     except KeyboardInterrupt:  
             print("You have issued a keyboard interrupt; you are exiting the program...")      
-
-
-
-main(directory, timeDelayMinutes, newFolder, newDirectory, keep_col)

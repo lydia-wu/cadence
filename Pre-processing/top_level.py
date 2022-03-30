@@ -4,8 +4,8 @@
 print ("Commencing Top-Level Cadence")
 
 from columnKiller import main as colKill_main
-from Data_Generator_static import main as dataGen_main
 import threading
+import time
 
 def thread_function(scriptName, kwargs):
     print("Entering thread: ", scriptName)
@@ -24,20 +24,24 @@ DataSimOutputDirectory = '/Users/lydia/downloads/dataSimOutput' # this is where 
 
 # MAIN CODE
 try:
+    run_event = threading.Event() # to have a trigger
+    run_event.set()
+
     # run this loop continuously!
     while (True):
-       #x1 = threading.Thread(target=colKill_main, args=(CleanedDataDirectory, timeDelayMinutes, newFolder, newDirectory, keep_col))
+       x1 = threading.Thread(target=colKill_main, args=(CleanedDataDirectory, timeDelayMinutes, newFolder, newDirectory, keep_col))
        #x1.start()
 
-        x2 = threading.Thread(target=dataGen_main, args=(DataSimOutputDirectory))
-        x2.start()  
-        
-        # close threads
-        #x1.join()
-        x2.join()           
+       #x2 = threading.Thread(target=dataGen_main, args=(DataSimOutputDirectory))
+       #x2.start()
+       
+       #x2.join()           
 
 except KeyboardInterrupt:  
         print("You have issued a keyboard interrupt; you are exiting the program...") 
+        # close thread
+        run_event.clear()
+        x1.join()
 
 #x2 = threading.Thread(target=thread_function, args=("AppNetwork_Data_Generator.py",))
 #x2.start()
