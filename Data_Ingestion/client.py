@@ -1,5 +1,6 @@
-# last edited by Michael Di Girolamo at 3/23 7:18 PM
+# last edited by Michael Di Girolamo at 3/29/22 7:30 PM
 
+from logging import exception
 import socket
 import time
 from zipfile import ZipFile
@@ -10,7 +11,8 @@ import shutil
 import os
 
 # ------- Heartbeat Code ------
-path = input("Hello, thank you for using Cadence. Please provide the filepath where you would like the generated logs to reside? For reference, insert a response similar to this filepath structure /Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator: ")
+# path = input("Hello, thank you for using Cadence. Please provide the filepath where you would like the generated logs to reside? For reference, insert a response similar to this filepath structure /Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator: ")
+path = 'D:/Users/baseb/Documents/GitHub/cadence/Data_Ingestion'
 
 # do once
 heartbeat_time = datetime.now().strftime("%Y-%m-%d_%H%M%S")
@@ -25,7 +27,7 @@ def heartbeat():
         ClientHeartbeat = csv.writer(file1)
         ClientHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "Working", int(filecount)])
 
-schedule.every(10).seconds.do(heartbeat) # shortened time for testing purposes
+schedule.every(5).seconds.do(heartbeat) # shortened time for testing purposes
 #schedule.every(5).minutes.do(heartbeat)
    
 # ------ Receive Data Code ------
@@ -60,8 +62,15 @@ def receive_data(port):
                     zip_logfile(filename)     # Zip the file
                     archive_logfile(filename) # Archive the log file
                     quit()
-                except:
-                    print("An unexpected error occured - Connection may have never been established")
+                except ConnectionRefusedError:
+                    print("Error: Connection may have never been established")
+                    file.close()
+                    zip_logfile(filename)     # Zip the file - should zip empty log?
+                    archive_logfile(filename) # Archive the log file
+                    quit()
+                except Exception as e:
+                    print("An unexpected error occured")
+                    print(e)
                     quit()
 
                 DeviceLog = csv.writer(file)
@@ -72,7 +81,7 @@ def receive_data(port):
                 print ("Closing socket")
                 s.close()
                 schedule.run_pending()
-                time.sleep(1)
+                #time.sleep(1)
         filecount = filecount + 1
 
         zip_logfile(filename)     # Zip the file
