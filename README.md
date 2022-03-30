@@ -6,7 +6,7 @@ Data_Ingestion\Data_Generator.py   # H. Yukihiro
 Data_Ingestion\client.py           # M. DiGirolamo
 Email_Flow\FlowV_2_2.py            # H. Alloway
 Data_Ingestion\unzip_sharepoint.py # M. DiGirolamo
-cadence_pbi_v2_3.pbix              # L. Wu
+https://github.com/lydia-wu/cadence/blob/d9f62a3ed16b97f2a7f8c17093b6b8de28638c0d/cadence_pbi_v2_3.pbix              # L. Wu
 
 # PowerBI Version Control
 Current Version: V2.3
