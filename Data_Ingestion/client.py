@@ -12,7 +12,7 @@ import os
 
 # ------- Heartbeat Code ------
 # path = input("Hello, thank you for using Cadence. Please provide the filepath where you would like the generated logs to reside? For reference, insert a response similar to this filepath structure /Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator: ")
-path = 'D:/Users/baseb/Documents/GitHub/cadence/Data_Ingestion'
+path = '/Users/lydia/downloads/cadence_2022_03_30'
 
 # do once
 heartbeat_time = datetime.now().strftime("%Y-%m-%d_%H%M%S")
@@ -43,7 +43,7 @@ def receive_data(port):
         timestamp = datetime.now().strftime("%Y-%m-%d_%H%M%S")
         filename = 'DeviceLog_' + timestamp
 
-        with open('logs/' + filename + '.log','w+') as file:
+        with open('C:/Users/lydia/downloads/cadence_2022_03_30/' + filename + '.log','w+') as file:
             while elapsed_time < file_seconds:
                 schedule.run_pending()
                 current_time = time.time()
@@ -89,15 +89,15 @@ def receive_data(port):
 
 # Zip Log File Function
 def zip_logfile(filename):
-    with ZipFile('logs/' + filename + '.zip', 'w') as zipObj:
-            os.chdir('logs/')   # changes directory so a 'logs' file is not included in the zip
+    with ZipFile('C:/Users/lydia/downloads/cadence_2022_03_30/logs/' + filename + '.zip', 'w') as zipObj:
+            os.chdir('C:/Users/lydia/downloads/cadence_2022_03_30/logs/')   # changes directory so a 'logs' file is not included in the zip
             zipObj.write(filename + '.log')
-            os.chdir('..')      # reverts to parent directory
+            os.chdir('C:/Users/lydia/downloads/cadence_2022_03_30/')      # reverts to parent directory
 
 # Archive Log File Function
 def archive_logfile(filename):
-    srcpath = 'logs/' + filename + '.log'
-    destpath = 'logs/archive/' + filename + '.log'
+    srcpath = 'C:/Users/lydia/downloads/cadence_2022_03_30/logs/' + filename + '.log'
+    destpath = 'C:/Users/lydia/downloads/cadence_2022_03_30/logs/archive/' + filename + '.log'
     shutil.move(srcpath, destpath)
 
 # Run the program
