@@ -1,4 +1,4 @@
-# last edited by Michael Di Girolamo at 3/30/22 2:30 PM
+# last edited by Michael Di Girolamo at 3/29/22 7:30 PM
 
 from logging import exception
 import socket
@@ -12,11 +12,11 @@ import os
 
 # ------- Heartbeat Code ------
 # path = input("Hello, thank you for using Cadence. Please provide the filepath where you would like the generated logs to reside? For reference, insert a response similar to this filepath structure /Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator: ")
-hb_path = 'D:/Users/baseb/Documents/GitHub/cadence/Data_Ingestion' # path for the heartbeat file
+path = 'D:/Users/baseb/Documents/GitHub/cadence/Data_Ingestion'
 
 # do once
 heartbeat_time = datetime.now().strftime("%Y-%m-%d_%H%M%S")
-with open(hb_path + '/ClientHeartbeat_' + heartbeat_time + '.csv', 'w+', newline = '') as file1:
+with open(path + '/ClientHeartbeat_' + heartbeat_time + '.csv', 'w+', newline = '') as file1:
     ClientHeartbeat = csv.writer(file1)
     ClientHeartbeat.writerow(['Time', 'Status', 'Files Processed'])
     ClientHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "Begin Run", 0])
@@ -32,9 +32,6 @@ schedule.every(5).seconds.do(heartbeat) # shortened time for testing purposes
    
 # ------ Receive Data Code ------
 
-zip_path = ''           # file path for the zipped log files (relative or absolute path)
-arch_path = 'archive/'  # file path for archived original log files (relative or absolute path)
-
 def receive_data(port):
     global filecount
     filecount = 0
@@ -46,8 +43,7 @@ def receive_data(port):
         timestamp = datetime.now().strftime("%Y-%m-%d_%H%M%S")
         filename = 'DeviceLog_' + timestamp
 
-        #with open('logs/' + filename + '.log','w+') as file:
-        with open(zip_path + filename + '.log','w+') as file:
+        with open('logs/' + filename + '.log','w+') as file:
             while elapsed_time < file_seconds:
                 schedule.run_pending()
                 current_time = time.time()
@@ -57,27 +53,19 @@ def receive_data(port):
                 print("client socket created")
                 try:
                     s.connect(('127.0.0.1', port)) # times out here if connection is not made
+                
                     data = s.recv(1024) # throws exception here if server is closed
                     print (data.decode())
                 except ConnectionResetError:
                     print("Error: Connection was likely closed by the server")
-                    s.close()                 # closes socket
                     file.close()
                     zip_logfile(filename)     # Zip the file
                     archive_logfile(filename) # Archive the log file
                     quit()
                 except ConnectionRefusedError:
                     print("Error: Connection may have never been established")
-                    s.close()                 # closes socket
                     file.close()
-                    zip_logfile(filename)     # Zip the file - should zip an empty log?
-                    archive_logfile(filename) # Archive the log file
-                    quit()
-                except KeyboardInterrupt:
-                    print("Keyboard Interrupt - Closing...")
-                    s.close()                 # closes socket
-                    file.close()
-                    zip_logfile(filename)     # Zip the file
+                    zip_logfile(filename)     # Zip the file - should zip empty log?
                     archive_logfile(filename) # Archive the log file
                     quit()
                 except Exception as e:
@@ -101,18 +89,15 @@ def receive_data(port):
 
 # Zip Log File Function
 def zip_logfile(filename):
-    #with ZipFile('logs/' + filename + '.zip', 'w') as zipObj:
-    with ZipFile(zip_path + filename + '.zip', 'w') as zipObj:
-            #os.chdir('logs/')   # changes directory so a 'logs' file is not included in the zip
+    with ZipFile('logs/' + filename + '.zip', 'w') as zipObj:
+            os.chdir('logs/')   # changes directory so a 'logs' file is not included in the zip
             zipObj.write(filename + '.log')
-            #os.chdir('..')      # reverts to parent directory
+            os.chdir('..')      # reverts to parent directory
 
 # Archive Log File Function
 def archive_logfile(filename):
-    #srcpath = 'logs/' + filename + '.log'
-    srcpath = zip_path + filename + '.log'
-    #destpath = 'logs/archive/' + filename + '.log'
-    destpath = arch_path + filename + '.log'
+    srcpath = 'logs/' + filename + '.log'
+    destpath = 'logs/archive/' + filename + '.log'
     shutil.move(srcpath, destpath)
 
 # Run the program
