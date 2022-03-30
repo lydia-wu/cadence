@@ -9,8 +9,7 @@ import pandas as pd
 import csv
 import schedule
 import time
-#from Data_Ingestion.server import *
-from server import *
+from Data_Ingestion.server import *
 from datetime import datetime
 import random
 # today = date.today()
@@ -26,8 +25,7 @@ import random
 #	Wait 10 sec (simulate the 1 minute delay between hello world messages)
 #	Count++
 
-#path = input("Hello, thank you for using Cadence. Please provide the filepath where you would like the generated logs to reside? For reference, insert a response similar to this filepath structure /Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator: ")
-path = '/Users/lydia/Downloads/cadence_2022_03_30'
+path = input("Hello, thank you for using Cadence. Please provide the filepath where you would like the generated logs to reside? For reference, insert a response similar to this filepath structure /Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator: ")
 print("Generating App and Network Files Now")
 
 # Instantiates run count
@@ -37,25 +35,6 @@ filecount = 0
 #Instantiate server
 s = server(5601)
 s.start_server()
-
-# Establishes lookup table
-df = pd.read_csv(path + '/NodeID_SIM_LookUpTable.csv')
-node = df['Title']
-sim = df['SIM ID']
-lookupSIM = {}
-lookupNode = {}
-
-# Lookup SIMID from given NodeID
-for x in range(node.size):
-    lookupSIM[node[x]] = sim[x]
-def findSIM(node):
-    return lookupSIM[node]
-
-# Lookup NodeID from given SIMID
-for x in range(sim.size):
-    lookupNode[sim[x]] = node[x]
-def findNode(sim):
-    return lookupNode[sim]
     
 # Creates and establishes the Generator Heartbeat file
 with open(path + '/GeneratorHeartbeat_'+ datetime.now().strftime("%Y-%m-%d_%H%M%S") + '.csv', 'w+', newline = '') as file1:
@@ -76,35 +55,35 @@ with open(path + '/GeneratorHeartbeat_'+ datetime.now().strftime("%Y-%m-%d_%H%M%
             runs = runs + 1
             filecount = filecount + 7
             
-            # # Begins sending data to the port
-            # s.send_data('Beginning of Device 1 Log')
-            # s.send_data('Beginning of Device 2 Log')
-            # s.send_data('Beginning of Device 3 Log')
-            # s.send_data('Beginning of Device 4 Log')
-            # s.send_data('Beginning of Device 5 Log')
+            # Begins sending data to the port
+            s.send_data('Beginning of Device 1 Log')
+            s.send_data('Beginning of Device 2 Log')
+            s.send_data('Beginning of Device 3 Log')
+            s.send_data('Beginning of Device 4 Log')
+            s.send_data('Beginning of Device 5 Log')
 
             # Creates file for Network and App reports
             with open(path + '/NetworkReport_'+ datetime.now().strftime("%Y-%m-%d_%H%M%S") + '.csv', 'w+', newline = '') as file2:
                 with open(path + '/AppReport_'+ datetime.now().strftime("%Y-%m-%d_%H%M%S") + '.csv', 'w+', newline = '') as file3:
-                    with open(path + '/DeviceLogA1.csv', 'w+', newline = '') as file4:
-                        with open(path + 'DeviceLogA2.csv', 'w+', newline = '') as file5:
-                            with open(path + '/DeviceLogA3.csv', 'w+', newline = '') as file6:
-                                with open(path + '/DeviceLogA4.csv', 'w+', newline = '') as file7:
-                                    with open(path + '/DeviceLogA5.csv', 'w+', newline = '') as file8:
+                    # with open(path + '/DeviceLogA1.csv', 'w+', newline = '') as file4:
+                    #     with open(path + 'DeviceLogA2.csv', 'w+', newline = '') as file5:
+                    #         with open(path + '/DeviceLogA3.csv', 'w+', newline = '') as file6:
+                    #             with open(path + '/DeviceLogA4.csv', 'w+', newline = '') as file7:
+                    #                 with open(path + '/DeviceLogA5.csv', 'w+', newline = '') as file8:
                                         NetworkReport = csv.writer(file2)
                                         NetworkReport.writerow(['Time', 'ICCID(SIM ID)', "Arbitrary Column",'Connection Event', 'Bytes Used', 'NodeID'])
                                         AppReport = csv.writer(file3)
                                         AppReport.writerow(['Time', 'NodeID', 'Message', 'SIM ID'])
-                                        DeviceLogA1 = csv.writer(file4)
-                                        DeviceLogA1.writerow(['Beginning of Device 1 Log'])
-                                        DeviceLogA2 = csv.writer(file5)
-                                        DeviceLogA2.writerow(['Beginning of Device 2 Log'])
-                                        DeviceLogA3 = csv.writer(file6)
-                                        DeviceLogA3.writerow(['Beginning of Device 3 Log'])
-                                        DeviceLogA4 = csv.writer(file7)
-                                        DeviceLogA4.writerow(['Beginning of Device 4 Log'])
-                                        DeviceLogA5 = csv.writer(file8)
-                                        DeviceLogA5.writerow(['Beginning of Device 5 Log'])
+                                        # DeviceLogA1 = csv.writer(file4)
+                                        # DeviceLogA1.writerow(['Beginning of Device 1 Log'])
+                                        # DeviceLogA2 = csv.writer(file5)
+                                        # DeviceLogA2.writerow(['Beginning of Device 2 Log'])
+                                        # DeviceLogA3 = csv.writer(file6)
+                                        # DeviceLogA3.writerow(['Beginning of Device 3 Log'])
+                                        # DeviceLogA4 = csv.writer(file7)
+                                        # DeviceLogA4.writerow(['Beginning of Device 4 Log'])
+                                        # DeviceLogA5 = csv.writer(file8)
+                                        # DeviceLogA5.writerow(['Beginning of Device 5 Log'])
                                         schedule.run_pending()
 
                                         # First run (for the sake of starting count at zero)
@@ -116,31 +95,58 @@ with open(path + '/GeneratorHeartbeat_'+ datetime.now().strftime("%Y-%m-%d_%H%M%
                                     
                                                 # Create Device Logs
                                                 # DeviceLogA1.writerow([(time.strftime("%d %b %Y %I:%M:%S %p:", time.gmtime())), "Device NodeID A000001 Sending Hello World " + str(count)])
-                                                DeviceLogA1.writerow([datetime.now(), "Device NodeID A000001 Sending Hello World " + str(count)])
-                                                DeviceLogA3.writerow([datetime.now(), "Device NodeID A000003 Sending Hello World " + str(count)])
-                                                DeviceLogA5.writerow([datetime.now(), "Device NodeID A000005 Sending Hello World " + str(count)])
-                                                if count == random.randint(1,10):
-                                                    DeviceLogA1.writerow([datetime.now(), "Device NodeID A000001 Sending Hello World " + str(count)])
+                                                # DeviceLogA1.writerow([datetime.now(), "Device NodeID A000001 Sending Hello World " + str(count)])
+                                                # DeviceLogA3.writerow([datetime.now(), "Device NodeID A000003 Sending Hello World " + str(count)])
+                                                # DeviceLogA5.writerow([datetime.now(), "Device NodeID A000005 Sending Hello World " + str(count)])
+                                                # if count == random.randint(1,10):
+                                                #     DeviceLogA1.writerow([datetime.now(), "Device NodeID A000001 Sending Hello World " + str(count)])
+                                                #     time.sleep(random.randint(2,10))
+                                                # if count == random.randint(11,50):
+                                                #     DeviceLogA3.writerow([datetime.now(), "Device NodeID A000003 Sending Hello World " + str(count)])
+                                                #     DeviceLogA5.writerow([datetime.now(), "Device NodeID A000005 Sending Hello World " + str(count)])
+                                                # if count != random.randint(51,101):
+                                                #     DeviceLogA2.writerow([datetime.now(), "Device NodeID A000002 Sending Hello World " + str(count)])
+                                                #     DeviceLogA4.writerow([datetime.now(), "Device NodeID A000004 Sending Hello World " + str(count)])
+                                                # DeviceLogA1.writerow(['This is some arbitrary log data'])
+                                                # DeviceLogA2.writerow(['This is some arbitrary log data'])
+                                                # DeviceLogA3.writerow(['This is some arbitrary log data'])
+                                                # DeviceLogA4.writerow(['This is some arbitrary log data'])
+                                                # DeviceLogA5.writerow(['This is some arbitrary log data'])
+                                                # if count == random.randint(10,20) or count == random.randint(30,45) or count == random.randint(50,70) or count == random.randint(75,90):
+                                                #     DeviceLogA1.writerow(['This is some fluff'])
+                                                #     DeviceLogA2.writerow(['Fell for the fluff once more'])
+                                                #     DeviceLogA3.writerow(['The Hufflepuff Jigglypuff fluff'])
+                                                #     DeviceLogA4.writerow(['The worst fluff you can find'])
+                                                #     DeviceLogA5.writerow(['Please end the fluff before the fluff gets you'])
+                                                # schedule.run_pending()
+                                                # # time.sleep(0.01)
+                                                # time.sleep(1)
+
+                                                timeDate = datetime.now()
+                                                s.send_data(f"{timeDate} Device NodeID A000001 Sending Hello World {count}")
+                                                s.send_data(f"{timeDate} Device NodeID A000003 Sending Hello World {count}")
+                                                s.send_data(f"{timeDate} Device NodeID A000005 Sending Hello World {count}")
+                                                if count == random.randint:
+                                                    s.send_data(f"{timeDate} Device NodeID A000001 Sending Hello World {count}")
                                                     time.sleep(random.randint(2,10))
-                                                if count == random.randint(11,50):
-                                                    DeviceLogA3.writerow([datetime.now(), "Device NodeID A000003 Sending Hello World " + str(count)])
-                                                    DeviceLogA5.writerow([datetime.now(), "Device NodeID A000005 Sending Hello World " + str(count)])
-                                                if count != random.randint(51,101):
-                                                    DeviceLogA2.writerow([datetime.now(), "Device NodeID A000002 Sending Hello World " + str(count)])
-                                                    DeviceLogA4.writerow([datetime.now(), "Device NodeID A000004 Sending Hello World " + str(count)])
-                                                DeviceLogA1.writerow(['This is some arbitrary log data'])
-                                                DeviceLogA2.writerow(['This is some arbitrary log data'])
-                                                DeviceLogA3.writerow(['This is some arbitrary log data'])
-                                                DeviceLogA4.writerow(['This is some arbitrary log data'])
-                                                DeviceLogA5.writerow(['This is some arbitrary log data'])
-                                                if count == random.randint(10,20) or count == random.randint(30,45) or count == random.randint(50,70) or count == random.randint(75,90):
-                                                    DeviceLogA1.writerow(['This is some fluff'])
-                                                    DeviceLogA2.writerow(['Fell for the fluff once more'])
-                                                    DeviceLogA3.writerow(['The Hufflepuff Jigglypuff fluff'])
-                                                    DeviceLogA4.writerow(['The worst fluff you can find'])
-                                                    DeviceLogA5.writerow(['Please end the fluff before the fluff gets you'])
+                                                if count == random.randint:
+                                                    s.send_data(f"{timeDate} Device NodeID A000003 Sending Hello World {count}")
+                                                    s.send_data(f"{timeDate} Device NodeID A000005 Sending Hello World {count}")
+                                                if count != random.randint:
+                                                        s.send_data(f"{timeDate} Device NodeID A000002 Sending Hello World {count}")
+                                                        s.send_data(f"{timeDate} Device NodeID A000004 Sending Hello World {count}")
+                                                s.send_data(f"Device 1 This is some arbitrary log data")
+                                                s.send_data(f"Device 2 This is some arbitrary log data")
+                                                s.send_data(f"Device 3 This is some arbitrary log data")
+                                                s.send_data(f"Device 4 This is some arbitrary log data")
+                                                s.send_data(f"Device 5 This is some arbitrary log data")
+                                                if count == random.randint:
+                                                    s.send_data(f"Device 1 This is some fluff")
+                                                    s.send_data(f"Device 2 Fell for the fluff once more")
+                                                    s.send_data(f"Device 3 The Hufflepuff Jigglypuff fluff")
+                                                    s.send_data(f"Device 4 The worst fluff you can find")
+                                                    s.send_data(f"Device 5 Please end the fluff before the fluff gets you")
                                                 schedule.run_pending()
-                                                # time.sleep(0.01)
                                                 time.sleep(1)
                                     
 
@@ -194,31 +200,58 @@ with open(path + '/GeneratorHeartbeat_'+ datetime.now().strftime("%Y-%m-%d_%H%M%
                                                 schedule.run_pending()
                                                 # Create Device Logs
                                                 # DeviceLogA1.writerow([(time.strftime("%d %b %Y %I:%M:%S %p:", time.gmtime())), "Device NodeID A000001 Sending Hello World " + str(count)])
-                                                DeviceLogA1.writerow([datetime.now(), "Device NodeID A000001 Sending Hello World " + str(count)])
-                                                DeviceLogA3.writerow([datetime.now(), "Device NodeID A000003 Sending Hello World " + str(count)])
-                                                DeviceLogA5.writerow([datetime.now(), "Device NodeID A000005 Sending Hello World " + str(count)])
-                                                if count == random.randint(1,10):
-                                                    DeviceLogA1.writerow([datetime.now(), "Device NodeID A000001 Sending Hello World " + str(count)])
+                                                # DeviceLogA1.writerow([datetime.now(), "Device NodeID A000001 Sending Hello World " + str(count)])
+                                                # DeviceLogA3.writerow([datetime.now(), "Device NodeID A000003 Sending Hello World " + str(count)])
+                                                # DeviceLogA5.writerow([datetime.now(), "Device NodeID A000005 Sending Hello World " + str(count)])
+                                                # if count == random.randint(1,10):
+                                                #     DeviceLogA1.writerow([datetime.now(), "Device NodeID A000001 Sending Hello World " + str(count)])
+                                                #     time.sleep(random.randint(2,10))
+                                                # if count == random.randint(11,50):
+                                                #     DeviceLogA3.writerow([datetime.now(), "Device NodeID A000003 Sending Hello World " + str(count)])
+                                                #     DeviceLogA5.writerow([datetime.now(), "Device NodeID A000005 Sending Hello World " + str(count)])
+                                                # if count != random.randint(51,101):
+                                                #     DeviceLogA2.writerow([datetime.now(), "Device NodeID A000002 Sending Hello World " + str(count)])
+                                                #     DeviceLogA4.writerow([datetime.now(), "Device NodeID A000004 Sending Hello World " + str(count)])
+                                                # DeviceLogA1.writerow(['This is some arbitrary log data'])
+                                                # DeviceLogA2.writerow(['This is some arbitrary log data'])
+                                                # DeviceLogA3.writerow(['This is some arbitrary log data'])
+                                                # DeviceLogA4.writerow(['This is some arbitrary log data'])
+                                                # DeviceLogA5.writerow(['This is some arbitrary log data'])
+                                                # if count == random.randint(10,20) or count == random.randint(30,45) or count == random.randint(50,70) or count == random.randint(75,90):
+                                                #     DeviceLogA1.writerow(['This is some fluff'])
+                                                #     DeviceLogA2.writerow(['Fell for the fluff once more'])
+                                                #     DeviceLogA3.writerow(['The Hufflepuff Jigglypuff fluff'])
+                                                #     DeviceLogA4.writerow(['The worst fluff you can find'])
+                                                #     DeviceLogA5.writerow(['Please end the fluff before the fluff gets you'])
+                                                # schedule.run_pending()
+                                                # # time.sleep(0.01)
+                                                # time.sleep(1)
+
+                                                timeDate = datetime.now()
+                                                s.send_data(f"{timeDate} Device NodeID A000001 Sending Hello World {count}")
+                                                s.send_data(f"{timeDate} Device NodeID A000003 Sending Hello World {count}")
+                                                s.send_data(f"{timeDate} Device NodeID A000005 Sending Hello World {count}")
+                                                if count == random.randint:
+                                                    s.send_data(f"{timeDate} Device NodeID A000001 Sending Hello World {count}")
                                                     time.sleep(random.randint(2,10))
-                                                if count == random.randint(11,50):
-                                                    DeviceLogA3.writerow([datetime.now(), "Device NodeID A000003 Sending Hello World " + str(count)])
-                                                    DeviceLogA5.writerow([datetime.now(), "Device NodeID A000005 Sending Hello World " + str(count)])
-                                                if count != random.randint(51,101):
-                                                    DeviceLogA2.writerow([datetime.now(), "Device NodeID A000002 Sending Hello World " + str(count)])
-                                                    DeviceLogA4.writerow([datetime.now(), "Device NodeID A000004 Sending Hello World " + str(count)])
-                                                DeviceLogA1.writerow(['This is some arbitrary log data'])
-                                                DeviceLogA2.writerow(['This is some arbitrary log data'])
-                                                DeviceLogA3.writerow(['This is some arbitrary log data'])
-                                                DeviceLogA4.writerow(['This is some arbitrary log data'])
-                                                DeviceLogA5.writerow(['This is some arbitrary log data'])
-                                                if count == random.randint(10,20) or count == random.randint(30,45) or count == random.randint(50,70) or count == random.randint(75,90):
-                                                    DeviceLogA1.writerow(['This is some fluff'])
-                                                    DeviceLogA2.writerow(['Fell for the fluff once more'])
-                                                    DeviceLogA3.writerow(['The Hufflepuff Jigglypuff fluff'])
-                                                    DeviceLogA4.writerow(['The worst fluff you can find'])
-                                                    DeviceLogA5.writerow(['Please end the fluff before the fluff gets you'])
+                                                if count == random.randint:
+                                                    s.send_data(f"{timeDate} Device NodeID A000003 Sending Hello World {count}")
+                                                    s.send_data(f"{timeDate} Device NodeID A000005 Sending Hello World {count}")
+                                                if count != random.randint:
+                                                        s.send_data(f"{timeDate} Device NodeID A000002 Sending Hello World {count}")
+                                                        s.send_data(f"{timeDate} Device NodeID A000004 Sending Hello World {count}")
+                                                s.send_data(f"Device 1 This is some arbitrary log data")
+                                                s.send_data(f"Device 2 This is some arbitrary log data")
+                                                s.send_data(f"Device 3 This is some arbitrary log data")
+                                                s.send_data(f"Device 4 This is some arbitrary log data")
+                                                s.send_data(f"Device 5 This is some arbitrary log data")
+                                                if count == random.randint:
+                                                    s.send_data(f"Device 1 This is some fluff")
+                                                    s.send_data(f"Device 2 Fell for the fluff once more")
+                                                    s.send_data(f"Device 3 The Hufflepuff Jigglypuff fluff")
+                                                    s.send_data(f"Device 4 The worst fluff you can find")
+                                                    s.send_data(f"Device 5 Please end the fluff before the fluff gets you")
                                                 schedule.run_pending()
-                                                # time.sleep(0.01)
                                                 time.sleep(1)
                                     
 
@@ -271,6 +304,6 @@ with open(path + '/GeneratorHeartbeat_'+ datetime.now().strftime("%Y-%m-%d_%H%M%
                                         print("Generating Next Run")  
     except KeyboardInterrupt:                                 
         GeneratorHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "End Run", filecount]) 
-        # s.stop_server()  
+        s.stop_server()  
         print("Completed Program Run") 
 
