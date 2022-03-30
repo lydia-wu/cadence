@@ -1,4 +1,6 @@
-#last edited by Lydia Wu @ 4:36P, 2022-03-25
+#created: 2022-03-25 Friday, 2:00P ET, L. Wu
+#last edited: 2022-03-30 Wednesday, 5:47P ET, L. Wu
+
 print ("Commencing Column Killer Function")
 
 import pandas as pd # for the csv column cleaning function
@@ -14,11 +16,11 @@ import sys # for passing in varables from the top level PYTHON
 import schedule 
 
 # VARIABLES TO SPECIFY:
-#directory = '/Users/lydia/downloads/BookTest'   # the STARTING directory with the CSVs
-#timeDelayMinutes = 30                           # "wait" time minutes before script runs again
-#newFolder = 'clean'                             # the "column killed" file landing folder:
-#newDirectory = directory + '/' + newFolder      # the LANDING directory for the cleaned CSVs
-#keep_col = ['Column 1', 'Column 2', 'Column 3'] # column names to KEEP (all other columsn will be deleted
+directory = '/Users/lydia/downloads/BookTest'   # the STARTING directory with the CSVs
+timeDelayMinutes = 30                           # "wait" time minutes before script runs again
+newFolder = 'clean'                             # the "column killed" file landing folder:
+newDirectory = directory + '/' + newFolder      # the LANDING directory for the cleaned CSVs
+keep_col = ['Column 1', 'Column 2', 'Column 3'] # column names to KEEP (all other columsn will be deleted
 
 #directory        = sys.argv[1]                 # the STARTING directory with the CSVs
 #timeDelayMinutes = sys.argv[2]                 # "wait" time minutes before script runs again
@@ -110,4 +112,8 @@ def main(directory, timeDelayMinutes, newFolder, newDirectory, keep_col):
             time.sleep(timeDelaySeconds) # seconds
 
     except KeyboardInterrupt:  
-            print("You have issued a keyboard interrupt; you are exiting the program...")                     
+            print("You have issued a keyboard interrupt; you are exiting the program...")      
+
+
+
+main(directory, timeDelayMinutes, newFolder, newDirectory, keep_col)
