@@ -9,11 +9,14 @@ import time
 from datetime import datetime
 
 def archive_old():
-    days_old = 23              # days until file is archived
+    old_path = 'D:/Users/baseb/Documents/GitHub/cadence/Data_Ingestion' # file path where old files are located
+    arch_path = 'archive/' # file path to where the old files will be archived
+    old_ext = '.zip'        # extension of old files (include the '.' i.e. -> '.zip')
+    days_old = 23           # days until file is archived
     curr_date = datetime.now()
 
-    os.chdir('logs/')          # changes directory to inside the logs folder
-    for file in glob.glob("*.zip"):
+    os.chdir(old_path)          # changes directory to defined file path
+    for file in glob.glob("*" + old_ext):
         file_res = re.findall("DeviceLog_(\d+)-(\d+)-(\d+)_", file) # grabs the date from filename
         if not file_res: continue
         file_year, file_month, file_day = file_res[0]
@@ -25,11 +28,12 @@ def archive_old():
         if days_between > days_old:
             print(file + " ** File is " + str(days_between) + " days old\n")
             srcpath = file
-            destpath = 'archive/' + file
+            destpath = arch_path + file
             shutil.move(srcpath, destpath)
 
 # Run the script
 schedule.every().day.at("01:00").do(archive_old)
+#schedule.every().day.at("14:16").do(archive_old)    # for testing purposes
 
 while True:
     schedule.run_pending()
