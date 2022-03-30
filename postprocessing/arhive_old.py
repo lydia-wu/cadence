@@ -1,4 +1,4 @@
-# last edited by Michael Di Girolamo at 3/25 4:45 PM
+# last edited by Michael Di Girolamo at 3/30/22 7:45 PM
 
 import re
 import os
@@ -8,9 +8,11 @@ import schedule
 import time
 from datetime import datetime
 
+user = input("Hello, thank you for using the Cadence Archive Tool. Please provide your username (For reference, username would reside within this structure /Users/tsuru/OneDrive/): ")
+
 def archive_old():
-    old_path = 'D:/Users/baseb/Documents/GitHub/cadence/Data_Ingestion' # file path where old files are located
-    arch_path = 'archive/' # file path to where the old files will be archived
+    old_path = 'C:/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents' # file path where old files are located
+    arch_path = 'Archived/' # file path to where the old files will be archived
     old_ext = '.zip'        # extension of old files (include the '.' i.e. -> '.zip')
     days_old = 23           # days until file is archived
     curr_date = datetime.now()
@@ -33,11 +35,11 @@ def archive_old():
 
 # Run the script
 schedule.every().day.at("01:00").do(archive_old)
-#schedule.every().day.at("14:16").do(archive_old)    # for testing purposes
+#schedule.every().day.at("19:56").do(archive_old)    # for testing purposes
 
 while True:
     schedule.run_pending()
-    time.sleep(60) # wait one minute
+    time.sleep(10) # wait one minute
             
 
 

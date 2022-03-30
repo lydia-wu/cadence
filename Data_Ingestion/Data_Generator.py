@@ -9,7 +9,8 @@ import pandas as pd
 import csv
 import schedule
 import time
-from Data_Ingestion.server import *
+#from Data_Ingestion.server import *
+from server import *
 from datetime import datetime
 import random
 # today = date.today()
@@ -34,7 +35,7 @@ filecount = 0
 
 #Instantiate server
 s = server(5601)
-s.start_server()
+s.start_server(10)
     
 # Creates and establishes the Generator Heartbeat file
 with open(path + '/GeneratorHeartbeat_'+ datetime.now().strftime("%Y-%m-%d_%H%M%S") + '.csv', 'w+', newline = '') as file1:
