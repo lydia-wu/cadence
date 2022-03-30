@@ -46,7 +46,6 @@ def receive_data(port):
         timestamp = datetime.now().strftime("%Y-%m-%d_%H%M%S")
         filename = 'DeviceLog_' + timestamp
 
-        #with open('logs/' + filename + '.log','w+') as file:
         with open(zip_path + filename + '.log','w+') as file:
             while elapsed_time < file_seconds:
                 schedule.run_pending()
@@ -101,17 +100,12 @@ def receive_data(port):
 
 # Zip Log File Function
 def zip_logfile(filename):
-    #with ZipFile('logs/' + filename + '.zip', 'w') as zipObj:
     with ZipFile(zip_path + filename + '.zip', 'w') as zipObj:
-            #os.chdir('logs/')   # changes directory so a 'logs' file is not included in the zip
             zipObj.write(filename + '.log')
-            #os.chdir('..')      # reverts to parent directory
 
 # Archive Log File Function
 def archive_logfile(filename):
-    #srcpath = 'logs/' + filename + '.log'
     srcpath = zip_path + filename + '.log'
-    #destpath = 'logs/archive/' + filename + '.log'
     destpath = arch_path + filename + '.log'
     shutil.move(srcpath, destpath)
 
