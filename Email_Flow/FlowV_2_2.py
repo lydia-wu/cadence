@@ -15,7 +15,8 @@ from pathlib import Path # this is for checking to see if "archive" already exis
 import psutil            # this is for checking to see if a file is being actively written (pip install psutil)
 
 # C:/Users/lydia/Downloads/cadence_demo_0311
-directory = input("Hello, thank you for using Cadence. Please provide the filepath where you would like the generated logs to reside? For reference, insert a response similar to this filepath structure /Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator: ")
+#directory = input("Hello, thank you for using Cadence. Please provide the filepath where you would like the generated logs to reside? For reference, insert a response similar to this filepath structure /Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator: ")
+directory = 'C:/Users/lydia/Downloads/cadence_2022_03_30'
 newdirectory = 'C:/Users/lydia/Downloads/transferred'
 
 # START PROGRAM

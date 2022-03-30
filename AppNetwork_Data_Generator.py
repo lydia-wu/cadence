@@ -2,6 +2,7 @@
 # AppNetwork_Data_Generator
 # Created On: 2022-01-24 14:31:46.415580
 # Last updated by: Hayley Yukhiro, 2022-03-10 21:41:00
+# Last updated by: Lydia Wu, 2022-03-30 12:23:00
 
 import csv
 import pandas as pd
@@ -10,9 +11,10 @@ import time
 from datetime import datetime
 import random
 
-path = input("Hello, thank you for using Cadence. Please provide the filepath where you would like the generated logs to reside? For reference, insert a response similar to this filepath structure /Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator: ")
+#path = input("Hello, thank you for using Cadence. Please provide the filepath where you would like the generated logs to reside? For reference, insert a response similar to this filepath structure /Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator: ")
 print("Generating App and Network Files Now")
 
+path = 'C:/Users/lydia/Downloads/cadence_2022_03_30'
 runs = 0
 filecount = 0
 
