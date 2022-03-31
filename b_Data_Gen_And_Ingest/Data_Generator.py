@@ -2,6 +2,7 @@
 # Cadence-Data Simulator
 # Created On: 2022-01-24 14:31:46.415580
 # Last updated by: Hayley Yukhiro, 2022-03-25 11:42:00
+# Last updated by: Lydia Wu,       2022-03-30 23:21:00
 
 print ("Generating Simulated Data")
 
@@ -10,7 +11,7 @@ import csv
 import schedule
 import time
 #from Data_Ingestion.server import *
-from server import *
+from server import * 
 from lookupTable import findNode,findSIM
 from datetime import datetime
 import random

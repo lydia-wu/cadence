@@ -1,4 +1,5 @@
 # last edited by Michael Di Girolamo at 3/29/22 8:45 PM
+# last edited by Lydia Wu at 3/30/2022 11:22 PM
 
 import socket
 
@@ -16,7 +17,7 @@ class server:
 
     def stop_server(self):
         print("Shutting down server")
-        self.c.close()
+        self.s.close() # was "c", changed to "s"
 
     def send_data(self, message):
         print(message)

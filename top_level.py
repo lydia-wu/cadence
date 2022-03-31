@@ -4,6 +4,10 @@
 print ("Commencing Top-Level Cadence") 
 
 from a_preprocessing.columnKiller import main as colKill_main
+
+from b_Data_Gen_And_Ingest.Data_Generator import *
+from b_Data_Gen_And_Ingest.client import *
+from c_Email_Flow.FlowV_2_3 import *
 import threading
 import time
 
@@ -24,14 +28,14 @@ DataSimOutputDirectory = '/Users/lydia/downloads/dataSimOutput' # this is where 
 
 # MAIN CODE
 try:
-    run_event = threading.Event() # to have a trigger
-    run_event.set()
-
+    #run_event = threading.Event() # to have a trigger
+    #run_event.set()
+    
     # run this loop continuously!
     while (True):
-       x1 = threading.Thread(target=colKill_main, args=(CleanedDataDirectory, timeDelayMinutes, newFolder, newDirectory, keep_col))
+      # x1 = threading.Thread(target=colKill_main, args=(CleanedDataDirectory, timeDelayMinutes, newFolder, newDirectory, keep_col))
        #x1.start()
-
+        x = 1
        #x2 = threading.Thread(target=dataGen_main, args=(DataSimOutputDirectory))
        #x2.start()
        
@@ -40,8 +44,8 @@ try:
 except KeyboardInterrupt:  
         print("You have issued a keyboard interrupt; you are exiting the program...") 
         # close thread
-        run_event.clear()
-        x1.join()
+        #run_event.clear()
+        #x1.join()
 
 #x2 = threading.Thread(target=thread_function, args=("AppNetwork_Data_Generator.py",))
 #x2.start()
