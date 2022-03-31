@@ -2,6 +2,8 @@
 Liberty University CADENCE Capstone Team Fall 2021 - Spring 2022
 
 # Relevant Files for top-level run, in running order:
+| File # | File Name/Location | Primary Author |
+| ------ | ------------------ | -------------- |
 [Data Simulator Python Script](https://github.com/lydia-wu/cadence/blob/e93ec003a91bfbb855342317513598ac01fbcc21/Data_Ingestion/Data_Generator.py)  # H. Yukihiro  
 [Client to pick up localhost Python Script](https://github.com/lydia-wu/cadence/blob/163c36f8adceb0bc8462537b470c0b5321a6a2ab/Data_Ingestion/client.py) # M. DiGirolamo  
 [Email Flow Python Script](https://github.com/lydia-wu/cadence/blob/f984e492d386a959e98f254e4492ff20969bd4b5/Email_Flow/FlowV_2_3.py) # H. Alloway, L. Wu  
