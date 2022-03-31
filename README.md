@@ -4,12 +4,12 @@ Liberty University CADENCE Capstone Team Fall 2021 - Spring 2022
 # Relevant Files for top-level run, in running order:
 | File # | File Name/Location | Primary Author |
 | ------ | ------------------ | -------------- |
-[Data Simulator Python Script](https://github.com/lydia-wu/cadence/blob/e93ec003a91bfbb855342317513598ac01fbcc21/Data_Ingestion/Data_Generator.py)  # H. Yukihiro  
-[Client to pick up localhost Python Script](https://github.com/lydia-wu/cadence/blob/163c36f8adceb0bc8462537b470c0b5321a6a2ab/Data_Ingestion/client.py) # M. DiGirolamo  
-[Email Flow Python Script](https://github.com/lydia-wu/cadence/blob/f984e492d386a959e98f254e4492ff20969bd4b5/Email_Flow/FlowV_2_3.py) # H. Alloway, L. Wu  
-[Unzip file that lands in SharePoint Python Script](https://github.com/lydia-wu/cadence/blob/743ce1f3c3507501376ffdd09529a8648a96b5fa/postprocessing/unzip_sharepoint.py) # M. DiGirolamo  
-[PowerBI Base File](https://github.com/lydia-wu/cadence/blob/d9f62a3ed16b97f2a7f8c17093b6b8de28638c0d/cadence_pbi_v2_3.pbix) # L. Wu  
-[Archive Old Files Python Script]() # M. DiGirolamo
+| 1 | [Data Simulator Python Script](https://github.com/lydia-wu/cadence/blob/e93ec003a91bfbb855342317513598ac01fbcc21/Data_Ingestion/Data_Generator.py) | H. Yukihiro  
+| 2 | [Client to pick up localhost Python Script](https://github.com/lydia-wu/cadence/blob/163c36f8adceb0bc8462537b470c0b5321a6a2ab/Data_Ingestion/client.py) | M. DiGirolamo  
+| 3 | [Email Flow Python Script](https://github.com/lydia-wu/cadence/blob/f984e492d386a959e98f254e4492ff20969bd4b5/Email_Flow/FlowV_2_3.py) | H. Alloway, L. Wu  
+| 4 | [Unzip file that lands in SharePoint Python Script](https://github.com/lydia-wu/cadence/blob/743ce1f3c3507501376ffdd09529a8648a96b5fa/postprocessing/unzip_sharepoint.py) | M. DiGirolamo  
+| 5 | [PowerBI Base File](https://github.com/lydia-wu/cadence/blob/d9f62a3ed16b97f2a7f8c17093b6b8de28638c0d/cadence_pbi_v2_3.pbix) | L. Wu  
+| 6 | [Archive Old Files Python Script]() | M. DiGirolamo
 
 # Email Flow Version Control
 Current Version: V2.3  
