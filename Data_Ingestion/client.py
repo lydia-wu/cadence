@@ -11,7 +11,8 @@ import shutil
 import os
 
 # ------- File Paths -----------
-user = input("Hello, thank you for using the Cadence Client Tool. Please provide your username (For reference, username would reside within this structure /Users/tsuru/OneDrive/): ")
+#user = input("Hello, thank you for using the Cadence Client Tool. Please provide your username (For reference, username would reside within this structure /Users/tsuru/OneDrive/): ")
+user = 'lydia'
 zip_path = 'C:/Users/' + user + '/Downloads/'           # file path for the zipped log files (relative or absolute path)
 arch_path = zip_path + 'archive/'  # file path for archived original log files (relative or absolute path)
 hb_path = zip_path # path for the heartbeat file

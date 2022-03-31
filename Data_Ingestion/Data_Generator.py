@@ -11,6 +11,7 @@ import schedule
 import time
 #from Data_Ingestion.server import *
 from server import *
+from lookupTable import findNode,findSIM
 from datetime import datetime
 import random
 # today = date.today()
@@ -26,7 +27,8 @@ import random
 #	Wait 10 sec (simulate the 1 minute delay between hello world messages)
 #	Count++
 
-path = input("Hello, thank you for using Cadence. Please provide the filepath where you would like the generated logs to reside? For reference, insert a response similar to this filepath structure /Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator: ")
+#path = input("Hello, thank you for using Cadence. Please provide the filepath where you would like the generated logs to reside? For reference, insert a response similar to this filepath structure /Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator: ")
+path = 'C:/Users/lydia/Downloads'
 print("Generating App and Network Files Now")
 
 # Instantiates run count
