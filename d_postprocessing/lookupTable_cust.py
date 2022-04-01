@@ -20,6 +20,8 @@ print("Look Up Table is Processing")
 df = pd.read_csv('/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Customer Data Offload/node_id__to__sim_id_lookup_manifest_3-30-2022.csv')
 node = df['NodeID']
 sim = df['ICCID(SIM)#']
+#print(node)
+#print(sim)
 lookupNode = {}
 lookupSIM = {}
 
@@ -29,13 +31,25 @@ updatedFile = set()
 for x in range(node.size):
     lookupSIM[node[x]] = sim[x]
 def findSIM(node):
-    return lookupSIM[node]
+    return lookupSIM.get(node)
+    #if (lookupSIM[node]):
+    #    return lookupSIM[node]
+    #else:
+    #    return "DNE in Manifest"
+
+#print("Here is the lookupSIM result:\n")
+#print(lookupSIM)
+#print("==============================\n\n")
 
 # Lookup NodeID from given SIMID
 for x in range(sim.size):
     lookupNode[sim[x]] = node[x]
 def findNode(sim):
-    return lookupNode[sim]
+    return lookupNode.get(sim)
+
+#print("Here is the lookupNODE result:\n")
+#print(lookupNode)
+#print("==============================\n\n")
 
 # Populate SIM IDs
 def fillSIM(file):
@@ -46,9 +60,13 @@ def fillSIM(file):
     if app.shape[0] < 500:
         return
     nodeID = app['Node ID']
+    #print("Here are our NodeIDs:", nodeID)
     simID = []
     for x in nodeID:
+        #print(x)
         simID.append(findSIM(x))
+        #print(simID)
+    
     app['SIM ID'] = simID
     app.to_csv(file, index=False)
     updatedFile.add(file)
@@ -83,6 +101,7 @@ try:
 
         for x in appReports:
             if x not in updatedFile:
+                #print(x, "Tada! This is the file we are working with!\n")
                 fillSIM(x)
 
         for x in networkReports:
