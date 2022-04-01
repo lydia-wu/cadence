@@ -1,18 +1,29 @@
 # last edited by Michael Di Girolamo at 3/30/22 7:20 PM
+# last edited by L. Wu at 3/31/22 8:06 PM
 
 import os, zipfile
 from datetime import datetime
 import csv
 import schedule
 import time
+import shutil # to move files from "active" directory to "archive"/"transferred" directory
+
 
 # ====== Setup Variables =======
 
 user = input("Hello, thank you for using the Cadence Unzip Tool. Please provide your username (For reference, username would reside within this structure /Users/tsuru/OneDrive/): ")
-unzip_dir = 'C:/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents'
+unzip_dir = 'C:/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Data Simulator Offload'
 heartbeat_dir = unzip_dir
+archive_dir = 'C:/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Data Simulator Offload/archive'
 extension = ".zip"
 filecount = 0
+
+# CHECK FOR DIRECTORIES
+if os.path.isdir(archive_dir) is True:
+    print("Existing archive directory is being written to.")
+else: 
+    os.makedirs(archive_dir)
+    print("A new archive directory has been created and is being written to.")
 
 # ====== Heartbeat Code =======
 
@@ -44,6 +55,7 @@ while True:
                 zip_ref.extractall(unzip_dir)           # extract file to dir
                 zip_ref.close()                         # close file
                 #os.remove(file_name)                    # delete zipped file
+                shutil.move(item, archive_dir)
                 filecount = filecount + 1               # increment filecount for heartbeat
         os.chdir(heartbeat_dir)                       # revert directory to heartbeat location
         schedule.run_pending()
