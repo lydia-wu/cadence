@@ -30,6 +30,7 @@ import random
 
 #path = input("Hello, thank you for using Cadence. Please provide the filepath where you would like the generated logs to reside? For reference, insert a response similar to this filepath structure /Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator: ")
 path = 'C:/Users/lydia/Downloads'
+#path = 'C:/Users/baseb/Downloads'
 print("Generating App and Network Files Now")
 
 # Instantiates run count
