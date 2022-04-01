@@ -29,7 +29,7 @@ else:
 
 # do once
 heartbeat_time = datetime.now().strftime("%Y-%m-%d_%H%M%S")
-with open(heartbeat_dir + 'UnzipHEARTBEAT_' + heartbeat_time + '.csv', 'w+', newline = '') as file1:
+with open(heartbeat_dir + '/UnzipHEARTBEAT_' + heartbeat_time + '.csv', 'w+', newline = '') as file1:
     UnzipHeartbeat = csv.writer(file1)
     UnzipHeartbeat.writerow(['Time', 'Status', 'Files Processed'])
     UnzipHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "Begin Run", 0])
