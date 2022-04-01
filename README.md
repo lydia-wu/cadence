@@ -11,7 +11,7 @@ Liberty University CADENCE Capstone Team Fall 2021 - Spring 2022
 | d | [Unzip file that lands in SharePoint Python Script](https://github.com/lydia-wu/cadence/blob/5f85b7c7f4556050c881acd36a0f5d2ce1477b87/d_postprocessing/unzip_sharepoint.py) | M. DiGirolamo  
 | top | [PowerBI Base File](https://github.com/lydia-wu/cadence/blob/d9f62a3ed16b97f2a7f8c17093b6b8de28638c0d/cadence_pbi_v2_3.pbix) | L. Wu  
 | d | [Archive Old Files Python Script](https://github.com/lydia-wu/cadence/blob/a667bd31d9e1b7d33b1ff9e0dfca5420e636a5e2/d_postprocessing/archive_old.py) | M. DiGirolamo
-| d | [Filter Log Files] (https://github.com/lydia-wu/cadence/blob/a667bd31d9e1b7d33b1ff9e0dfca5420e636a5e2/d_postprocessing/log_filtering.py) | M. DiGirolamo
+| d | [Filter Log Files](https://github.com/lydia-wu/cadence/blob/a667bd31d9e1b7d33b1ff9e0dfca5420e636a5e2/d_postprocessing/log_filtering.py) | M. DiGirolamo
 
 # Email Flow Version Control
 Current Version: V2.3  
