@@ -55,7 +55,7 @@ while True:
                 zip_ref.extractall(unzip_dir)           # extract file to dir
                 zip_ref.close()                         # close file
                 #os.remove(file_name)                    # delete zipped file
-                shutil.move(item, archive_dir)
+                shutil.move(item, archive_dir)          # moves log file to archive directory
                 filecount = filecount + 1               # increment filecount for heartbeat
         os.chdir(heartbeat_dir)                       # revert directory to heartbeat location
         schedule.run_pending()

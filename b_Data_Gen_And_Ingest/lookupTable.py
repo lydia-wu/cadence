@@ -14,10 +14,12 @@ import pandas as pd
 
 #user = input("Hello, thank you for using the Cadence Lookup Table. Please provide your username (For reference, username would reside within this structure /Users/tsuru/OneDrive/): ")
 user = 'lydia'
+#user = 'baseb'
+
 print("Look Up Table is Processing")
 
 # Establishes lookup table
-df = pd.read_csv('/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/NodeID_SIM_LookUpTable.csv')
+df = pd.read_csv('C:/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/NodeID_SIM_LookUpTable.csv')
 node = df['Title']
 sim = df['SIM ID']
 lookupNode = {}
@@ -71,15 +73,15 @@ def fillNode(file):
 
 try:
     while True:
-        onlyfiles = [f for f in listdir('/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Data Simulator Offload/') if isfile(join('/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Data Simulator Offload/', f))]
+        onlyfiles = [f for f in listdir('C:/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Data Simulator Offload/') if isfile(join('/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Data Simulator Offload/', f))]
         appReports = []
         networkReports = []
         for file in onlyfiles:
             if re.match(r'^AppReport', file):
-                appReports.append('/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Data Simulator Offload/'+file)
+                appReports.append('C:/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Data Simulator Offload/'+file)
             
             if re.match(r'^NetworkReport', file):
-                networkReports.append('/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Data Simulator Offload/'+file)
+                networkReports.append('C:/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Data Simulator Offload/'+file)
 
         for x in appReports:
             if x not in updatedFile:

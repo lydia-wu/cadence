@@ -1,4 +1,4 @@
-# last edited by Michael Di Girolamo at 3/30/22 7:45 PM
+# last edited by Michael Di Girolamo at 3/31/22 10:45 PM
 
 from logging import exception
 import socket
@@ -13,6 +13,7 @@ import os
 # ------- File Paths -----------
 #user = input("Hello, thank you for using the Cadence Client Tool. Please provide your username (For reference, username would reside within this structure /Users/tsuru/OneDrive/): ")
 user = 'lydia'
+#user = 'baseb'
 zip_path = 'C:/Users/' + user + '/Downloads/'           # file path for the zipped log files (relative or absolute path)
 arch_path = zip_path + 'archive/'  # file path for archived original log files (relative or absolute path)
 hb_path = zip_path # path for the heartbeat file
