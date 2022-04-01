@@ -17,9 +17,9 @@ user = 'lydia'
 print("Look Up Table is Processing")
 
 # Establishes lookup table
-df = pd.read_csv('/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/NodeID_SIM_LookUpTable.csv')
-node = df['Title']
-sim = df['SIM ID']
+df = pd.read_csv('/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Customer Data Offload/node_id__to__sim_id_lookup_manifest_3-30-2022.csv')
+node = df['NodeID']
+sim = df['ICCID(SIM)#']
 lookupNode = {}
 lookupSIM = {}
 
@@ -45,7 +45,7 @@ def fillSIM(file):
     app = pd.read_csv(file)
     if app.shape[0] < 500:
         return
-    nodeID = app['NodeID']
+    nodeID = app['Node ID']
     simID = []
     for x in nodeID:
         simID.append(findSIM(x))
@@ -61,7 +61,7 @@ def fillNode(file):
     net = pd.read_csv(file)
     if net.shape[0] < 1000:
         return
-    simID = net['ICCID(SIM ID)']
+    simID = net['ICCID']
     nodeID = []
     for x in simID:
         nodeID.append(findNode(x))
@@ -71,15 +71,15 @@ def fillNode(file):
 
 try:
     while True:
-        onlyfiles = [f for f in listdir('/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Data Simulator Offload/') if isfile(join('/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Data Simulator Offload/', f))]
+        onlyfiles = [f for f in listdir('/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Customer Data Offload/') if isfile(join('/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Customer Data Offload/', f))]
         appReports = []
         networkReports = []
         for file in onlyfiles:
-            if re.match(r'^AppReport', file):
-                appReports.append('/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Data Simulator Offload/'+file)
+            if re.match(r'^heartbeat-logs', file):
+                appReports.append('/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Customer Data Offload/'+file)
             
-            if re.match(r'^NetworkReport', file):
-                networkReports.append('/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Data Simulator Offload/'+file)
+            if re.match(r'^Itemised', file):
+                networkReports.append('/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Customer Data Offload/'+file)
 
         for x in appReports:
             if x not in updatedFile:
