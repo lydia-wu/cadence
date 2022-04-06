@@ -126,7 +126,7 @@ with open(directory + '/' + heartbeatFileName + '.csv', 'w+', newline = '') as f
                 #    print(documentName, "\n")
 
                 if (notHEARTBEATFile & notLookupTableFile & ~isDirectory):# & canRead) :
-                    if datetime.strptime(documentName[-21:-4], "%Y-%m-%d_%H%M%S") <= (datetime.now() - timedelta(minutes = 5)):
+                    if datetime.strptime(documentName[-21:-4], "%Y-%m-%d_%H%M%S") <= (datetime.now() - timedelta(minutes = 10)):
                         filesim.append(directory+"/"+documentName)
                         print("Grabbing: ", documentName)
                         filecount = filecount + 1
