@@ -15,7 +15,7 @@ import sys
 #user = input("Hello, thank you for using the Cadence Client Tool. Please provide your username (For reference, username would reside within this structure /Users/tsuru/OneDrive/): ")
 #user = 'lydia'
 user = 'baseb'
-zip_path = 'C:/Users/' + user + '/Downloads/'           # file path for the zipped log files (relative or absolute path)
+zip_path = 'C:/Users/' + user + '/Downloads/cadence_1'           # file path for the zipped log files (relative or absolute path)
 arch_path = zip_path + 'archive/'  # file path for archived original log files (relative or absolute path)
 hb_path = zip_path # path for the heartbeat file
 
@@ -24,7 +24,7 @@ hb_path = zip_path # path for the heartbeat file
 
 # do once
 heartbeat_time = datetime.now().strftime("%Y-%m-%d_%H%M%S")
-with open(hb_path + '/ClientHEARTBEAT_' + heartbeat_time + '.csv', 'w+', newline = '') as file1:
+with open(hb_path + 'ClientHEARTBEAT_' + heartbeat_time + '.csv', 'w+', newline = '') as file1:
     ClientHeartbeat = csv.writer(file1)
     ClientHeartbeat.writerow(['Time', 'Status', 'Files Processed'])
     ClientHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "Begin Run", 0])
