@@ -1,4 +1,4 @@
-# last edited by Michael Di Girolamo at 3/31/22 10:45 PM
+# last edited by Michael Di Girolamo at 4/6/22 3:30 PM
 
 from logging import exception
 import socket
@@ -9,11 +9,12 @@ import csv
 import schedule
 import shutil
 import os
+import sys
 
 # ------- File Paths -----------
 #user = input("Hello, thank you for using the Cadence Client Tool. Please provide your username (For reference, username would reside within this structure /Users/tsuru/OneDrive/): ")
-user = 'lydia'
-#user = 'baseb'
+#user = 'lydia'
+user = 'baseb'
 zip_path = 'C:/Users/' + user + '/Downloads/'           # file path for the zipped log files (relative or absolute path)
 arch_path = zip_path + 'archive/'  # file path for archived original log files (relative or absolute path)
 hb_path = zip_path # path for the heartbeat file
@@ -66,6 +67,7 @@ def receive_data(port):
                     print("Error: Connection was likely closed by the server")
                     s.close()                 # closes socket
                     file.close()
+                    delemptyfiles(zip_path)
                     zip_logfile(filename)     # Zip the file
                     archive_logfile(filename) # Archive the log file
                     quit()
@@ -73,19 +75,31 @@ def receive_data(port):
                     print("Error: Connection may have never been established")
                     s.close()                 # closes socket
                     file.close()
+                    delemptyfiles(zip_path)
                     zip_logfile(filename)     # Zip the file - should zip an empty log?
                     archive_logfile(filename) # Archive the log file
-                    quit()
+                    try:
+                        time.sleep(5)
+                    except KeyboardInterrupt:
+                        print("Accepted keyboard interrupt")
+                        #zip_logfile(filename)     # Zip the file
+                        #archive_logfile(filename) # Archive the log file
+                        quit()
+                    print("Retrying...")
+                    #quit()
+                    continue    # will continue retrying until a connection is made
                 except KeyboardInterrupt:
                     print("Keyboard Interrupt - Closing...")
                     s.close()                 # closes socket
                     file.close()
+                    delemptyfiles(zip_path)
                     zip_logfile(filename)     # Zip the file
                     archive_logfile(filename) # Archive the log file
                     quit()
                 except Exception as e:
                     print("An unexpected error occured")
                     print(e)
+                    delemptyfiles(zip_path)
                     quit()
 
                 DeviceLog = csv.writer(file)
@@ -96,7 +110,7 @@ def receive_data(port):
                 print ("Closing socket")
                 s.close()
                 schedule.run_pending()
-                #time.sleep(1)
+                #time.sleep(1) # for debugging purposes
         filecount = filecount + 1
 
         zip_logfile(filename)     # Zip the file
@@ -104,24 +118,41 @@ def receive_data(port):
 
 # Zip Log File Function
 def zip_logfile(filename):
-    with ZipFile(zip_path + filename + '.zip', 'w') as zipObj:
-        os.chdir(zip_path)   # changes directory so a 'logs' file is not included in the zip
-        zipObj.write(filename + '.log')
-        #os.chdir('..')      # reverts to parent directory
-
+    try:
+        with ZipFile(zip_path + filename + '.zip', 'w') as zipObj:
+            os.chdir(zip_path)   # changes directory so a 'logs' file is not included in the zip
+            zipObj.write(filename + '.log')
+            #os.chdir('..')      # reverts to parent directory
+    except FileNotFoundError:
+        print(f'(zip_logfile) File not found: {filename}.log')
+        os.remove(filename + '.zip')
 
 # Archive Log File Function
 def archive_logfile(filename):
     srcpath = zip_path + filename + '.log'
     destpath = arch_path + filename + '.log'
-    shutil.move(srcpath, destpath)
+    try:
+        shutil.move(srcpath, destpath)
+    except FileNotFoundError:
+        print(f'(archive_logfile) File not found: {filename}.log')
+
+# Delete Empty Files Function
+def delemptyfiles(rootdir):
+    for root, dirs, files in os.walk(rootdir):
+        for f in files:
+            fullname = os.path.join(root, f)
+            if os.path.getsize(fullname) == 0:
+                print (fullname)
+                os.remove(fullname)
+            
+# Check for Specified Directory
+def checkdir(directory_path):
+    if os.path.isdir(directory_path) is True:
+        print("Existing processing directory is being written to.")
+    else: 
+        os.makedirs(directory_path)
+        print("A new directory has been created and is being written to.")
 
 # Run the program
-# CHECK FOR DIRECTORIES
-if os.path.isdir(arch_path) is True:
-    print("Existing processing directory is being written to.")
-else: 
-    os.makedirs(arch_path)
-    print("A new directory has been created and is being written to.")
-
+checkdir(arch_path)
 receive_data(5601)
