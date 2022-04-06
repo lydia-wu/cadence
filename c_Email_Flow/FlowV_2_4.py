@@ -15,17 +15,17 @@ from  datetime import datetime, timedelta # timedelta is for checking if a file 
 
 # DIRECTORY VARIABLES
 parentLocation = 'C:/Users/lydia/Downloads/'
-#directory     = parentLocation + 'cadence_2022_03_30'
-#newdirectory  = parentLocation + 'transferred'
+directory     = parentLocation + 'cadence_2022_03_30'
+newdirectory  = parentLocation + 'transferred'
 
 # EMAIL VARIABLES
 emailAddr      = 'ljwu@liberty.edu' # email to recieve data simulator outputs
-#emailSubject  = 'Cadence Draft 2.1'
+emailSubject  = 'Cadence Draft 2.1'
 
 # DIRECTORY FOR CUSTOMER DEMO
-directory      = parentLocation + 'cadence_customerData'
-newdirectory   = directory + '/' + 'transferred'
-emailSubject   = 'Cadence Draft 2.3: Customer Example'
+#directory      = parentLocation + 'cadence_customerData'
+#newdirectory   = directory + '/' + 'transferred'
+#emailSubject   = 'Cadence Draft 2.3: Customer Example'
 
 ArchiveFolder  = Path(newdirectory)
 
