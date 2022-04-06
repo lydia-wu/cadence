@@ -12,5 +12,5 @@ x.start_server(5)   # parameter: time before timeout
 while count <= iterations:
     x.send_data(f"data test {count}")
     count = count + 1
-    #time.sleep(1) #used for testing purposes - logging heartbeats etc.
+    time.sleep(1) #used for testing purposes - logging heartbeats etc.
 x.stop_server()
