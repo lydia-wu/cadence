@@ -32,3 +32,4 @@
 *.app
 Elastic_Stack/kibana/x-pack/plugins/reporting/chromium/chrome-win/interactive_ui_tests.exe
 Elastic_Stack/kibana/x-pack/plugins/reporting/chromium/chrome-win/chrome.dll
+Data_Ingestion/Cadence_Data_Generator.py
