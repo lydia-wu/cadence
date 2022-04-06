@@ -7,21 +7,31 @@ Liberty University CADENCE Capstone Team Fall 2021 - Spring 2022
 | a | [Column Killer Python Script](https://github.com/lydia-wu/cadence/blob/60d3be3d5fa84276820d4075dedffdf6d9e3a452/a_preprocessing/columnKiller.py) | L. Wu 
 | b | [Data Simulator Python Script](https://github.com/lydia-wu/cadence/blob/e93ec003a91bfbb855342317513598ac01fbcc21/Data_Ingestion/Data_Generator.py) | H. Yukihiro  
 | b | [Client to pick up localhost Python Script](https://github.com/lydia-wu/cadence/blob/163c36f8adceb0bc8462537b470c0b5321a6a2ab/Data_Ingestion/client.py) | M. DiGirolamo  
-| c | [Email Flow Python Script](https://github.com/lydia-wu/cadence/blob/092d6ef4a94cac206a9cd1698d48bd155355c238/c_Email_Flow/FlowV_2_4.py) | H. Alloway, L. Wu  
+| c | [Email Flow Python Script](https://github.com/lydia-wu/cadence/blob/95148fb150d4bed0332292ca9ba4c800aaa6fdcf/c_Email_Flow/FlowV_2_4.py) | H. Alloway, L. Wu  
 | d | [Unzip file that lands in SharePoint Python Script](https://github.com/lydia-wu/cadence/blob/5f85b7c7f4556050c881acd36a0f5d2ce1477b87/d_postprocessing/unzip_sharepoint.py) | M. DiGirolamo  
 | top | [PowerBI Base File](https://github.com/lydia-wu/cadence/blob/6fb01670d6f976ccfef18cc367c7506270335928/cadence_pbi_v2_4.pbix) | L. Wu  
 | d | [Archive Old Files Python Script](https://github.com/lydia-wu/cadence/blob/a667bd31d9e1b7d33b1ff9e0dfca5420e636a5e2/d_postprocessing/archive_old.py) | M. DiGirolamo
 | d | [Filter Log Files](https://github.com/lydia-wu/cadence/blob/a667bd31d9e1b7d33b1ff9e0dfca5420e636a5e2/d_postprocessing/log_filtering.py) | M. DiGirolamo
 
 # Email Flow Version Control
-Current Version: V2.3  
+Current Version: V2.4
+Last Updated: 2022-03-31, 7:57 PM ET  
+Functionality: Homogenizes email function, Tightens script
+Concern: Requires Absence of active-write files in Source Directory
+
+## V2.3  
 Last Updated: 2022-03-30, 10:51 PM ET  
 Functionality: Sends 1 Attachment Per Email, Addresses V2.2 Exit Bug  
 Concern: Requires Absence of extraneous Files in Source Directory  
 
 # PowerBI Version Control
-Current Version: V2.3  
-Last Updated: 2022-03-02, 11:30 AM ET  
+Current Version: V2.4
+Last Updated: 2022-04-06, 11:00 AM ET  
+
+## V2.4
+Author: L. Wu  
+Last Updated: 2022-04-06, 11:00 AM ET  
+Functionality: Pulls in customer files and shows in tabular format
 
 ## V2.3
 Author: L. Wu  
