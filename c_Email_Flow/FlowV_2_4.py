@@ -14,18 +14,18 @@ from   pathlib import Path                # this is for checking to see if "arch
 from  datetime import datetime, timedelta # timedelta is for checking if a file was made in the last 10 minutes
 
 # DIRECTORY VARIABLES
-parentLocation = 'C:/Users/lydia/Downloads/'
-directory     = parentLocation + 'cadence_2022_03_30'
+parentLocation = 'C:/Users/Hunter/Downloads/'
+directory     = parentLocation + 'cadence_1'
 newdirectory  = parentLocation + 'transferred'
 
 # EMAIL VARIABLES
-emailAddr      = 'ljwu@liberty.edu' # email to recieve data simulator outputs
-emailSubject  = 'Cadence Draft 2.1'
+emailAddr      = 'haalloway@liberty.edu' # email to recieve data simulator outputs
+emailSubject  = 'Cadence Draft 2.4'
 
 # DIRECTORY FOR CUSTOMER DEMO
-#directory      = parentLocation + 'cadence_customerData'
-#newdirectory   = directory + '/' + 'transferred'
-#emailSubject   = 'Cadence Draft 2.3: Customer Example'
+# directory      = parentLocation + 'cadence_customerData'
+# newdirectory   = directory + '/' + 'transferred'
+# emailSubject   = 'Cadence Draft 2.3: Customer Example'
 
 ArchiveFolder  = Path(newdirectory)
 
@@ -50,12 +50,14 @@ def sendTheMail(outlook, emailAddr, emailSubject, documentPath, ArchiveFolder, n
 
     print(documentPath)
     mail.Attachments.Add(documentPath)
+
     #print("Attaching:                    ", documentPath)
     print("ATTACHED")
     time.sleep(1)
 
     # send mail!
     mail.Send()
+    
     #print("File has been sent successfully")
     print("EMAILED")
     #schedule.run_all()
@@ -70,8 +72,8 @@ def sendTheMail(outlook, emailAddr, emailSubject, documentPath, ArchiveFolder, n
     print("MOVED OUT OF ACTIVE DIRECTORY")
     
     print("\n")
-    del mail
-
+    del mail 
+    
 # GENERATE HEARTBEAT EVERY 10 minutes
 def heartbeat():
     EmailFlowHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "Working", int(filecount)])
@@ -164,13 +166,20 @@ with open(directory + '/' + heartbeatFileName + '.csv', 'w+', newline = '') as f
                 for documentPath in filesim:
                     sendTheMail(outlook, emailAddr, emailSubject, documentPath, ArchiveFolder, newdirectory)
                     print("Some heartbeat file(s) now sent successfully")
-                
+
             print("This has closed with keyboard interference.\n\n")                
+
+# Sending a PDF of the Visualized Dashboard Report
+    if os.path.isfile(parentLocation + '/cadence_pbi_v2_2.pdf'):
+        sendTheMail(outlook, emailAddr, emailSubject, parentLocation + '/cadence_pbi_v2_2.pdf', ArchiveFolder, newdirectory)
+        print('The visualized dashboard has been successfully attached') 
+    else: 
+        print('The visual dashboard report has already been attached')
 
 # Finally, send the current Email Flow Heartbeat file: close the file, then email
 file1.close()
 
-print("=== NOW SENDING CURRENT EmailFlow HEARTBEAT FILE ===")
+print("=== NOW SENDING CURRENT EmailFlow HEARTBEAT FILE AND VISUALIZED DASHBOARD REPORT===")
 sendTheMail(outlook, emailAddr, emailSubject, directory+"/"+heartbeatFileName+ '.csv', ArchiveFolder, newdirectory)
 
 print("===================================\nWoot! End of program!")
