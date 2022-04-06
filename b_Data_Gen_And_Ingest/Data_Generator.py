@@ -12,7 +12,6 @@ import schedule
 import time
 #from Data_Ingestion.server import *
 from server import * 
-from lookupTable import findNode,findSIM
 from datetime import datetime
 import random
 # today = date.today()
