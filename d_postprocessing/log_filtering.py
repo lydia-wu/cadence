@@ -7,7 +7,7 @@ import time
 #user = input("Hello, thank you for using the Cadence Unzip Tool. Please provide your username (For reference, username would reside within this structure /Users/tsuru/OneDrive/): ")
 #user = 'baseb'
 user = 'lydia'
-filter_dir = 'C:/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/'
+filter_dir = 'C:/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Data Simulator Offload/'
 #filter_dir = 'C:/Users/' + user + '/Downloads/archive/'
 extension = ".log"
 pattern = '\d{4}[-]\d{2}[-]\d{2}' # basic regex for proof of concept - may need to be more robust
