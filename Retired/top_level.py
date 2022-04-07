@@ -3,6 +3,7 @@
 # x2 == Data Simulator
 print ("Commencing Top-Level Cadence") 
 
+#### Write out script ####
 from a_preprocessing.columnKiller import main as colKill_main
 
 from b_Data_Gen_And_Ingest.Data_Generator import *
@@ -17,10 +18,10 @@ def thread_function(scriptName, kwargs):
 
 # Execute columnKiller.py
 CleanedDataDirectory = '/Users/lydia/downloads/BookTest' # the STARTING directory with the CSVs
-timeDelayMinutes = 1           # "wait" time minutes before script runs again
-newFolder = 'clean'            # the "column killed" file landing folder:
+timeDelayMinutes = 1                                     # "wait" time minutes before script runs again
+newFolder = 'clean'                                      # the "column killed" file landing folder:
 newDirectory = CleanedDataDirectory + '/' + newFolder    # the LANDING directory for the cleaned CSVs
-keep_col = ['Column 1', 'Column 2', 'Column 5'] # column names to KEEP (all other columns deleted)
+keep_col = ['Column 1', 'Column 2', 'Column 5']          # column names to KEEP (all other columns deleted)
 
 # Execute Data_Generator_static.py
 DataSimOutputDirectory = '/Users/lydia/downloads/dataSimOutput' # this is where simulated files will land
@@ -50,3 +51,4 @@ except KeyboardInterrupt:
 #x2 = threading.Thread(target=thread_function, args=("AppNetwork_Data_Generator.py",))
 #x2.start()
 #print("/Users/lydia/downloads/dataSimulatorOutput")
+

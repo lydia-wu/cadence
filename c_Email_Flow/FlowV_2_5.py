@@ -1,5 +1,5 @@
 #last edited by Hunter Alloway on 03/11/2022; 
-#last edited by Lydia Wu @7:57PM, 2022-03-31
+#last edited by Lydia Wu @2:35PM, 2022-04-06
 print ("Commencing Flow of Data from PC to SharePoint")
 
 # LIBRARIES
@@ -37,13 +37,13 @@ if os.path.isdir(directory) is True:
     print("Existing processing directory is being written to.")
 else: 
     os.makedirs(directory)
-    print("A new directory has been created and is being written to.")
+    print("A new processing directory has been created and is being written to.")
 
 if os.path.isdir(newdirectory) is True:
-    print("Existing processing directory is being written to.")
+    print("Existing Archive directory is being written to.")
 else: 
     os.makedirs(newdirectory)
-    print("A new directory has been created and is being written to.")
+    print("A new Archive directory has been created and is being written to.")
 
 # SEND MAIL, ONE ATTACHMENT
 def sendTheMail(outlook, emailAddr, emailSubject, documentPath, ArchiveFolder, newdirectory):
@@ -120,15 +120,16 @@ with open(directory + '/' + heartbeatFileName + '.csv', 'w+', newline = '') as f
                 notHEARTBEATFile   = (len(documentName.split('HEARTBEAT'))   - 1 == 0)
                 notLookupTableFile = (len(documentName.split('LookUpTable')) - 1 == 0)
                 isDirectory        = os.path.isdir(directory+"/"+documentName)
-
+                #canRead            = os.access(documentName, os.R_OK) # will this work??
                 #if (isDirectory):
                 #    print("Here are the directory contents that are not files: ")
                 #    print(documentName, "\n")
 
-                if (notHEARTBEATFile & notLookupTableFile & ~isDirectory) :
-                    filesim.append(directory+"/"+documentName)
-                    print("Grabbing: ", documentName)
-                    filecount = filecount + 1
+                if (notHEARTBEATFile & notLookupTableFile & ~isDirectory):# & canRead) :
+                    if datetime.strptime(documentName[-21:-4], "%Y-%m-%d_%H%M%S") <= (datetime.now() - timedelta(minutes = 10)):
+                        filesim.append(directory+"/"+documentName)
+                        print("Grabbing: ", documentName)
+                        filecount = filecount + 1
 
             schedule.run_pending()
             #print("filesim, all = ", filesim)

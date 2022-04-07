@@ -8,10 +8,11 @@ import schedule
 import time
 from datetime import datetime
 
-user = input("Hello, thank you for using the Cadence Archive Tool. Please provide your username (For reference, username would reside within this structure /Users/tsuru/OneDrive/): ")
+#user = input("Hello, thank you for using the Cadence Archive Tool. Please provide your username (For reference, username would reside within this structure /Users/tsuru/OneDrive/): ")
+user = 'lydia'
 
 def archive_old():
-    old_path = 'C:/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents' # file path where old files are located
+    old_path = 'C:/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Data Simulator Offload/' # file path where old files are located
     arch_path = 'Archived/' # file path to where the old files will be archived
     old_ext = '.zip'        # extension of old files (include the '.' i.e. -> '.zip')
     days_old = 23           # days until file is archived
