@@ -1,4 +1,4 @@
-# last edited by Michael Di Girolamo at 4/7/22 7:30 PM
+# last edited by Michael Di Girolamo at 4/7/22 8:00 PM
 
 from logging import exception
 import socket
@@ -12,8 +12,8 @@ import os
 import sys
 
 # ------- File Paths -----------
-#user = 'lydia'
-user = 'baseb'
+user = 'lydia'
+#user = 'baseb'
 parent_path = 'C:/Users/' + user + '/Downloads/cadence_1/'
 zip_path = parent_path + 'client_temp/'             # file path for the zipped log files (relative or absolute path)
 arch_path = zip_path + 'archive/'                   # file path for archived original log files (relative or absolute path)
@@ -28,9 +28,9 @@ def checkdir(directory_path):
         os.makedirs(directory_path)
         print(f"{directory_path} has been created")
 
+#checkdir(parent_path)
 checkdir(zip_path)
 checkdir(arch_path)
-checkdir(parent_path)
 
 # ------- Heartbeat Code ------
 

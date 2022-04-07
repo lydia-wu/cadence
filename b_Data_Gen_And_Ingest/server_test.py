@@ -1,4 +1,4 @@
-# last edited by Michael Di Girolamo at 4/6/22 9:30 PM
+# last edited by Michael Di Girolamo at 4/7/22 8:00 PM
 
 import time
 from server import *
@@ -29,7 +29,7 @@ while count <= iterations:
     d4.send_data(f"data test {count} Device 4")
     d5.send_data(f"data test {count} Device 5")
     count = count + 1
-    time.sleep(0.5) #used for testing purposes - logging heartbeats etc.
+    time.sleep(0.5) #used for testing purposes (logging heartbeats etc.)
 d1.stop_server()
 d2.stop_server()
 d3.stop_server()
