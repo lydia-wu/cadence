@@ -13,7 +13,7 @@ import re
 import pandas as pd
 
 #user = input("Hello, thank you for using the Cadence Lookup Table. Please provide your username (For reference, username would reside within this structure /Users/tsuru/OneDrive/): ")
-user = 'lydia'
+user = 'tsuru'
 print("Look Up Table is Processing")
 
 # Establishes lookup table

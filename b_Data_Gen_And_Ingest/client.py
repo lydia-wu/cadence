@@ -1,4 +1,5 @@
 # last edited by Michael Di Girolamo at 4/6/22 3:30 PM
+# last edited by Hayley Yukihiro at 4/7/2022 03:41:00 -- added heartbeat class functionality
 
 from logging import exception
 import socket
@@ -10,39 +11,42 @@ import schedule
 import shutil
 import os
 import sys
+import heartbeat
 
 # ------- File Paths -----------
 #user = input("Hello, thank you for using the Cadence Client Tool. Please provide your username (For reference, username would reside within this structure /Users/tsuru/OneDrive/): ")
-user = 'lydia'
+user = 'tsuru'
 #user = 'baseb'
 zip_path = 'C:/Users/' + user + '/Downloads/cadence_1/'           # file path for the zipped log files (relative or absolute path)
 arch_path = zip_path + 'archive/'  # file path for archived original log files (relative or absolute path)
 hb_path = zip_path # path for the heartbeat file
 
 # ------- Heartbeat Code ------
-# path = input("Hello, thank you for using Cadence. Please provide the filepath where you would like the generated logs to reside? For reference, insert a response similar to this filepath structure /Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator: ")
+# # path = input("Hello, thank you for using Cadence. Please provide the filepath where you would like the generated logs to reside? For reference, insert a response similar to this filepath structure /Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator: ")
 
-# do once
-heartbeat_time = datetime.now().strftime("%Y-%m-%d_%H%M%S")
-with open(hb_path + 'ClientHEARTBEAT_' + heartbeat_time + '.csv', 'w+', newline = '') as file1:
-    ClientHeartbeat = csv.writer(file1)
-    ClientHeartbeat.writerow(['Time', 'Status', 'Files Processed'])
-    ClientHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "Begin Run", 0])
+# # do once
+# heartbeat_time = datetime.now().strftime("%Y-%m-%d_%H%M%S")
+# with open(hb_path + 'ClientHEARTBEAT_' + heartbeat_time + '.csv', 'w+', newline = '') as file1:
+#     ClientHeartbeat = csv.writer(file1)
+#     ClientHeartbeat.writerow(['Time', 'Status', 'Files Processed'])
+#     ClientHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "Begin Run", 0])
 
-# Function to generate a heartbeat every 5 minutes
-def heartbeat():
-    with open(hb_path + '/ClientHEARTBEAT_' + heartbeat_time + '.csv', 'a', newline = '') as file1:
-        ClientHeartbeat = csv.writer(file1)
-        ClientHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "Working", int(filecount)])
+# # Function to generate a heartbeat every 5 minutes
+# def heartbeat():
+#     with open(hb_path + '/ClientHEARTBEAT_' + heartbeat_time + '.csv', 'a', newline = '') as file1:
+#         ClientHeartbeat = csv.writer(file1)
+#         ClientHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "Working", int(filecount)])
 
-schedule.every(5).seconds.do(heartbeat) # shortened time for testing purposes
-#schedule.every(5).minutes.do(heartbeat)
+# schedule.every(5).seconds.do(heartbeat) # shortened time for testing purposes
+# #schedule.every(5).minutes.do(heartbeat)
+
+heartbeat = heartbeat.Heartbeat("Client")
    
 # ------ Receive Data Code ------
 
 def receive_data(port):
-    global filecount
-    filecount = 0
+    # global filecount
+    # filecount = 0
     while True:
         start_time = time.time()
         file_seconds = 5 # write duration for one log file
@@ -111,7 +115,8 @@ def receive_data(port):
                 s.close()
                 schedule.run_pending()
                 #time.sleep(1) # for debugging purposes
-        filecount = filecount + 1
+        # filecount = filecount + 1
+        heartbeat.fileProcessed()
 
         zip_logfile(filename)     # Zip the file
         archive_logfile(filename) # Archive the log file

@@ -6,7 +6,7 @@ import time
 
 #user = input("Hello, thank you for using the Cadence Unzip Tool. Please provide your username (For reference, username would reside within this structure /Users/tsuru/OneDrive/): ")
 #user = 'baseb'
-user = 'lydia'
+user = 'tsuru'
 filter_dir = 'C:/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Data Simulator Offload/'
 #filter_dir = 'C:/Users/' + user + '/Downloads/archive/'
 extension = ".log"
