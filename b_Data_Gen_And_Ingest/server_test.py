@@ -9,8 +9,12 @@ count = 1
 x = server(5601)    # parameter: port number
 x.start_server(5)   # parameter: time before timeout
 
+y = server(5602)
+y.start_server(5)
+
 while count <= iterations:
-    x.send_data(f"data test {count}")
+    x.send_data(f"data test {count} D1")
+    y.send_data(f"data test {count} D2")
     count = count + 1
-    time.sleep(1) #used for testing purposes - logging heartbeats etc.
+    time.sleep(0.5) #used for testing purposes - logging heartbeats etc.
 x.stop_server()

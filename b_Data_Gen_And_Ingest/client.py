@@ -142,7 +142,7 @@ def delemptyfiles(rootdir):
         for f in files:
             fullname = os.path.join(root, f)
             if os.path.getsize(fullname) == 0:
-                print (fullname)
+                print (f'Deleted: {fullname}')
                 os.remove(fullname)
             
 # Check for Specified Directory
@@ -154,5 +154,7 @@ def checkdir(directory_path):
         print("A new directory has been created and is being written to.")
 
 # Run the program
-checkdir(arch_path)
-receive_data(5601)
+#port = input("Please provide the port: ")
+#checkdir(arch_path)
+#receive_data(port)
+#receive_data(5601)
