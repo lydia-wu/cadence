@@ -13,9 +13,9 @@ import sys
 
 # ------- File Paths -----------
 #user = input("Hello, thank you for using the Cadence Client Tool. Please provide your username (For reference, username would reside within this structure /Users/tsuru/OneDrive/): ")
-user = 'lydia'
-#user = 'baseb'
-zip_path = 'C:/Users/' + user + '/Downloads/cadence_1/'           # file path for the zipped log files (relative or absolute path)
+#user = 'lydia'
+user = 'baseb'
+zip_path = 'C:/Users/' + user + '/Downloads/'           # file path for the zipped log files (relative or absolute path)
 arch_path = zip_path + 'archive/'  # file path for archived original log files (relative or absolute path)
 hb_path = zip_path # path for the heartbeat file
 
@@ -45,7 +45,7 @@ def receive_data(port):
     filecount = 0
     while True:
         start_time = time.time()
-        file_seconds = 5 # write duration for one log file
+        file_seconds = 10 # write duration for one log file
         elapsed_time = 0
 
         timestamp = datetime.now().strftime("%Y-%m-%d_%H%M%S")
@@ -138,12 +138,17 @@ def archive_logfile(filename):
 
 # Delete Empty Files Function
 def delemptyfiles(rootdir):
-    for root, dirs, files in os.walk(rootdir):
-        for f in files:
-            fullname = os.path.join(root, f)
-            if os.path.getsize(fullname) == 0:
-                print (f'Deleted: {fullname}')
-                os.remove(fullname)
+    try:
+        for root, dirs, files in os.walk(rootdir):
+            for f in files:
+                fullname = os.path.join(root, f)
+                if os.path.getsize(fullname) == 0:
+                    print (f'Deleted: {fullname}')
+                    os.remove(fullname)
+    except FileNotFoundError:
+        print(f'File not found: {fullname}')
+    except PermissionError:
+        print(f'Access is not granted: {fullname}')
             
 # Check for Specified Directory
 def checkdir(directory_path):

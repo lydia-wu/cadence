@@ -1,20 +1,37 @@
-# last edited by Michael Di Girolamo at 3/30/22 1:45 PM
+# last edited by Michael Di Girolamo at 4/6/22 9:30 PM
 
 import time
 from server import *
 
 iterations = 23
 count = 1
+timeout_period = 10
 
-x = server(5601)    # parameter: port number
-x.start_server(5)   # parameter: time before timeout
+d1 = server(5601)                   # parameter: port number
+d1.start_server(timeout_period)     # parameter: time before timeout
 
-y = server(5602)
-y.start_server(5)
+d2 = server(5602)
+d2.start_server(timeout_period)
+
+d3 = server(5603)
+d3.start_server(timeout_period)
+
+d4 = server(5604)
+d4.start_server(timeout_period)
+
+d5 = server(5605)
+d5.start_server(timeout_period)
 
 while count <= iterations:
-    x.send_data(f"data test {count} D1")
-    y.send_data(f"data test {count} D2")
+    d1.send_data(f"data test {count} Device 1")
+    d2.send_data(f"data test {count} Device 2")
+    d3.send_data(f"data test {count} Device 3")
+    d4.send_data(f"data test {count} Device 4")
+    d5.send_data(f"data test {count} Device 5")
     count = count + 1
     time.sleep(0.5) #used for testing purposes - logging heartbeats etc.
-x.stop_server()
+d1.stop_server()
+d2.stop_server()
+d3.stop_server()
+d4.stop_server()
+d5.stop_server()

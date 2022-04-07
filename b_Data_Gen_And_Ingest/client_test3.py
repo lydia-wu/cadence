@@ -11,5 +11,5 @@ port4 = 5604
 port5 = 5605
 
 checkdir(arch_path)
-receive_data(port1)
+receive_data(port3)
 #receive_data(5601)
