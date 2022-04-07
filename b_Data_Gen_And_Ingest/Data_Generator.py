@@ -14,6 +14,7 @@ import time
 from server import * 
 from datetime import datetime
 import random
+import os
 # today = date.today()
 
 #   Do “count” 10 times:
@@ -28,9 +29,17 @@ import random
 #	Count++
 
 #path = input("Hello, thank you for using Cadence. Please provide the filepath where you would like the generated logs to reside? For reference, insert a response similar to this filepath structure /Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator: ")
-path = 'C:/Users/lydia/Downloads'
+parentLocation = 'C:/Users/lydia/Downloads/'
+path = parentLocation + 'cadence_1/'
 #path = 'C:/Users/baseb/Downloads'
 print("Generating App and Network Files Now")
+
+# CHECK FOR DIRECTORIES
+if os.path.isdir(path) is True:
+    print("Existing processing directory is being written to.")
+else: 
+    os.makedirs(path)
+    print("A new directory has been created and is being written to.")
 
 # Instantiates run count
 runs = 0
