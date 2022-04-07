@@ -20,18 +20,6 @@ arch_path = zip_path + 'archive/'                   # file path for archived ori
 dest_path = parent_path                             # where the zips will be picked up to be emailed
 hb_path = zip_path                                  # path for the heartbeat file
 
-# Check for Specified Directory
-def checkdir(directory_path):
-    if os.path.isdir(directory_path) is True:
-        print(f"{directory_path} already exists")
-    else: 
-        os.makedirs(directory_path)
-        print(f"{directory_path} has been created")
-
-checkdir(zip_path)
-checkdir(arch_path)
-checkdir(parent_path)
-
 # ------- Heartbeat Code ------
 
 # do once
@@ -52,10 +40,11 @@ schedule.every(5).seconds.do(heartbeat) # shortened time for testing purposes
    
 # ------ Receive Data Code ------
 
-def receive_data(port):
+def receive_data(port, zip_path, arch_path, dest_path):
     global filecount
     filecount = 0
     device_no = port%10
+    print('Device_no: ' + str(device_no))
     while True:
         start_time = time.time()
         file_seconds = 10 # write duration for one log file
@@ -80,19 +69,19 @@ def receive_data(port):
                     print("Error: Connection was likely closed by the server")
                     s.close()                 # closes socket
                     file.close()
-                    delemptyfiles(zip_path)    # Delete any empty files
-                    zip_logfile(filename)      # Zip the file
-                    move_zip(filename)         # Move zip file to new location (to be emailed)
-                    archive_logfile(filename)  # Archive the log file
+                    delemptyfiles(zip_path)                         # Delete any empty files
+                    zip_logfile(filename, zip_path)                 # Zip the file
+                    move_zip(filename, zip_path, dest_path)         # Move zip file to new location (to be emailed)
+                    archive_logfile(filename, zip_path, arch_path)  # Archive the log file
                     quit()
                 except ConnectionRefusedError:
                     print("Error: Connection may have never been established")
                     s.close()                 # closes socket
                     file.close()
-                    delemptyfiles(zip_path)    # Delete any empty files
-                    zip_logfile(filename)      # Zip the file - should zip an empty log?
-                    move_zip(filename)         # Move zip file to new location (to be emailed)
-                    archive_logfile(filename)  # Archive the log file
+                    delemptyfiles(zip_path)                         # Delete any empty files
+                    zip_logfile(filename, zip_path)                 # Zip the file - should zip an empty log?
+                    move_zip(filename, zip_path, dest_path)         # Move zip file to new location (to be emailed)
+                    archive_logfile(filename, zip_path, arch_path)  # Archive the log file
                     try:
                         time.sleep(5)
                     except KeyboardInterrupt:
@@ -101,20 +90,21 @@ def receive_data(port):
                         #archive_logfile(filename) # Archive the log file
                         quit()
                     print("Retrying...")
+                    #quit()
                     continue    # will continue retrying until a connection is made
                 except KeyboardInterrupt:
                     print("Keyboard Interrupt - Closing...")
                     s.close()                 # closes socket
                     file.close()
-                    delemptyfiles(zip_path)    # Delete any empty files
-                    zip_logfile(filename)      # Zip the file
-                    move_zip(filename)         # Move zip file to new location (to be emailed)
-                    archive_logfile(filename)  # Archive the log file
+                    delemptyfiles(zip_path)                         # Delete any empty files
+                    zip_logfile(filename, zip_path)                 # Zip the file
+                    move_zip(filename, zip_path, dest_path)         # Move zip file to new location (to be emailed)
+                    archive_logfile(filename, zip_path, arch_path)  # Archive the log file
                     quit()
                 except Exception as e:
                     print("An unexpected error occured")
                     print(e)
-                    delemptyfiles(zip_path)    # Delete any empty files
+                    delemptyfiles(zip_path)                         # Delete any empty files
                     quit()
 
                 DeviceLog = csv.writer(file)
@@ -128,12 +118,12 @@ def receive_data(port):
                 #time.sleep(1) # for debugging purposes
         filecount = filecount + 1
 
-        zip_logfile(filename)                  # Zip the file
-        move_zip(filename)                     # Move zip file to new location (to be emailed)
-        archive_logfile(filename)              # Archive the log file
+        zip_logfile(filename, zip_path)                             # Zip the file
+        move_zip(filename, zip_path, dest_path)                     # Move zip file to new location (to be emailed)
+        archive_logfile(filename, zip_path, arch_path)              # Archive the log file
 
 # Zip Log File Function
-def zip_logfile(filename):
+def zip_logfile(filename, zip_path):
     try:
         with ZipFile(zip_path + filename + '.zip', 'w') as zipObj:
             os.chdir(zip_path)   # changes directory so a 'logs' file is not included in the zip
@@ -147,7 +137,7 @@ def zip_logfile(filename):
             print(f'(Zip file not found: {filename}.zip)')
 
 # Archive Log File Function
-def archive_logfile(filename):
+def archive_logfile(filename, zip_path, arch_path):
     srcpath = zip_path + filename + '.log'
     destpath = arch_path + filename + '.log'
     try:
@@ -169,7 +159,15 @@ def delemptyfiles(rootdir):
     except PermissionError:
         print(f'Access is not granted: {fullname}')
             
-def move_zip(filename):
+# Check for Specified Directory
+def checkdir(directory_path):
+    if os.path.isdir(directory_path) is True:
+        print(f"{directory_path} already exists")
+    else: 
+        os.makedirs(directory_path)
+        print(f"{directory_path} has been created")
+
+def move_zip(filename, zip_path, dest_path):
     srcpath = zip_path + filename + '.zip'
     destpath = dest_path + filename + '.zip'
     try:
@@ -179,8 +177,8 @@ def move_zip(filename):
 
 
 # Run the program
-#port_str = input("Please provide the port: ")
-#port = int(port_str)
+#port = input("Please provide the port: ")
+#checkdir(arch_path)
 #receive_data(port)
 #receive_data(5601)
 

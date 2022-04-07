@@ -1,4 +1,4 @@
-# last edited by Michael Di Girolamo at 3/29/22 8:45 PM
+# last edited by Michael Di Girolamo at 4/7/22 4:45 PM
 # last edited by Lydia Wu at 3/30/2022 11:22 PM
 
 import socket
@@ -9,6 +9,7 @@ class server:
     
     def start_server(self, timeout):
         self.s = socket.socket()
+        self.timeout = timeout
         print ("Socket succesfully created")
         self.s.settimeout(timeout) # use select statements in future implementation?
 
@@ -27,7 +28,7 @@ class server:
 
         while True:
             try:
-                print("waiting for connection...")
+                print(f"waiting {self.timeout} seconds for connection...")
                 self.c, addr = self.s.accept() # waits here until client connects
                 print ('Got connection from ', addr)
                 self.c.send(message.encode("utf-8"))
