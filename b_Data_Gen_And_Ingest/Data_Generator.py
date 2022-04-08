@@ -33,14 +33,9 @@ import getpass as gt
 #	Count++
 
 #path = input("Hello, thank you for using Cadence. Please provide the filepath where you would like the generated logs to reside? For reference, insert a response similar to this filepath structure /Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator: ")
-<<<<<<< HEAD
-#parentLocation = 'C:/Users/lydia/Downloads/'
-parentLocation = 'C:/Users/lydia/Downloads/'
-=======
 #parentLocation = 'C:/Users/baseb/Downloads/'
 user = gt.getuser()
 parentLocation = 'C:/Users/' + user + '/Downloads/'
->>>>>>> e9f5a30cff8db51738d1a4829ef9b343682c10de
 path = parentLocation + 'cadence_1/tmp'
 pathHB = parentLocation + 'cadence_1'
 print("Generating App and Network Files Now")
