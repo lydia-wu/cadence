@@ -33,7 +33,7 @@ import heartbeat
 
 #path = input("Hello, thank you for using Cadence. Please provide the filepath where you would like the generated logs to reside? For reference, insert a response similar to this filepath structure /Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator: ")
 #parentLocation = 'C:/Users/lydia/Downloads/'
-parentLocation = 'C:/Users/baseb/Downloads/'
+parentLocation = 'C:/Users/lydia/Downloads/'
 path = parentLocation + 'cadence_1/tmp'
 pathHB = parentLocation + 'cadence_1'
 print("Generating App and Network Files Now")
