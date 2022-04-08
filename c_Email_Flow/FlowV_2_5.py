@@ -17,12 +17,12 @@ from   pathlib import Path                      # this is for checking to see if
 from  datetime import datetime, timedelta       # timedelta is for checking if a file was made in the last 10 minutes
 
 # DIRECTORY VARIABLES
-parentLocation = 'C:/Users/tsuru/Downloads/'
+parentLocation = 'C:/Users/lydia/Downloads/'
 directory     = parentLocation + 'cadence_1'
 newdirectory  = parentLocation + 'transferred'
 
 # EMAIL VARIABLES
-emailAddr      = 'htyukihiro@liberty.edu' # email to recieve data simulator outputs
+emailAddr      = 'ljwu@liberty.edu' # email to recieve data simulator outputs
 emailSubject  = 'Cadence Draft 2.4'
 
 # DIRECTORY FOR CUSTOMER DEMO

@@ -12,7 +12,7 @@ import shutil # to move files from "active" directory to "archive"/"transferred"
 # ====== Setup Variables =======
 
 #user = input("Hello, thank you for using the Cadence Unzip Tool. Please provide your username (For reference, username would reside within this structure /Users/tsuru/OneDrive/): ")
-user = 'tsuru'
+user = 'lydia'
 unzip_dir = 'C:/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Data Simulator Offload'
 heartbeat_dir = unzip_dir + '/'
 archive_dir = 'C:/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Data Simulator Offload/archive'

@@ -1,5 +1,5 @@
-# last edited by Michael Di Girolamo at 4/6/22 3:30 PM
-# last edited by Hayley Yukihiro at 4/7/2022 03:41:00 -- added heartbeat class functionality
+# last edited by Michael Di Girolamo at 4/7/22 8:00 PM
+# last edited by Hayley Yukihiro at 4/7/2022 3:41 AM -- added heartbeat class functionality
 
 from logging import exception
 import socket
@@ -14,12 +14,25 @@ import sys
 import heartbeat
 
 # ------- File Paths -----------
-#user = input("Hello, thank you for using the Cadence Client Tool. Please provide your username (For reference, username would reside within this structure /Users/tsuru/OneDrive/): ")
-user = 'tsuru'
+user = 'lydia'
 #user = 'baseb'
-zip_path = 'C:/Users/' + user + '/Downloads/cadence_1/'           # file path for the zipped log files (relative or absolute path)
-arch_path = zip_path + 'archive/'  # file path for archived original log files (relative or absolute path)
-hb_path = zip_path # path for the heartbeat file
+parent_path = 'C:/Users/' + user + '/Downloads/cadence_1/'           
+zip_path = parent_path + 'client_temp/'                              # file path for the zipped log files (relative or absolute path)
+arch_path = zip_path + 'archive/'                                    # file path for archived original log files (relative or absolute path)
+dest_path = parent_path                                              # where the zips will be picked up to be emailed
+hb_path = zip_path                                                   # path for the heartbeat file
+
+# Check for Specified Directory
+def checkdir(directory_path):
+    if os.path.isdir(directory_path) is True:
+        print(f"{directory_path} already exists")
+    else: 
+        os.makedirs(directory_path)
+        print(f"{directory_path} has been created")
+
+#checkdir(parent_path)
+checkdir(zip_path)
+checkdir(arch_path)
 
 # ------- Heartbeat Code ------
 # # path = input("Hello, thank you for using Cadence. Please provide the filepath where you would like the generated logs to reside? For reference, insert a response similar to this filepath structure /Users/tsuru/OneDrive/Documents/GitHub/cadence/Parent_Simulator: ")
@@ -47,9 +60,10 @@ heartbeat = heartbeat.Heartbeat("Client")
 def receive_data(port):
     # global filecount
     # filecount = 0
+    device_no = port%10
     while True:
         start_time = time.time()
-        file_seconds = 5 # write duration for one log file
+        file_seconds = 10 # write duration for one log file
         elapsed_time = 0
 
         timestamp = datetime.now().strftime("%Y-%m-%d_%H%M%S")
@@ -73,6 +87,7 @@ def receive_data(port):
                     file.close()
                     delemptyfiles(zip_path)
                     zip_logfile(filename)     # Zip the file
+                    move_zip(filename)         # Move zip file to new location (to be emailed)
                     archive_logfile(filename) # Archive the log file
                     quit()
                 except ConnectionRefusedError:
@@ -81,6 +96,7 @@ def receive_data(port):
                     file.close()
                     delemptyfiles(zip_path)
                     zip_logfile(filename)     # Zip the file - should zip an empty log?
+                    move_zip(filename)         # Move zip file to new location (to be emailed)
                     archive_logfile(filename) # Archive the log file
                     try:
                         time.sleep(5)
@@ -98,6 +114,7 @@ def receive_data(port):
                     file.close()
                     delemptyfiles(zip_path)
                     zip_logfile(filename)     # Zip the file
+                    move_zip(filename)         # Move zip file to new location (to be emailed)
                     archive_logfile(filename) # Archive the log file
                     quit()
                 except Exception as e:
@@ -119,6 +136,7 @@ def receive_data(port):
         heartbeat.fileProcessed()
 
         zip_logfile(filename)     # Zip the file
+        move_zip(filename)         # Move zip file to new location (to be emailed)
         archive_logfile(filename) # Archive the log file
 
 # Zip Log File Function
@@ -130,7 +148,10 @@ def zip_logfile(filename):
             #os.chdir('..')      # reverts to parent directory
     except FileNotFoundError:
         print(f'(zip_logfile) File not found: {filename}.log')
-        os.remove(filename + '.zip')
+        try:
+            os.remove(filename + '.zip')
+        except FileNotFoundError:
+            print(f'(Zip file not found: {filename}.zip)')
 
 # Archive Log File Function
 def archive_logfile(filename):
@@ -143,21 +164,27 @@ def archive_logfile(filename):
 
 # Delete Empty Files Function
 def delemptyfiles(rootdir):
-    for root, dirs, files in os.walk(rootdir):
-        for f in files:
-            fullname = os.path.join(root, f)
-            if os.path.getsize(fullname) == 0:
-                print (fullname)
-                os.remove(fullname)
+    try:
+        for root, dirs, files in os.walk(rootdir):
+            for f in files:
+                fullname = os.path.join(root, f)
+                if os.path.getsize(fullname) == 0:
+                    print (f'Deleted: {fullname}')
+                    os.remove(fullname)
+    except FileNotFoundError:
+        print(f'File not found: {fullname}')
+    except PermissionError:
+        print(f'Access is not granted: {fullname}')
             
-# Check for Specified Directory
-def checkdir(directory_path):
-    if os.path.isdir(directory_path) is True:
-        print("Existing processing directory is being written to.")
-    else: 
-        os.makedirs(directory_path)
-        print("A new directory has been created and is being written to.")
+def move_zip(filename):
+    srcpath = zip_path + filename + '.zip'
+    destpath = dest_path + filename + '.zip'
+    try:
+        shutil.move(srcpath, destpath)
+    except FileNotFoundError:
+        print(f'(move_zip) File not found: {filename}.zip')
+            
 
-# Run the program
-checkdir(arch_path)
-receive_data(5601)
+# # Run the program
+# checkdir(arch_path)
+# receive_data(5601)
