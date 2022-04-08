@@ -12,8 +12,7 @@ class Heartbeat:
     fileName = ""
     def __init__(self, name):
         self.name = name
-        #pathHB = 'C:/Users/tsuru/Downloads/cadence_1/'
-        pathHB = 'C:/Users/baseb/Downloads/cadence_1/'
+        pathHB = 'C:/Users/lydia/Downloads/cadence_1/'
         # HEARTBEAT_<program name>_YYYY-MM-DD_HHMMSS.csv
         with open(pathHB + 'HEARTBEAT_'+ name + '_' + datetime.now().strftime("%Y-%m-%d_%H%M%S") + '.csv', 'w+', newline = '') as file1:
             self.fileName = file1.name
