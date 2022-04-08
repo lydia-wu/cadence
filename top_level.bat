@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+: <<<<<<< HEAD
 :: Created 2022-04-06 3P ET, L. Wu
 :: Note: User must change ALL file paths below to match personal GitHub Repo location
 : SET CadenceGithubFilePath = C:\Users\lydia\GitHubLocal\cadence\Top_Level_Processing
