@@ -1,6 +1,7 @@
 #last edited by Hunter Alloway on 03/11/2022; 
 #last edited by Lydia Wu @2:35PM, 2022-04-06
 #last edited by Hayley Yukihiro on 2022-04-07 03:40 -- added heartbeat class functionalities
+#last edited by Michael DiGirolamo 2022-04-08 16:40 -- added getpass to grab windows user
 
 print ("Commencing Flow of Data from PC to SharePoint")
 
@@ -13,11 +14,14 @@ import os                                       # to work with directories in lo
 import shutil                                   # to move files from "active" directory to "archive"/"transferred" directory
 import psutil                                   # this is for checking to see if a file is being actively written (pip install psutil)
 import heartbeat                                # to write heartbeat files
+import getpass as gt                            # to grab the windows user
 from   pathlib import Path                      # this is for checking to see if "archive" already exists
 from  datetime import datetime, timedelta       # timedelta is for checking if a file was made in the last 10 minutes
 
 # DIRECTORY VARIABLES
-parentLocation = 'C:/Users/lydia/Downloads/'
+#parentLocation = 'C:/Users/lydia/Downloads/'
+user = gt.getuser()
+parentLocation = 'C:/Users/' + user + '/Downloads/'
 directory     = parentLocation + 'cadence_1'
 newdirectory  = parentLocation + 'transferred'
 
