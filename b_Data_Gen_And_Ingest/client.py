@@ -1,4 +1,4 @@
-# last edited by Michael Di Girolamo at 4/7/22 8:00 PM
+# last edited by Michael Di Girolamo at 4/8/22 5:00 PM
 # last edited by Hayley Yukihiro at 4/7/2022 3:41 AM -- added heartbeat class functionality
 
 from logging import exception
@@ -15,13 +15,12 @@ import heartbeat
 import getpass as gt
 
 # ------- File Paths -----------
-#user = 'lydia'
-user = gt.getuser()
-parent_path = 'C:/Users/' + user + '/Downloads/cadence_1/'           
-zip_path = parent_path + 'client_temp/'                              # file path for the zipped log files (relative or absolute path)
-arch_path = zip_path + 'archive/'                                    # file path for archived original log files (relative or absolute path)
-dest_path = parent_path                                              # where the zips will be picked up to be emailed
-hb_path = zip_path                                                   # path for the heartbeat file
+user = gt.getuser()                                           # grab windows user
+parent_path = 'C:/Users/' + user + '/Downloads/cadence_1/'    # parent directory       
+zip_path = parent_path + 'client_temp/'                       # file path for the zipped log files (relative or absolute path)
+arch_path = zip_path + 'archive/'                             # file path for archived original log files (relative or absolute path)
+dest_path = parent_path                                       # where the zips will be picked up to be emailed
+hb_path = zip_path                                            # path for the heartbeat file
 
 # Check for Specified Directory
 def checkdir(directory_path):

@@ -11,11 +11,10 @@ from os import listdir
 from os.path import isfile, join
 import re
 import pandas as pd
+import getpass as gt
 
 #user = input("Hello, thank you for using the Cadence Lookup Table. Please provide your username (For reference, username would reside within this structure /Users/tsuru/OneDrive/): ")
-user = 'lydia'
-#user = 'baseb'
-
+user = gt.getuser()
 print("Look Up Table is Processing")
 
 # Establishes lookup table
