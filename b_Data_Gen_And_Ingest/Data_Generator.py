@@ -3,6 +3,7 @@
 # Created On: 2022-01-24 14:31:46.415580
 # Last updated by: Hayley Yukhiro, 2022-04-06 11:43:00
 # Last updated by: Lydia Wu,       2022-03-30 23:21:00
+# Last updated by: Michael DiGirolamo, 2022-04-07 16:30:00
 
 print ("Generating Simulated Data")
 
@@ -45,9 +46,23 @@ else:
 runs = 0
 filecount = 0
 
-#Instantiate server
-s = server(5601)
-s.start_server(10)
+#Instantiate the servers (1 for each device)
+timeout_period = 10
+
+s1 = server(5601)
+s1.start_server(timeout_period)
+
+s2 = server(5602)
+s2.start_server(timeout_period)
+
+s3 = server(5603)
+s3.start_server(timeout_period)
+
+s4 = server(5604)
+s4.start_server(timeout_period)
+
+s5 = server(5605)
+s5.start_server(timeout_period)
     
 # Creates and establishes the Generator Heartbeat file
 with open(path + '/GeneratorHeartbeat_'+ datetime.now().strftime("%Y-%m-%d_%H%M%S") + '.csv', 'w+', newline = '') as file1:
@@ -69,11 +84,11 @@ with open(path + '/GeneratorHeartbeat_'+ datetime.now().strftime("%Y-%m-%d_%H%M%
             filecount = filecount + 7
             
             # Begins sending data to the port
-            s.send_data('Beginning of Device 1 Log')
-            s.send_data('Beginning of Device 2 Log')
-            s.send_data('Beginning of Device 3 Log')
-            s.send_data('Beginning of Device 4 Log')
-            s.send_data('Beginning of Device 5 Log')
+            s1.send_data('Beginning of Device 1 Log')
+            s2.send_data('Beginning of Device 2 Log')
+            s3.send_data('Beginning of Device 3 Log')
+            s4.send_data('Beginning of Device 4 Log')
+            s5.send_data('Beginning of Device 5 Log')
 
             # Creates file for Network and App reports
             with open(path + '/NetworkReport_'+ datetime.now().strftime("%Y-%m-%d_%H%M%S") + '.csv', 'w+', newline = '') as file2:
@@ -136,29 +151,29 @@ with open(path + '/GeneratorHeartbeat_'+ datetime.now().strftime("%Y-%m-%d_%H%M%
                                                 # time.sleep(1)
 
                                                 timeDate = datetime.now()
-                                                s.send_data(f"{timeDate} Device NodeID A000001 Sending Hello World {count}")
-                                                s.send_data(f"{timeDate} Device NodeID A000003 Sending Hello World {count}")
-                                                s.send_data(f"{timeDate} Device NodeID A000005 Sending Hello World {count}")
+                                                s1.send_data(f"{timeDate} Device NodeID A000001 Sending Hello World {count}")
+                                                s3.send_data(f"{timeDate} Device NodeID A000003 Sending Hello World {count}")
+                                                s5.send_data(f"{timeDate} Device NodeID A000005 Sending Hello World {count}")
                                                 if count == random.randint:
-                                                    s.send_data(f"{timeDate} Device NodeID A000001 Sending Hello World {count}")
+                                                    s1.send_data(f"{timeDate} Device NodeID A000001 Sending Hello World {count}")
                                                     time.sleep(random.randint(2,10))
                                                 if count == random.randint:
-                                                    s.send_data(f"{timeDate} Device NodeID A000003 Sending Hello World {count}")
-                                                    s.send_data(f"{timeDate} Device NodeID A000005 Sending Hello World {count}")
+                                                    s3.send_data(f"{timeDate} Device NodeID A000003 Sending Hello World {count}")
+                                                    s5.send_data(f"{timeDate} Device NodeID A000005 Sending Hello World {count}")
                                                 if count != random.randint:
-                                                        s.send_data(f"{timeDate} Device NodeID A000002 Sending Hello World {count}")
-                                                        s.send_data(f"{timeDate} Device NodeID A000004 Sending Hello World {count}")
-                                                s.send_data(f"Device 1 This is some arbitrary log data")
-                                                s.send_data(f"Device 2 This is some arbitrary log data")
-                                                s.send_data(f"Device 3 This is some arbitrary log data")
-                                                s.send_data(f"Device 4 This is some arbitrary log data")
-                                                s.send_data(f"Device 5 This is some arbitrary log data")
+                                                        s2.send_data(f"{timeDate} Device NodeID A000002 Sending Hello World {count}")
+                                                        s4.send_data(f"{timeDate} Device NodeID A000004 Sending Hello World {count}")
+                                                s1.send_data(f"Device 1 This is some arbitrary log data")
+                                                s2.send_data(f"Device 2 This is some arbitrary log data")
+                                                s3.send_data(f"Device 3 This is some arbitrary log data")
+                                                s4.send_data(f"Device 4 This is some arbitrary log data")
+                                                s5.send_data(f"Device 5 This is some arbitrary log data")
                                                 if count == random.randint:
-                                                    s.send_data(f"Device 1 This is some fluff")
-                                                    s.send_data(f"Device 2 Fell for the fluff once more")
-                                                    s.send_data(f"Device 3 The Hufflepuff Jigglypuff fluff")
-                                                    s.send_data(f"Device 4 The worst fluff you can find")
-                                                    s.send_data(f"Device 5 Please end the fluff before the fluff gets you")
+                                                    s1.send_data(f"Device 1 This is some fluff")
+                                                    s2.send_data(f"Device 2 Fell for the fluff once more")
+                                                    s3.send_data(f"Device 3 The Hufflepuff Jigglypuff fluff")
+                                                    s4.send_data(f"Device 4 The worst fluff you can find")
+                                                    s5.send_data(f"Device 5 Please end the fluff before the fluff gets you")
                                                 schedule.run_pending()
                                                 time.sleep(1)
                                     
@@ -241,29 +256,29 @@ with open(path + '/GeneratorHeartbeat_'+ datetime.now().strftime("%Y-%m-%d_%H%M%
                                                 # time.sleep(1)
 
                                                 timeDate = datetime.now()
-                                                s.send_data(f"{timeDate} Device NodeID A000001 Sending Hello World {count}")
-                                                s.send_data(f"{timeDate} Device NodeID A000003 Sending Hello World {count}")
-                                                s.send_data(f"{timeDate} Device NodeID A000005 Sending Hello World {count}")
+                                                s1.send_data(f"{timeDate} Device NodeID A000001 Sending Hello World {count}")
+                                                s3.send_data(f"{timeDate} Device NodeID A000003 Sending Hello World {count}")
+                                                s5.send_data(f"{timeDate} Device NodeID A000005 Sending Hello World {count}")
                                                 if count == random.randint:
-                                                    s.send_data(f"{timeDate} Device NodeID A000001 Sending Hello World {count}")
+                                                    s1.send_data(f"{timeDate} Device NodeID A000001 Sending Hello World {count}")
                                                     time.sleep(random.randint(2,10))
                                                 if count == random.randint:
-                                                    s.send_data(f"{timeDate} Device NodeID A000003 Sending Hello World {count}")
-                                                    s.send_data(f"{timeDate} Device NodeID A000005 Sending Hello World {count}")
+                                                    s3.send_data(f"{timeDate} Device NodeID A000003 Sending Hello World {count}")
+                                                    s5.send_data(f"{timeDate} Device NodeID A000005 Sending Hello World {count}")
                                                 if count != random.randint:
-                                                        s.send_data(f"{timeDate} Device NodeID A000002 Sending Hello World {count}")
-                                                        s.send_data(f"{timeDate} Device NodeID A000004 Sending Hello World {count}")
-                                                s.send_data(f"Device 1 This is some arbitrary log data")
-                                                s.send_data(f"Device 2 This is some arbitrary log data")
-                                                s.send_data(f"Device 3 This is some arbitrary log data")
-                                                s.send_data(f"Device 4 This is some arbitrary log data")
-                                                s.send_data(f"Device 5 This is some arbitrary log data")
+                                                        s2.send_data(f"{timeDate} Device NodeID A000002 Sending Hello World {count}")
+                                                        s4.send_data(f"{timeDate} Device NodeID A000004 Sending Hello World {count}")
+                                                s1.send_data(f"Device 1 This is some arbitrary log data")
+                                                s2.send_data(f"Device 2 This is some arbitrary log data")
+                                                s3.send_data(f"Device 3 This is some arbitrary log data")
+                                                s4.send_data(f"Device 4 This is some arbitrary log data")
+                                                s5.send_data(f"Device 5 This is some arbitrary log data")
                                                 if count == random.randint:
-                                                    s.send_data(f"Device 1 This is some fluff")
-                                                    s.send_data(f"Device 2 Fell for the fluff once more")
-                                                    s.send_data(f"Device 3 The Hufflepuff Jigglypuff fluff")
-                                                    s.send_data(f"Device 4 The worst fluff you can find")
-                                                    s.send_data(f"Device 5 Please end the fluff before the fluff gets you")
+                                                    s1.send_data(f"Device 1 This is some fluff")
+                                                    s2.send_data(f"Device 2 Fell for the fluff once more")
+                                                    s3.send_data(f"Device 3 The Hufflepuff Jigglypuff fluff")
+                                                    s4.send_data(f"Device 4 The worst fluff you can find")
+                                                    s5.send_data(f"Device 5 Please end the fluff before the fluff gets you")
                                                 schedule.run_pending()
                                                 time.sleep(1)
                                     
@@ -317,6 +332,10 @@ with open(path + '/GeneratorHeartbeat_'+ datetime.now().strftime("%Y-%m-%d_%H%M%
                                         print("Generating Next Run")  
     except KeyboardInterrupt:                                 
         GeneratorHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "End Run", filecount]) 
-        s.stop_server()  
+        s1.stop_server()
+        s2.stop_server()
+        s3.stop_server()
+        s4.stop_server()
+        s5.stop_server()  
         print("Completed Program Run") 
 
