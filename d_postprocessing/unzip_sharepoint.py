@@ -1,4 +1,4 @@
-# last edited by Michael Di Girolamo at 3/30/22 7:20 PM
+# last edited by Michael Di Girolamo at 4/38/22 2:20 PM
 # last edited by L. Wu at 3/31/22 8:06 PM
 
 import os, zipfile
@@ -6,13 +6,15 @@ from datetime import datetime
 import csv
 import schedule
 import time
+import getpass as gt
 import shutil # to move files from "active" directory to "archive"/"transferred" directory
 
 
 # ====== Setup Variables =======
 
 #user = input("Hello, thank you for using the Cadence Unzip Tool. Please provide your username (For reference, username would reside within this structure /Users/tsuru/OneDrive/): ")
-user = 'lydia'
+#user = 'lydia'
+user = gt.getuser()
 unzip_dir = 'C:/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Data Simulator Offload'
 heartbeat_dir = unzip_dir + '/'
 archive_dir = 'C:/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Data Simulator Offload/archive'

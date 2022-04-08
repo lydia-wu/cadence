@@ -1,4 +1,4 @@
-# last edited by Michael Di Girolamo at 3/30/22 7:45 PM
+# last edited by Michael Di Girolamo at 4/8/22 2:20 PM
 
 import re
 import os
@@ -7,9 +7,11 @@ import shutil
 import schedule
 import time
 from datetime import datetime
+import getpass as gt
 
 #user = input("Hello, thank you for using the Cadence Archive Tool. Please provide your username (For reference, username would reside within this structure /Users/tsuru/OneDrive/): ")
-user = 'lydia'
+#user = 'lydia'
+user = gt.getuser()
 
 def archive_old():
     old_path = 'C:/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Data Simulator Offload/' # file path where old files are located
