@@ -12,10 +12,11 @@ import shutil
 import os
 import sys
 import heartbeat
+import getpass as gt
 
 # ------- File Paths -----------
-user = 'lydia'
-#user = 'baseb'
+#user = 'lydia'
+user = gt.getuser()
 parent_path = 'C:/Users/' + user + '/Downloads/cadence_1/'           
 zip_path = parent_path + 'client_temp/'                              # file path for the zipped log files (relative or absolute path)
 arch_path = zip_path + 'archive/'                                    # file path for archived original log files (relative or absolute path)
@@ -67,7 +68,7 @@ def receive_data(port):
         elapsed_time = 0
 
         timestamp = datetime.now().strftime("%Y-%m-%d_%H%M%S")
-        filename = 'Device' + str(device_no) + 'Log_' + timestamp
+        filename = 'CadenceDevice' + str(device_no) + 'Log_' + timestamp
 
         with open(zip_path + filename + '.log','w+') as file:
             while elapsed_time < file_seconds:
@@ -171,9 +172,9 @@ def delemptyfiles(rootdir):
                     print (f'Deleted: {fullname}')
                     os.remove(fullname)
     except FileNotFoundError:
-        print(f'File not found: {fullname}')
+        print(f'(delemptyfiles) File not found: {fullname}')
     except PermissionError:
-        print(f'Access is not granted: {fullname}')
+        print(f'(delemptyfiles) Access is not granted: {fullname}')
             
 def move_zip(filename):
     srcpath = zip_path + filename + '.zip'
