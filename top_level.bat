@@ -10,7 +10,11 @@ pause
 :: Generate our files
 echo We will now generate files.
 start "Data Simulator!" C:\Users\lydia\GitHubLocal\cadence\Top_Level_Processing\sim_v1_0.bat
-start "Client!"         C:\Users\lydia\GitHubLocal\cadence\Top_Level_Processing\client_v1_0.bat
+start "Client! test1"         C:\Users\lydia\GitHubLocal\cadence\Top_Level_Processing\client_v1_1_1st.bat
+start "Client! test2"         C:\Users\lydia\GitHubLocal\cadence\Top_Level_Processing\client_v1_1_2nd.bat
+start "Client! test3"         C:\Users\lydia\GitHubLocal\cadence\Top_Level_Processing\client_v1_1_3rd.bat
+start "Client! test4"         C:\Users\lydia\GitHubLocal\cadence\Top_Level_Processing\client_v1_1_4th.bat
+start "Client! test5"         C:\Users\lydia\GitHubLocal\cadence\Top_Level_Processing\client_v1_1_5th.bat
 pause
 
 :: Move our files
