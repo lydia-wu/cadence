@@ -1,0 +1,65 @@
+[
+    {
+        "DataSource": "AppReportValueExpected",
+        "if": {
+            "Parameter Value": {
+                "$lte": 9
+            }
+        },
+        "then": {
+            "Tagline Parameter": "regular"
+        },
+        "else": {
+            "if": {
+                "Parameter Value": {
+                    "$gt": 20
+                }
+            },
+            "then": {
+                "Tagline Parameter": "irregular"
+            }
+        }
+    },
+    {
+        "DataSource": "NetworkReportValueExpected",
+        "if": {
+            "Parameter Value": {
+                "$lte": 10
+            }
+        },
+        "then": {
+            "Tagline Parameter": "regular"
+        },
+        "else": {
+            "if": {
+                "Parameter Value": {
+                    "$gt": 20
+                }
+            },
+            "then": {
+                "Tagline Parameter": "irregular"
+            }
+        }
+    },
+    {
+        "DataSource": "DeviceLogValueExpected",
+        "if": {
+            "Parameter Value": {
+                "$lte": 5
+            }
+        },
+        "then": {
+            "Tagline Parameter": "regular"
+        },
+        "else": {
+            "if": {
+                "Parameter Value": {
+                    "$gt": 20
+                }
+            },
+            "then": {
+                "Tagline Parameter": "irregular"
+            }
+        }
+    }
+]

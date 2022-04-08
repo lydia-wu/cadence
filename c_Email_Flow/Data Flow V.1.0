@@ -1,0 +1,61 @@
+from genericpath import exists
+import os
+import os.path
+import win32com.client
+import time
+import schedule
+import shutil
+
+
+
+directory = 'C:/Users/Hunter/Documents/CadenceEmailDataShare/'
+newdirectory = 'C:/Users/Hunter/Documents/CadenceEmailDataTransferred/'
+
+if os.path.isdir(newdirectory) is True:
+    print("Existing processing directory is being written to.")
+else: 
+     os.makedirs(newdirectory)
+     print("A new directory has been created and is being written to.")
+
+dir_list = os.listdir(directory)
+dir_list.sort()
+filesim = [directory +dir_list[0], directory +dir_list[1], directory +dir_list[2], directory +dir_list[3], directory +dir_list[4], directory +dir_list[5], directory +dir_list[6]]
+
+def func():
+    outlook = win32com.client.Dispatch('outlook.application')
+    mail = outlook.CreateItem(0)
+    mail.To = 'haalloway@liberty.edu'
+    mail.Subject = 'Cadence Draft 1'
+    mail.HTMLBody = '<h3>This is HTML Body</h3>'
+    mail.Body = "Sending Attachments from Simulator Output"  
+
+    mail.Attachments.Add(filesim[0])
+    time.sleep(1)
+    mail.Attachments.Add(filesim[1])
+    time.sleep(1)
+    mail.Attachments.Add(filesim[2])
+    time.sleep(1)
+    mail.Attachments.Add(filesim[3])
+    time.sleep(1)
+    mail.Attachments.Add(filesim[4])
+    time.sleep(1)
+    mail.Attachments.Add(filesim[5])
+    time.sleep(1)
+    mail.Attachments.Add(filesim[6])
+    time.sleep(1)
+    mail.Send()
+    print("File has been sent successfully")
+    shutil.move(filesim[0], newdirectory)
+    shutil.move(filesim[1], newdirectory)
+    shutil.move(filesim[2], newdirectory)
+    shutil.move(filesim[3], newdirectory)
+    shutil.move(filesim[4], newdirectory)
+    shutil.move(filesim[5], newdirectory)
+    shutil.move(filesim[6], newdirectory)
+
+schedule.every(0.5).minutes.do(func)
+time.sleep(5)
+
+while True:
+    schedule.run_pending()
+    time.sleep(1)
