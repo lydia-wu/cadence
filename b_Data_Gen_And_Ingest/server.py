@@ -28,8 +28,7 @@ class server:
 
         while True:
             try:
-                print("waiting for connection...")
-                print(f"waiting {self.timeout} second for connection...")
+                print(f"waiting {self.timeout} seconds for connection...")
                 self.c, addr = self.s.accept() # waits here until client connects
                 print ('Got connection from ', addr)
                 self.c.send(message.encode("utf-8"))

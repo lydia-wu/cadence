@@ -49,7 +49,7 @@ else:
 runs = 0
 filecount = 0
 
-# Instantiate server
+#Instantiate the servers (1 for each device)
 timeout_period = 10
 
 s1 = server(5601)
@@ -71,20 +71,20 @@ s5.start_server(timeout_period)
 heartbeat = heartbeat.Heartbeat("Generator")
     
 
-# runs = 0
-# while runs < 10:
-try:
-    while True:
-        schedule.run_pending()
-        runs = runs + 1
-        filecount = filecount + 7
-        
-        # Begins sending data to the port
-        s1.send_data('Beginning of Device 1 Log')
-        s2.send_data('Beginning of Device 2 Log')
-        s3.send_data('Beginning of Device 3 Log')
-        s4.send_data('Beginning of Device 4 Log')
-        s5.send_data('Beginning of Device 5 Log')
+    # runs = 0
+    # while runs < 10:
+    try:
+        while True:
+            schedule.run_pending()
+            runs = runs + 1
+            filecount = filecount + 7
+            
+            # Begins sending data to the port
+            s1.send_data('Beginning of Device 1 Log')
+            s2.send_data('Beginning of Device 2 Log')
+            s3.send_data('Beginning of Device 3 Log')
+            s4.send_data('Beginning of Device 4 Log')
+            s5.send_data('Beginning of Device 5 Log')
 
         # Creates file for Network and App reports
         with open(path + '/NetworkReport_'+ datetime.now().strftime("%Y-%m-%d_%H%M%S") + '.csv', 'w+', newline = '') as file2:
@@ -146,33 +146,33 @@ try:
                                             # # time.sleep(0.01)
                                             # time.sleep(1)
 
-                                            timeDate = datetime.now()
-                                            s1.send_data(f"{timeDate} Device NodeID A000001 Sending Hello World {count}")
-                                            s3.send_data(f"{timeDate} Device NodeID A000003 Sending Hello World {count}")
-                                            s5.send_data(f"{timeDate} Device NodeID A000005 Sending Hello World {count}")
-                                            if count == random.randint:
+                                                timeDate = datetime.now()
                                                 s1.send_data(f"{timeDate} Device NodeID A000001 Sending Hello World {count}")
-                                                time.sleep(random.randint(2,10))
-                                            if count == random.randint:
                                                 s3.send_data(f"{timeDate} Device NodeID A000003 Sending Hello World {count}")
                                                 s5.send_data(f"{timeDate} Device NodeID A000005 Sending Hello World {count}")
-                                            if count != random.randint:
-                                                    s2.send_data(f"{timeDate} Device NodeID A000002 Sending Hello World {count}")
-                                                    s4.send_data(f"{timeDate} Device NodeID A000004 Sending Hello World {count}")
-                                            s1.send_data(f"Device 1 This is some arbitrary log data")
-                                            s2.send_data(f"Device 2 This is some arbitrary log data")
-                                            s3.send_data(f"Device 3 This is some arbitrary log data")
-                                            s4.send_data(f"Device 4 This is some arbitrary log data")
-                                            s5.send_data(f"Device 5 This is some arbitrary log data")
-                                            if count == random.randint:
-                                                s1.send_data(f"Device 1 This is some fluff")
-                                                s2.send_data(f"Device 2 Fell for the fluff once more")
-                                                s3.send_data(f"Device 3 The Hufflepuff Jigglypuff fluff")
-                                                s4.send_data(f"Device 4 The worst fluff you can find")
-                                                s5.send_data(f"Device 5 Please end the fluff before the fluff gets you")
-                                            schedule.run_pending()
-                                            time.sleep(1)
-                                
+                                                if count == random.randint:
+                                                    s1.send_data(f"{timeDate} Device NodeID A000001 Sending Hello World {count}")
+                                                    time.sleep(random.randint(2,10))
+                                                if count == random.randint:
+                                                    s3.send_data(f"{timeDate} Device NodeID A000003 Sending Hello World {count}")
+                                                    s5.send_data(f"{timeDate} Device NodeID A000005 Sending Hello World {count}")
+                                                if count != random.randint:
+                                                        s2.send_data(f"{timeDate} Device NodeID A000002 Sending Hello World {count}")
+                                                        s4.send_data(f"{timeDate} Device NodeID A000004 Sending Hello World {count}")
+                                                s1.send_data(f"Device 1 This is some arbitrary log data")
+                                                s2.send_data(f"Device 2 This is some arbitrary log data")
+                                                s3.send_data(f"Device 3 This is some arbitrary log data")
+                                                s4.send_data(f"Device 4 This is some arbitrary log data")
+                                                s5.send_data(f"Device 5 This is some arbitrary log data")
+                                                if count == random.randint:
+                                                    s1.send_data(f"Device 1 This is some fluff")
+                                                    s2.send_data(f"Device 2 Fell for the fluff once more")
+                                                    s3.send_data(f"Device 3 The Hufflepuff Jigglypuff fluff")
+                                                    s4.send_data(f"Device 4 The worst fluff you can find")
+                                                    s5.send_data(f"Device 5 Please end the fluff before the fluff gets you")
+                                                schedule.run_pending()
+                                                time.sleep(1)
+                                    
 
                                             #Create Network Logs for Connection
                                             NetworkReport.writerow([datetime.now(), 1111111111, "xyz", "Connected", 0])
@@ -251,33 +251,33 @@ try:
                                             # # time.sleep(0.01)
                                             # time.sleep(1)
 
-                                            timeDate = datetime.now()
-                                            s1.send_data(f"{timeDate} Device NodeID A000001 Sending Hello World {count}")
-                                            s3.send_data(f"{timeDate} Device NodeID A000003 Sending Hello World {count}")
-                                            s5.send_data(f"{timeDate} Device NodeID A000005 Sending Hello World {count}")
-                                            if count == random.randint:
+                                                timeDate = datetime.now()
                                                 s1.send_data(f"{timeDate} Device NodeID A000001 Sending Hello World {count}")
-                                                time.sleep(random.randint(2,10))
-                                            if count == random.randint:
                                                 s3.send_data(f"{timeDate} Device NodeID A000003 Sending Hello World {count}")
                                                 s5.send_data(f"{timeDate} Device NodeID A000005 Sending Hello World {count}")
-                                            if count != random.randint:
-                                                    s2.send_data(f"{timeDate} Device NodeID A000002 Sending Hello World {count}")
-                                                    s4.send_data(f"{timeDate} Device NodeID A000004 Sending Hello World {count}")
-                                            s1.send_data(f"Device 1 This is some arbitrary log data")
-                                            s2.send_data(f"Device 2 This is some arbitrary log data")
-                                            s3.send_data(f"Device 3 This is some arbitrary log data")
-                                            s4.send_data(f"Device 4 This is some arbitrary log data")
-                                            s5.send_data(f"Device 5 This is some arbitrary log data")
-                                            if count == random.randint:
-                                                s1.send_data(f"Device 1 This is some fluff")
-                                                s2.send_data(f"Device 2 Fell for the fluff once more")
-                                                s3.send_data(f"Device 3 The Hufflepuff Jigglypuff fluff")
-                                                s4.send_data(f"Device 4 The worst fluff you can find")
-                                                s5.send_data(f"Device 5 Please end the fluff before the fluff gets you")
-                                            schedule.run_pending()
-                                            time.sleep(1)
-                                
+                                                if count == random.randint:
+                                                    s1.send_data(f"{timeDate} Device NodeID A000001 Sending Hello World {count}")
+                                                    time.sleep(random.randint(2,10))
+                                                if count == random.randint:
+                                                    s3.send_data(f"{timeDate} Device NodeID A000003 Sending Hello World {count}")
+                                                    s5.send_data(f"{timeDate} Device NodeID A000005 Sending Hello World {count}")
+                                                if count != random.randint:
+                                                        s2.send_data(f"{timeDate} Device NodeID A000002 Sending Hello World {count}")
+                                                        s4.send_data(f"{timeDate} Device NodeID A000004 Sending Hello World {count}")
+                                                s1.send_data(f"Device 1 This is some arbitrary log data")
+                                                s2.send_data(f"Device 2 This is some arbitrary log data")
+                                                s3.send_data(f"Device 3 This is some arbitrary log data")
+                                                s4.send_data(f"Device 4 This is some arbitrary log data")
+                                                s5.send_data(f"Device 5 This is some arbitrary log data")
+                                                if count == random.randint:
+                                                    s1.send_data(f"Device 1 This is some fluff")
+                                                    s2.send_data(f"Device 2 Fell for the fluff once more")
+                                                    s3.send_data(f"Device 3 The Hufflepuff Jigglypuff fluff")
+                                                    s4.send_data(f"Device 4 The worst fluff you can find")
+                                                    s5.send_data(f"Device 5 Please end the fluff before the fluff gets you")
+                                                schedule.run_pending()
+                                                time.sleep(1)
+                                    
 
                                             #Create Network Logs for Connection
                                             NetworkReport.writerow([datetime.now(), 1111111111, "xyz", "Connected", 0])
