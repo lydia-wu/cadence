@@ -38,8 +38,8 @@ class server:
                 #quit()
                 #continue
                 break
-            except Exception as e:
-                    print("An unexpected error occured")
-                    print(e)
-                    quit()
+            #except Exception as e:
+            #        print("An unexpected error occured")
+            #        print(e)
+            #        quit()
 

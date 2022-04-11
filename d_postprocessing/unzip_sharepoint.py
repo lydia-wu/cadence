@@ -47,6 +47,11 @@ schedule.every(5).seconds.do(heartbeat) # shortened time for testing purposes
 
 # ======= Unzip Code =======
 
+def unzip_monitor():
+    monitor_time = datetime.now()
+    print(f"unzip_sharepoint.py is still running ({monitor_time})")
+schedule.every(15).minutes.do(unzip_monitor)
+
 #os.chdir(dir_name) # change directory from working dir to dir with files
 while True:
     try:
@@ -54,6 +59,7 @@ while True:
         for item in os.listdir(unzip_dir):              # loop through items in dir
             if item.endswith(extension):                # check for ".zip" extension
                 file_name = os.path.abspath(item)       # get full path of files
+                print(file_name)
                 zip_ref = zipfile.ZipFile(file_name)    # create zipfile object
                 zip_ref.extractall(unzip_dir)           # extract file to dir
                 zip_ref.close()                         # close file
