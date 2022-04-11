@@ -43,6 +43,7 @@ def archive_monitor():
 # Run the script
 schedule.every().day.at("01:00").do(archive_old)
 #schedule.every().day.at("19:56").do(archive_old)    # for testing purposes
+schedule.every(15).minutes.do(archive_monitor)
 
 while True:
     schedule.run_pending()

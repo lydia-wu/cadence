@@ -4,6 +4,7 @@ import re
 import os
 import time
 import getpass as gt
+from datetime import datetime
 
 #user = input("Hello, thank you for using the Cadence Unzip Tool. Please provide your username (For reference, username would reside within this structure /Users/tsuru/OneDrive/): ")
 #user = 'lydia'
@@ -22,6 +23,8 @@ while True:
                 #print(f'NEW FILE ---- {file_name}')
                 filtered_lines = []                     # declare empty array
                 with open(file_name,"r") as file:
+                    file_time = datetime.now()
+                    print(f'{file} is being filtered at {file_time}')
                     for line in file:
                         if re.search(pattern, line):
                             #print(f'MATCH: {line}')
