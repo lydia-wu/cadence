@@ -47,6 +47,11 @@ schedule.every(5).seconds.do(heartbeat) # shortened time for testing purposes
 
 # ======= Unzip Code =======
 
+def unzip_monitor():
+    monitor_time = datetime.now()
+    print(f"unzip_sharepoint.py is still running ({monitor_time})")
+schedule.every(15).minutes.do(unzip_monitor)
+
 #os.chdir(dir_name) # change directory from working dir to dir with files
 while True:
     try:
