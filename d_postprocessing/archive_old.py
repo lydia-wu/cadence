@@ -38,7 +38,7 @@ def archive_old():
 
 def archive_monitor():
     monitor_time = datetime.now()
-    print(f"archive_old is still running ({monitor_time})")
+    print(f"archive_old.py is still running ({monitor_time})")
 
 # Run the script
 schedule.every().day.at("01:00").do(archive_old)
