@@ -24,7 +24,7 @@ while True:
                 filtered_lines = []                     # declare empty array
                 with open(file_name,"r") as file:
                     file_time = datetime.now()
-                    print(f'{file} is being filtered at {file_time}')
+                    print(f'{file_name} is being filtered at {file_time}')
                     for line in file:
                         if re.search(pattern, line):
                             #print(f'MATCH: {line}')
