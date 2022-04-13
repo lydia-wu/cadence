@@ -1,3 +1,3 @@
 @echo off
 title Cadence LOG EXTRANEOUS DATA FILTER v2.0
-"C:\Users\lydia\.venv\Scripts\python.exe" "C:\Users\lydia\GitHubLocal\cadence\d_postprocessing\log_filtering.py"
+"C:\Users\baseb\AppData\Local\Programs\Python\Python310\python.exe" "D:\Users\baseb\Documents\GitHub\cadence\d_postprocessing\log_filtering.py"

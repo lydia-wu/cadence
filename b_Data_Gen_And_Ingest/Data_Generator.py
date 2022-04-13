@@ -19,6 +19,7 @@ import os
 import shutil
 import heartbeat
 import getpass as gt
+import signal
 # today = date.today()
 
 #   Do “count” 10 times:
@@ -72,6 +73,12 @@ s5.start_server(timeout_period)
 # Creates and establishes the Generator Heartbeat file
 heartbeat = heartbeat.Heartbeat("Generator")
     
+def handler(signum, frame):
+    print ('Got Ctrl-C from batch')
+    #you code handling the Ctrl-C
+
+signal.signal(signal.SIGINT, handler)
+# your code
 
 # runs = 0
 # while runs < 10:

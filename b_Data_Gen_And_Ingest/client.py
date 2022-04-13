@@ -13,6 +13,7 @@ import os
 import sys
 import heartbeat
 import getpass as gt
+import signal
 
 # ------- File Paths -----------
 user = gt.getuser()                                           # grab windows user
@@ -54,6 +55,13 @@ checkdir(arch_path)
 # #schedule.every(5).minutes.do(heartbeat)
 
 heartbeat = heartbeat.Heartbeat("Client")
+
+def handler(signum, frame):
+    print ('Got Ctrl-C from batch')
+    #you code handling the Ctrl-C
+
+signal.signal(signal.SIGINT, handler)
+# your code
    
 # ------ Receive Data Code ------
 

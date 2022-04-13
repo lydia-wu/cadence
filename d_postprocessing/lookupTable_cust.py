@@ -18,7 +18,7 @@ user = gt.getuser()
 print("Look Up Table is Processing")
 
 # Establishes lookup table
-df = pd.read_csv('/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Customer Data Offload/node_id__to__sim_id_lookup_manifest_3-30-2022.csv')
+df = pd.read_csv('C:/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Customer Data Offload/node_id__to__sim_id_lookup_manifest_3-30-2022.csv')
 node = df['NodeID']
 sim = df['ICCID(SIM)#']
 #print(node)
@@ -90,15 +90,15 @@ def fillNode(file):
 
 try:
     while True:
-        onlyfiles = [f for f in listdir('/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Customer Data Offload/') if isfile(join('/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Customer Data Offload/', f))]
+        onlyfiles = [f for f in listdir('C:/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Customer Data Offload/') if isfile(join('/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Customer Data Offload/', f))]
         appReports = []
         networkReports = []
         for file in onlyfiles:
             if re.match(r'^heartbeat-logs', file):
-                appReports.append('/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Customer Data Offload/'+file)
+                appReports.append('C:/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Customer Data Offload/'+file)
             
             if re.match(r'^Itemised', file):
-                networkReports.append('/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Customer Data Offload/'+file)
+                networkReports.append('C:/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Customer Data Offload/'+file)
 
         for x in appReports:
             if x not in updatedFile:
