@@ -1,4 +1,5 @@
 # last edited by Michael Di Girolamo at 4/8/22 2:20 PM
+# last edited by Hayley Yukihiro at 4/13/22 10:47 AM -- added heartbeat functionality
 
 import re
 import os
@@ -8,6 +9,7 @@ import schedule
 import time
 from datetime import datetime
 import getpass as gt
+import heartbeat
 
 #user = input("Hello, thank you for using the Cadence Archive Tool. Please provide your username (For reference, username would reside within this structure /Users/tsuru/OneDrive/): ")
 #user = 'lydia'
@@ -19,6 +21,9 @@ def archive_old():
     old_ext = '.zip'        # extension of old files (include the '.' i.e. -> '.zip')
     days_old = 23           # days until file is archived
     curr_date = datetime.now()
+
+    # Instantiate heartbeat
+    heartbeat = heartbeat.Heartbeat("Archive_Old")
 
     os.chdir(old_path)          # changes directory to defined file path
     for file in glob.glob("*" + old_ext):
@@ -35,6 +40,7 @@ def archive_old():
             srcpath = file
             destpath = arch_path + file
             shutil.move(srcpath, destpath)
+    heartbeat.fileProcessed()
 
 def archive_monitor():
     monitor_time = datetime.now()

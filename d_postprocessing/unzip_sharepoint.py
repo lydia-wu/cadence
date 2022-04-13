@@ -1,5 +1,6 @@
 # last edited by Michael Di Girolamo at 4/38/22 2:20 PM
 # last edited by L. Wu at 3/31/22 8:06 PM
+# last edited by Hayley Yukihiro at 4/13/22 10:56 AM
 
 import os, zipfile
 from datetime import datetime
@@ -8,6 +9,7 @@ import schedule
 import time
 import getpass as gt
 import shutil # to move files from "active" directory to "archive"/"transferred" directory
+import heartbeat
 
 
 # ====== Setup Variables =======
@@ -30,21 +32,21 @@ else:
 
 # ====== Heartbeat Code =======
 
-# do once
-heartbeat_time = datetime.now().strftime("%Y-%m-%d_%H%M%S")
-with open(heartbeat_dir + '/UnzipHEARTBEAT_' + heartbeat_time + '.csv', 'w+', newline = '') as file1:
-    UnzipHeartbeat = csv.writer(file1)
-    UnzipHeartbeat.writerow(['Time', 'Status', 'Files Processed'])
-    UnzipHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "Begin Run", 0])
+# # do once
+# heartbeat_time = datetime.now().strftime("%Y-%m-%d_%H%M%S")
+# with open(heartbeat_dir + '/UnzipHEARTBEAT_' + heartbeat_time + '.csv', 'w+', newline = '') as file1:
+#     UnzipHeartbeat = csv.writer(file1)
+#     UnzipHeartbeat.writerow(['Time', 'Status', 'Files Processed'])
+#     UnzipHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "Begin Run", 0])
 
-# Function to generate a heartbeat every 5 minutes
-def heartbeat():
-    with open(heartbeat_dir + 'UnzipHEARTBEAT_' + heartbeat_time + '.csv', 'a', newline = '') as file1:
-        UnzipHeartbeat = csv.writer(file1)
-        UnzipHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "Working", int(filecount)])
-schedule.every(5).seconds.do(heartbeat) # shortened time for testing purposes
-#schedule.every(5).minutes.do(heartbeat)
-
+# # Function to generate a heartbeat every 5 minutes
+# def heartbeat():
+#     with open(heartbeat_dir + 'UnzipHEARTBEAT_' + heartbeat_time + '.csv', 'a', newline = '') as file1:
+#         UnzipHeartbeat = csv.writer(file1)
+#         UnzipHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "Working", int(filecount)])
+# schedule.every(5).seconds.do(heartbeat) # shortened time for testing purposes
+# #schedule.every(5).minutes.do(heartbeat)
+heartbeat = heartbeat.Heartbeat("Unzip_Sharepoint")
 # ======= Unzip Code =======
 
 def unzip_monitor():
@@ -65,11 +67,13 @@ while True:
                 zip_ref.close()                         # close file
                 #os.remove(file_name)                    # delete zipped file
                 shutil.move(item, archive_dir)          # moves log file to archive directory
-                filecount = filecount + 1               # increment filecount for heartbeat
+                # filecount = filecount + 1               # increment filecount for heartbeat
+                heartbeat.fileProcessed()
         os.chdir(heartbeat_dir)                       # revert directory to heartbeat location
         schedule.run_pending()
         time.sleep(1)
     except KeyboardInterrupt:
         print("Exiting Program...")
+        heartbeat.endHeartbeat()
         quit()
 

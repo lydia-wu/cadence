@@ -1,7 +1,7 @@
 # Hayley Yukihiro
 # Lookup Table Class
 # Created On: 2022-03-10 23:11:19
-# Last updated by: Hayley Yukihiro, 2022-03-25-2022 12:31:00
+# Last updated by: Hayley Yukihiro, 2022-04-13 10:53:00
 
 
 import csv
@@ -12,6 +12,7 @@ from os.path import isfile, join
 import re
 import pandas as pd
 import getpass as gt
+import heartbeat 
 
 #user = input("Hello, thank you for using the Cadence Lookup Table. Please provide your username (For reference, username would reside within this structure /Users/tsuru/OneDrive/): ")
 user = gt.getuser()
@@ -75,12 +76,16 @@ try:
         onlyfiles = [f for f in listdir('C:/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Data Simulator Offload/') if isfile(join('/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Data Simulator Offload/', f))]
         appReports = []
         networkReports = []
+        # Instantiate heartbeat
+        heartbeat = heartbeat.Heartbeat("LookUp")
         for file in onlyfiles:
             if re.match(r'^AppReport', file):
                 appReports.append('C:/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Data Simulator Offload/'+file)
-            
+                 heartbeat.fileProcessed()
+
             if re.match(r'^NetworkReport', file):
                 networkReports.append('C:/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Data Simulator Offload/'+file)
+                 heartbeat.fileProcessed()
 
         for x in appReports:
             if x not in updatedFile:
@@ -91,4 +96,5 @@ try:
                 fillNode(x)
 
 except KeyboardInterrupt:
+    heartbeat.endHeartbeat()
     print("Finished Program")
