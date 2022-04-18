@@ -1,6 +1,6 @@
 # last edited by Michael Di Girolamo at 4/38/22 2:20 PM
 # last edited by L. Wu at 3/31/22 8:06 PM
-# last edited by Hayley Yukihiro at 4/13/22 10:56 AM
+# last edited by Hayley Yukihiro at 4/19/22 04:01 AM -- added heartbeat keyboard interrupt functionality
 
 import os, zipfile
 from datetime import datetime
@@ -74,6 +74,7 @@ while True:
         time.sleep(1)
     except KeyboardInterrupt:
         print("Exiting Program...")
+        heartbeat.endHeartbeat()
         heartbeat.endHeartbeat()
         quit()
 

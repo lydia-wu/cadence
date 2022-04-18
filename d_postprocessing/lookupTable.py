@@ -1,7 +1,7 @@
 # Hayley Yukihiro
 # Lookup Table Class
 # Created On: 2022-03-10 23:11:19
-# Last updated by: Hayley Yukihiro, 2022-04-13 10:53:00
+# Last updated by: Hayley Yukihiro, 2022-04-19 04:00:00 -- added keyboard interrupt functionality
 
 
 import csv
@@ -81,11 +81,11 @@ try:
         for file in onlyfiles:
             if re.match(r'^AppReport', file):
                 appReports.append('C:/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Data Simulator Offload/'+file)
-                 heartbeat.fileProcessed()
+                    heartbeat.fileProcessed()
 
             if re.match(r'^NetworkReport', file):
                 networkReports.append('C:/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Data Simulator Offload/'+file)
-                 heartbeat.fileProcessed()
+                    heartbeat.fileProcessed()
 
         for x in appReports:
             if x not in updatedFile:
@@ -97,4 +97,5 @@ try:
 
 except KeyboardInterrupt:
     heartbeat.endHeartbeat()
+    heartbeat.keyboardInterrupt()
     print("Finished Program")

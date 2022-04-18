@@ -1,7 +1,7 @@
 # Hayley Yukihiro
 # Lookup Table Class
 # Created On: 2022-03-10 23:11:19
-# Last updated by: Hayley Yukihiro, 2022-04-13 10:53:00
+# Last updated by: Hayley Yukihiro, 2022-04-19 03:58:00 -- added heartbeat keyboard interrupt functionality
 # Last updated by: L. Wu, 2022-03-31 21:32:00
 
 import csv
@@ -116,4 +116,5 @@ try:
 
 except KeyboardInterrupt:
     heartbeat.endHeartbeat()
+    heartbeat.keyboardInterrupt()
     print("Finished Program")

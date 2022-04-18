@@ -1,5 +1,5 @@
 # last edited by Michael Di Girolamo at 4/8/22 2:20 PM
-# last edited by Hayley Yukihiro at 4/13/22 10:47 AM  -- added heartbeat functionality
+# last edited by Hayley Yukihiro at 4/19/22 03:58 AM  -- added heartbeat keyboard interrupt functionality
 
 import re
 import os
@@ -43,5 +43,6 @@ while True:
     except KeyboardInterrupt:
         print("Exiting Program...")
         heartbeat.endHeartbeat()
+        heartbeat.keyboardInterrupt()
         quit()
 
