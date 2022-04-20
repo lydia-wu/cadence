@@ -63,7 +63,7 @@ def receive_data(port):
     device_no = port%10
     while True:
         start_time = time.time()
-        file_seconds = 10 # write duration for one log file
+        file_seconds = 10*60 # write duration for one log file
         elapsed_time = 0
 
         timestamp = datetime.now().strftime("%Y-%m-%d_%H%M%S")

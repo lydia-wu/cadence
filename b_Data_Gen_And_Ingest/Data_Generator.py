@@ -115,7 +115,7 @@ try:
                                     # First run (for the sake of starting count at zero)
                                     if runs == 1:
                                         count = 0
-                                        while count < 100:
+                                        while count < 1000:
                                             count = count+1
                                             schedule.run_pending()
                                 

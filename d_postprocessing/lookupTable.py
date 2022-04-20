@@ -30,13 +30,13 @@ updatedFile = set()
 for x in range(node.size):
     lookupSIM[node[x]] = sim[x]
 def findSIM(node):
-    return lookupSIM.get[node]
+    return lookupSIM.get(node)
 
 # Lookup NodeID from given SIMID
 for x in range(sim.size):
     lookupNode[sim[x]] = node[x]
 def findNode(sim):
-    return lookupNode.get[sim]
+    return lookupNode.get(sim)
 
 # Populate SIM IDs
 def fillSIM(file):
