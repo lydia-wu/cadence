@@ -3,7 +3,6 @@
 # Created On: 2022-03-10 23:11:19
 # Last updated by: Hayley Yukihiro, 2022-04-19 04:00:00 -- added keyboard interrupt functionality
 
-
 import csv
 import pandas as pd
 import os
@@ -12,7 +11,7 @@ from os.path import isfile, join
 import re
 import pandas as pd
 import getpass as gt
-import heartbeat 
+import heartbeat
 
 #user = input("Hello, thank you for using the Cadence Lookup Table. Please provide your username (For reference, username would reside within this structure /Users/tsuru/OneDrive/): ")
 user = gt.getuser()
@@ -31,13 +30,13 @@ updatedFile = set()
 for x in range(node.size):
     lookupSIM[node[x]] = sim[x]
 def findSIM(node):
-    return lookupSIM.get(node)
+    return lookupSIM[node]
 
 # Lookup NodeID from given SIMID
 for x in range(sim.size):
     lookupNode[sim[x]] = node[x]
 def findNode(sim):
-    return lookupNode.get(sim)
+    return lookupNode[sim]
 
 # Populate SIM IDs
 def fillSIM(file):
@@ -71,21 +70,23 @@ def fillNode(file):
     net.to_csv(file, index=False)
     updatedFile.add(file)
 
+# Instantiate heartbeat
+heartbeat = heartbeat.Heartbeat("LookUp")
+
 try:
     while True:
         onlyfiles = [f for f in listdir('C:/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Data Simulator Offload/') if isfile(join('/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Data Simulator Offload/', f))]
         appReports = []
         networkReports = []
-        # Instantiate heartbeat
-        heartbeat = heartbeat.Heartbeat("LookUp")
+    
         for file in onlyfiles:
             if re.match(r'^AppReport', file):
                 appReports.append('C:/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Data Simulator Offload/'+file)
-                    heartbeat.fileProcessed()
+                heartbeat.fileProcessed()
 
             if re.match(r'^NetworkReport', file):
                 networkReports.append('C:/Users/' + user + '/Liberty University/Group-Cadence Data Simulator-Document Platform - Documents/Data Simulator Offload/'+file)
-                    heartbeat.fileProcessed()
+                heartbeat.fileProcessed()
 
         for x in appReports:
             if x not in updatedFile:
@@ -99,3 +100,5 @@ except KeyboardInterrupt:
     heartbeat.endHeartbeat()
     heartbeat.keyboardInterrupt()
     print("Finished Program")
+
+
