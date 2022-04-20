@@ -1,6 +1,6 @@
 #last edited by Hunter Alloway on 03/11/2022; 
 #last edited by Lydia Wu @2:35PM, 2022-04-06
-#last edited by Hayley Yukihiro on 2022-04-07 03:40 -- added heartbeat class functionalities
+#last edited by Hayley Yukihiro on 2022-04-19 03:56 -- added heartbeat keyboard interrupt functionality
 #last edited by Michael DiGirolamo 2022-04-08 16:40 -- added getpass to grab windows user
 #last edited by Lydia Wu & Hunter Alloway 2022-04-11 12:33 -- evicted the timestamp check
 
@@ -156,7 +156,9 @@ try:
         time.sleep(30) # seconds
 
 except KeyboardInterrupt:  
-        schedule.run_pending()                               
+        schedule.run_pending()   
+        heartbeat.endHeartbeat()
+        heartbeat.keyboardInterrupt()                            
         # EmailFlowHeartbeat.writerow([datetime.now().strftime("%Y-%m-%d_%H%M%S"), "End Run", filecount])  # close out heartbeat
         
         dir_list = os.listdir(directory)
@@ -201,7 +203,6 @@ else:
 # file1.close()
 
 print("=== NOW SENDING CURRENT EmailFlow HEARTBEAT FILE AND VISUALIZED DASHBOARD REPORT===")
-heartbeat.endHeartbeat()
 sendTheMail(outlook, emailAddr, emailSubject, heartbeat.getFileName(), ArchiveFolder, newdirectory)
 
 print("===================================\nWoot! End of program!")
