@@ -91,211 +91,173 @@ try:
         # Creates file for Network and App reports
         with open(path + '/NetworkReport_'+ datetime.now().strftime("%Y-%m-%d_%H%M%S") + '.csv', 'w+', newline = '') as file2:
             with open(path + '/AppReport_'+ datetime.now().strftime("%Y-%m-%d_%H%M%S") + '.csv', 'w+', newline = '') as file3:
-                    NetworkReport = csv.writer(file2)
-                    NetworkReport.writerow(['Time', 'ICCID(SIM ID)', "Arbitrary Column",'Connection Event', 'Bytes Used'])
-                    AppReport = csv.writer(file3)
-                    AppReport.writerow(['Time', 'NodeID', 'Message'])
-                    schedule.run_pending()
+                NetworkReport = csv.writer(file2)
+                NetworkReport.writerow(['Time', 'ICCID(SIM ID)', "Arbitrary Column",'Connection Event', 'Bytes Used'])
+                AppReport = csv.writer(file3)
+                AppReport.writerow(['Time', 'NodeID', 'Message'])
+                schedule.run_pending()
 
-<<<<<<< HEAD
-                                    # First run (for the sake of starting count at zero)
-                                    if runs == 1:
-                                        count = 0
-                                        while count < 1000:
-                                            count = count+1
-                                            schedule.run_pending()
-                                
-                                            # Create Device Logs
-                                            # DeviceLogA1.writerow([(time.strftime("%d %b %Y %I:%M:%S %p:", time.gmtime())), "Device NodeID A000001 Sending Hello World " + str(count)])
-                                            # DeviceLogA1.writerow([datetime.now(), "Device NodeID A000001 Sending Hello World " + str(count)])
-                                            # DeviceLogA3.writerow([datetime.now(), "Device NodeID A000003 Sending Hello World " + str(count)])
-                                            # DeviceLogA5.writerow([datetime.now(), "Device NodeID A000005 Sending Hello World " + str(count)])
-                                            # if count == random.randint(1,10):
-                                            #     DeviceLogA1.writerow([datetime.now(), "Device NodeID A000001 Sending Hello World " + str(count)])
-                                            #     time.sleep(random.randint(2,10))
-                                            # if count == random.randint(11,50):
-                                            #     DeviceLogA3.writerow([datetime.now(), "Device NodeID A000003 Sending Hello World " + str(count)])
-                                            #     DeviceLogA5.writerow([datetime.now(), "Device NodeID A000005 Sending Hello World " + str(count)])
-                                            # if count != random.randint(51,101):
-                                            #     DeviceLogA2.writerow([datetime.now(), "Device NodeID A000002 Sending Hello World " + str(count)])
-                                            #     DeviceLogA4.writerow([datetime.now(), "Device NodeID A000004 Sending Hello World " + str(count)])
-                                            # DeviceLogA1.writerow(['This is some arbitrary log data'])
-                                            # DeviceLogA2.writerow(['This is some arbitrary log data'])
-                                            # DeviceLogA3.writerow(['This is some arbitrary log data'])
-                                            # DeviceLogA4.writerow(['This is some arbitrary log data'])
-                                            # DeviceLogA5.writerow(['This is some arbitrary log data'])
-                                            # if count == random.randint(10,20) or count == random.randint(30,45) or count == random.randint(50,70) or count == random.randint(75,90):
-                                            #     DeviceLogA1.writerow(['This is some fluff'])
-                                            #     DeviceLogA2.writerow(['Fell for the fluff once more'])
-                                            #     DeviceLogA3.writerow(['The Hufflepuff Jigglypuff fluff'])
-                                            #     DeviceLogA4.writerow(['The worst fluff you can find'])
-                                            #     DeviceLogA5.writerow(['Please end the fluff before the fluff gets you'])
-                                            # schedule.run_pending()
-                                            # # time.sleep(0.01)
-                                            # time.sleep(1)
-=======
-                    # First run (for the sake of starting count at zero)
-                    if runs == 1:
-                        count = 0
-                        while count < 100:
-                            count = count+1
-                            schedule.run_pending()
-                
-                            # Create Device Logs
-                            timeDate = datetime.now()
+                # First run (for the sake of starting count at zero)
+                if runs == 1:
+                    count = 0
+                    while count < 100:
+                        count = count+1
+                        schedule.run_pending()
+
+                        # Create Device Logs
+                        timeDate = datetime.now()
+                        s1.send_data(f"{timeDate} Device NodeID A000001 Sending Hello World {count}")
+                        s3.send_data(f"{timeDate} Device NodeID A000003 Sending Hello World {count}")
+                        s5.send_data(f"{timeDate} Device NodeID A000005 Sending Hello World {count}")
+                        if count == random.randint:
                             s1.send_data(f"{timeDate} Device NodeID A000001 Sending Hello World {count}")
+                            time.sleep(random.randint(2,10))
+                        if count == random.randint:
                             s3.send_data(f"{timeDate} Device NodeID A000003 Sending Hello World {count}")
                             s5.send_data(f"{timeDate} Device NodeID A000005 Sending Hello World {count}")
-                            if count == random.randint:
-                                s1.send_data(f"{timeDate} Device NodeID A000001 Sending Hello World {count}")
-                                time.sleep(random.randint(2,10))
-                            if count == random.randint:
-                                s3.send_data(f"{timeDate} Device NodeID A000003 Sending Hello World {count}")
-                                s5.send_data(f"{timeDate} Device NodeID A000005 Sending Hello World {count}")
-                            if count != random.randint:
-                                    s2.send_data(f"{timeDate} Device NodeID A000002 Sending Hello World {count}")
-                                    s4.send_data(f"{timeDate} Device NodeID A000004 Sending Hello World {count}")
-                            s1.send_data(f"Device 1 This is some arbitrary log data")
-                            s2.send_data(f"Device 2 This is some arbitrary log data")
-                            s3.send_data(f"Device 3 This is some arbitrary log data")
-                            s4.send_data(f"Device 4 This is some arbitrary log data")
-                            s5.send_data(f"Device 5 This is some arbitrary log data")
-                            if count == random.randint:
-                                s1.send_data(f"Device 1 This is some fluff")
-                                s2.send_data(f"Device 2 Fell for the fluff once more")
-                                s3.send_data(f"Device 3 The Hufflepuff Jigglypuff fluff")
-                                s4.send_data(f"Device 4 The worst fluff you can find")
-                                s5.send_data(f"Device 5 Please end the fluff before the fluff gets you")
-                            schedule.run_pending()
-                            time.sleep(1)
-                
->>>>>>> 524859d74fcd4a0e780d47126d9eb4321b21db3d
+                        if count != random.randint:
+                                s2.send_data(f"{timeDate} Device NodeID A000002 Sending Hello World {count}")
+                                s4.send_data(f"{timeDate} Device NodeID A000004 Sending Hello World {count}")
+                        s1.send_data(f"Device 1 This is some arbitrary log data")
+                        s2.send_data(f"Device 2 This is some arbitrary log data")
+                        s3.send_data(f"Device 3 This is some arbitrary log data")
+                        s4.send_data(f"Device 4 This is some arbitrary log data")
+                        s5.send_data(f"Device 5 This is some arbitrary log data")
+                        if count == random.randint:
+                            s1.send_data(f"Device 1 This is some fluff")
+                            s2.send_data(f"Device 2 Fell for the fluff once more")
+                            s3.send_data(f"Device 3 The Hufflepuff Jigglypuff fluff")
+                            s4.send_data(f"Device 4 The worst fluff you can find")
+                            s5.send_data(f"Device 5 Please end the fluff before the fluff gets you")
+                        schedule.run_pending()
+                        time.sleep(1)
 
-                            #Create Network Logs for Connection
-                            NetworkReport.writerow([datetime.now(), 1111111111, "xyz", "Connected", 0])
+
+                        #Create Network Logs for Connection
+                        NetworkReport.writerow([datetime.now(), 1111111111, "xyz", "Connected", 0])
+                        NetworkReport.writerow([datetime.now(), 2222222222, "xyz", "Connected", 0])
+                        NetworkReport.writerow([datetime.now(), 3333333333, "xyz", "Connected", 0])
+                        if count == random.randint(1,50):
                             NetworkReport.writerow([datetime.now(), 2222222222, "xyz", "Connected", 0])
                             NetworkReport.writerow([datetime.now(), 3333333333, "xyz", "Connected", 0])
-                            if count == random.randint(1,50):
-                                NetworkReport.writerow([datetime.now(), 2222222222, "xyz", "Connected", 0])
-                                NetworkReport.writerow([datetime.now(), 3333333333, "xyz", "Connected", 0])
-                            if count != random.randint(51,101):
-                                NetworkReport.writerow([datetime.now(), 4444444444, "xyz", "Connected", 0])
-                                NetworkReport.writerow([datetime.now(), 5555555555, "xyz", "Connected", 0])
-                            schedule.run_pending()
-                            # time.sleep(0.01)
-                            time.sleep(1)
-                
-                            #Create App Logs
-                            AppReport.writerow([datetime.now(), "A000001", "Cloud App Received Hello World " + str(count)])
+                        if count != random.randint(51,101):
+                            NetworkReport.writerow([datetime.now(), 4444444444, "xyz", "Connected", 0])
+                            NetworkReport.writerow([datetime.now(), 5555555555, "xyz", "Connected", 0])
+                        schedule.run_pending()
+                        # time.sleep(0.01)
+                        time.sleep(1)
+
+                        #Create App Logs
+                        AppReport.writerow([datetime.now(), "A000001", "Cloud App Received Hello World " + str(count)])
+                        AppReport.writerow([datetime.now(), "A000002", "Cloud App Received Hello World " + str(count)])
+                        AppReport.writerow([datetime.now(), "A000003", "Cloud App Received Hello World " + str(count)])
+                        if count == random.randint(1,50):
                             AppReport.writerow([datetime.now(), "A000002", "Cloud App Received Hello World " + str(count)])
                             AppReport.writerow([datetime.now(), "A000003", "Cloud App Received Hello World " + str(count)])
-                            if count == random.randint(1,50):
-                                AppReport.writerow([datetime.now(), "A000002", "Cloud App Received Hello World " + str(count)])
-                                AppReport.writerow([datetime.now(), "A000003", "Cloud App Received Hello World " + str(count)])
-                            if count != random.randint(51,101):
-                                AppReport.writerow([datetime.now(), "A000004", "Cloud App Received Hello World " + str(count)])
-                                AppReport.writerow([datetime.now(), "A000005", "Cloud App Received Hello World " + str(count)])
-                            schedule.run_pending()
-                            # time.sleep(0.01)
-                            time.sleep(1)
-                
-                            #Create Network Logs for Disconnection
-                            NetworkReport.writerow([datetime.now(), 1111111111, "xyz", "Disconnected", 2000])
+                        if count != random.randint(51,101):
+                            AppReport.writerow([datetime.now(), "A000004", "Cloud App Received Hello World " + str(count)])
+                            AppReport.writerow([datetime.now(), "A000005", "Cloud App Received Hello World " + str(count)])
+                        schedule.run_pending()
+                        # time.sleep(0.01)
+                        time.sleep(1)
+
+                        #Create Network Logs for Disconnection
+                        NetworkReport.writerow([datetime.now(), 1111111111, "xyz", "Disconnected", 2000])
+                        NetworkReport.writerow([datetime.now(), 2222222222, "xyz", "Disconnected", 2000])
+                        NetworkReport.writerow([datetime.now(), 3333333333, "xyz", "Disconnected", 2000])
+                        if count == random.randint(1,50):
                             NetworkReport.writerow([datetime.now(), 2222222222, "xyz", "Disconnected", 2000])
                             NetworkReport.writerow([datetime.now(), 3333333333, "xyz", "Disconnected", 2000])
-                            if count == random.randint(1,50):
-                                NetworkReport.writerow([datetime.now(), 2222222222, "xyz", "Disconnected", 2000])
-                                NetworkReport.writerow([datetime.now(), 3333333333, "xyz", "Disconnected", 2000])
-                            if count != random.randint(51,101):
-                                NetworkReport.writerow([datetime.now(), 4444444444, "xyz", "Disconnected", 2000])
-                                NetworkReport.writerow([datetime.now(), 5555555555, "xyz", "Disconnected", 2000])
-                            schedule.run_pending()
-                            # time.sleep(0.01)
-                            time.sleep(5)
-                            schedule.run_pending()
+                        if count != random.randint(51,101):
+                            NetworkReport.writerow([datetime.now(), 4444444444, "xyz", "Disconnected", 2000])
+                            NetworkReport.writerow([datetime.now(), 5555555555, "xyz", "Disconnected", 2000])
+                        schedule.run_pending()
+                        # time.sleep(0.01)
+                        time.sleep(5)
+                        schedule.run_pending()
 
-                    else:
-                        logs = count + 100
-                        while count < logs:
-                            count = count+1
-                            schedule.run_pending()
+                else:
+                    logs = count + 100
+                    while count < logs:
+                        count = count+1
+                        schedule.run_pending()
 
-                            # Create Device Logs
-                            timeDate = datetime.now()
+                        # Create Device Logs
+                        timeDate = datetime.now()
+                        s1.send_data(f"{timeDate} Device NodeID A000001 Sending Hello World {count}")
+                        s3.send_data(f"{timeDate} Device NodeID A000003 Sending Hello World {count}")
+                        s5.send_data(f"{timeDate} Device NodeID A000005 Sending Hello World {count}")
+                        if count == random.randint:
                             s1.send_data(f"{timeDate} Device NodeID A000001 Sending Hello World {count}")
+                            time.sleep(random.randint(2,10))
+                        if count == random.randint:
                             s3.send_data(f"{timeDate} Device NodeID A000003 Sending Hello World {count}")
                             s5.send_data(f"{timeDate} Device NodeID A000005 Sending Hello World {count}")
-                            if count == random.randint:
-                                s1.send_data(f"{timeDate} Device NodeID A000001 Sending Hello World {count}")
-                                time.sleep(random.randint(2,10))
-                            if count == random.randint:
-                                s3.send_data(f"{timeDate} Device NodeID A000003 Sending Hello World {count}")
-                                s5.send_data(f"{timeDate} Device NodeID A000005 Sending Hello World {count}")
-                            if count != random.randint:
-                                    s2.send_data(f"{timeDate} Device NodeID A000002 Sending Hello World {count}")
-                                    s4.send_data(f"{timeDate} Device NodeID A000004 Sending Hello World {count}")
-                            s1.send_data(f"Device 1 This is some arbitrary log data")
-                            s2.send_data(f"Device 2 This is some arbitrary log data")
-                            s3.send_data(f"Device 3 This is some arbitrary log data")
-                            s4.send_data(f"Device 4 This is some arbitrary log data")
-                            s5.send_data(f"Device 5 This is some arbitrary log data")
-                            if count == random.randint:
-                                s1.send_data(f"Device 1 This is some fluff")
-                                s2.send_data(f"Device 2 Fell for the fluff once more")
-                                s3.send_data(f"Device 3 The Hufflepuff Jigglypuff fluff")
-                                s4.send_data(f"Device 4 The worst fluff you can find")
-                                s5.send_data(f"Device 5 Please end the fluff before the fluff gets you")
-                            schedule.run_pending()
-                            time.sleep(1)
-                
+                        if count != random.randint:
+                                s2.send_data(f"{timeDate} Device NodeID A000002 Sending Hello World {count}")
+                                s4.send_data(f"{timeDate} Device NodeID A000004 Sending Hello World {count}")
+                        s1.send_data(f"Device 1 This is some arbitrary log data")
+                        s2.send_data(f"Device 2 This is some arbitrary log data")
+                        s3.send_data(f"Device 3 This is some arbitrary log data")
+                        s4.send_data(f"Device 4 This is some arbitrary log data")
+                        s5.send_data(f"Device 5 This is some arbitrary log data")
+                        if count == random.randint:
+                            s1.send_data(f"Device 1 This is some fluff")
+                            s2.send_data(f"Device 2 Fell for the fluff once more")
+                            s3.send_data(f"Device 3 The Hufflepuff Jigglypuff fluff")
+                            s4.send_data(f"Device 4 The worst fluff you can find")
+                            s5.send_data(f"Device 5 Please end the fluff before the fluff gets you")
+                        schedule.run_pending()
+                        time.sleep(1)
 
-                            #Create Network Logs for Connection
-                            NetworkReport.writerow([datetime.now(), 1111111111, "xyz", "Connected", 0])
+
+                        #Create Network Logs for Connection
+                        NetworkReport.writerow([datetime.now(), 1111111111, "xyz", "Connected", 0])
+                        NetworkReport.writerow([datetime.now(), 2222222222, "xyz", "Connected", 0])
+                        NetworkReport.writerow([datetime.now(), 3333333333, "xyz", "Connected", 0])
+                        if count == random.randint:
                             NetworkReport.writerow([datetime.now(), 2222222222, "xyz", "Connected", 0])
                             NetworkReport.writerow([datetime.now(), 3333333333, "xyz", "Connected", 0])
-                            if count == random.randint:
-                                NetworkReport.writerow([datetime.now(), 2222222222, "xyz", "Connected", 0])
-                                NetworkReport.writerow([datetime.now(), 3333333333, "xyz", "Connected", 0])
-                            if count != random.randint:
-                                NetworkReport.writerow([datetime.now(), 4444444444, "xyz", "Connected", 0])
-                                NetworkReport.writerow([datetime.now(), 5555555555, "xyz", "Connected", 0])
-                            schedule.run_pending()
-                            # time.sleep(0.01)
-                            time.sleep(1)
+                        if count != random.randint:
+                            NetworkReport.writerow([datetime.now(), 4444444444, "xyz", "Connected", 0])
+                            NetworkReport.writerow([datetime.now(), 5555555555, "xyz", "Connected", 0])
+                        schedule.run_pending()
+                        # time.sleep(0.01)
+                        time.sleep(1)
 
-                
-                            #Create App Logs
-                            AppReport.writerow([datetime.now(), "A000001", "Cloud App Received Hello World " + str(count)])
+
+                        #Create App Logs
+                        AppReport.writerow([datetime.now(), "A000001", "Cloud App Received Hello World " + str(count)])
+                        AppReport.writerow([datetime.now(), "A000002", "Cloud App Received Hello World " + str(count)])
+                        AppReport.writerow([datetime.now(), "A000003", "Cloud App Received Hello World " + str(count)])
+                        if count == random.randint:
                             AppReport.writerow([datetime.now(), "A000002", "Cloud App Received Hello World " + str(count)])
                             AppReport.writerow([datetime.now(), "A000003", "Cloud App Received Hello World " + str(count)])
-                            if count == random.randint:
-                                AppReport.writerow([datetime.now(), "A000002", "Cloud App Received Hello World " + str(count)])
-                                AppReport.writerow([datetime.now(), "A000003", "Cloud App Received Hello World " + str(count)])
-                            if count != random.randint:
-                                AppReport.writerow([datetime.now(), "A000004", "Cloud App Received Hello World " + str(count)])
-                                AppReport.writerow([datetime.now(), "A000005", "Cloud App Received Hello World " + str(count)])
-                            schedule.run_pending()
-                            # time.sleep(0.01)
-                            time.sleep(1)
+                        if count != random.randint:
+                            AppReport.writerow([datetime.now(), "A000004", "Cloud App Received Hello World " + str(count)])
+                            AppReport.writerow([datetime.now(), "A000005", "Cloud App Received Hello World " + str(count)])
+                        schedule.run_pending()
+                        # time.sleep(0.01)
+                        time.sleep(1)
 
-                
-                            #Create Network Logs for Disconnection
-                            NetworkReport.writerow([datetime.now(), 1111111111, "xyz", "Disconnected", 2000])
+
+                        #Create Network Logs for Disconnection
+                        NetworkReport.writerow([datetime.now(), 1111111111, "xyz", "Disconnected", 2000])
+                        NetworkReport.writerow([datetime.now(), 2222222222, "xyz", "Disconnected", 2000])
+                        NetworkReport.writerow([datetime.now(), 3333333333, "xyz", "Disconnected", 2000])
+                        if count == random.randint:
                             NetworkReport.writerow([datetime.now(), 2222222222, "xyz", "Disconnected", 2000])
                             NetworkReport.writerow([datetime.now(), 3333333333, "xyz", "Disconnected", 2000])
-                            if count == random.randint:
-                                NetworkReport.writerow([datetime.now(), 2222222222, "xyz", "Disconnected", 2000])
-                                NetworkReport.writerow([datetime.now(), 3333333333, "xyz", "Disconnected", 2000])
-                            if count != random.randint:
-                                NetworkReport.writerow([datetime.now(), 4444444444, "xyz", "Disconnected", 2000])
-                                NetworkReport.writerow([datetime.now(), 5555555555, "xyz", "Disconnected", 2000])
-                            schedule.run_pending()
-                            # time.sleep(0.01)
-                            time.sleep(5)
-                            schedule.run_pending()
+                        if count != random.randint:
+                            NetworkReport.writerow([datetime.now(), 4444444444, "xyz", "Disconnected", 2000])
+                            NetworkReport.writerow([datetime.now(), 5555555555, "xyz", "Disconnected", 2000])
+                        schedule.run_pending()
+                        # time.sleep(0.01)
+                        time.sleep(5)
+                        schedule.run_pending()
 
                 
-                    print("Generating Next Run") 
+                print("Generating Next Run") 
             heartbeat.fileProcessed()
         heartbeat.fileProcessed()
         # Moves finished files from temp to cadence1 folder
