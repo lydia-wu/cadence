@@ -1,5 +1,6 @@
 #created: 2022-03-25 Friday, 2:00P ET, L. Wu
 #last edited: 2022-03-30 Wednesday, 5:47P ET, L. Wu
+# this is a comment
 
 print ("Commencing Column Killer Function")
 
